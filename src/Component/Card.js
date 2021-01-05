@@ -1,32 +1,80 @@
 import React from 'react'
 import './Card.css'
-import Top from "./Top.js"
-// import Name1 from './Name1.js'
-// import Symbol1 from './Symbol1.js'
-// import Bin1 from './Bin1.js'
+import TopCard from "./TopCard.js"
 import UserGroup from './UserGroup.js'
-// import Manager from './Manager.js'
-// import Icon1 from './Icon1.js'
 import './Draft.css'
-// const style1 = {
-//     p1: {
-//         fontStyle: "normal",
-//         fontWeight: "bold",
-//     },
-//     p2: {
-//         fontSize: "20px",
-//         color: "rgb(95, 95, 99)", 
-//         fontWeight: "bold",
-//     }
-// }
-
 export default function Card(props) {
-    const { data1, cardName, user, manager, memberIds, managerIds } = props;
-    return (
-        <div className="training">
-            <Top cardName={cardName}/>
-            <UserGroup user={user} manager={manager} data1={memberIds} admin={user} />
-            <UserGroup user={user} manager={manager} data1={managerIds} admin={manager} />
-        </div>
-    )
+  const { onClickCheckSymbol,
+    newName,
+    isEditing,
+    onChange,
+    defaultTeamName,
+    // onChangeName, 
+    onEditNameTeam,
+    // data1,
+    isClickOnEditSymbol,
+    cardName,
+    userTiltle,
+    managerTiltle,
+    memberIds,
+    managerIds,
+    id, 
+    onClearTeam } = props;
+  function handleClearTeam() {
+    onClearTeam && onClearTeam(id);
+    // if (onClearTeam) {
+    //   onClearTeam(id);
+    // }
+  }
+  // function handleSearchName(value) {
+  //   var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)
+  //   return item;
+  // }
+
+  // function handleChangeTeamName() {
+  //   // onChangeName && onChangeName(id);
+  //   if (onChangeName) {
+  //     onChangeName(id);
+  //   }
+  // }
+
+  // function handleChangeName() {
+  //   if (onChangeName) {
+  //     onChangeName(id);
+  //   }
+  // }
+
+  return (
+    <div className="training">
+      <TopCard
+        isEditing={isEditing}
+        id={id}
+        newName={newName}
+        onEditNameTeam={onEditNameTeam}
+        cardName={cardName}
+        // onChange={handleSearchName}
+        // onChangeNameTeam={handleChangeName}
+        defaultTeamName={defaultTeamName}
+        onClick={handleClearTeam}
+        // onChangeName={handleChangeTeamName}
+        isClickOnEditSymbol={isClickOnEditSymbol}
+        onChange={onChange}
+        onClickTickSymbol={onClickCheckSymbol}
+      />
+      <UserGroup
+        // userTiltle="Admin"
+        managerTiltle={managerTiltle}
+        data1={memberIds}
+        admin={userTiltle}
+      // onChange={handleSearchName}
+      />
+      <UserGroup
+        // userTiltle="User"
+        managerTiltle={managerTiltle}
+        data1={managerIds}
+        admin={managerTiltle}
+      // onChange={handleSearchName}
+      />
+    </div>
+  )
 }

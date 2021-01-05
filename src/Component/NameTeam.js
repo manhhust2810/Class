@@ -1,12 +1,12 @@
 import React from 'react'
-import './Name1.css'
+import './NameTeam.css'
 import './Draft.css'
 
-export default function Name1(props){
+export default function NameTeam(props) {
     const { cardName } = props;
     return (
         <div className="name">
-        <div>{cardName} Team</div>
+            <div>{cardName}</div>
         </div>
     )
 }

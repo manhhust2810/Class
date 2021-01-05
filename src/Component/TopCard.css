@@ -1,0 +1,15 @@
+.nameStyle {
+  font-style: normal;
+  font-weight: bold;
+}
+.symbolStyle {
+  font-size: 20px;
+  color: rgb(95, 95, 99);
+  font-weight: bold;
+}
+.iconStyle {
+  float: right;
+}
+.topCardStyle {
+  margin-right: 10px;
+}

@@ -10,6 +10,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      members: [
+        {
+          id: "Example No. 1",
+          teamName: "School of Information and Communications Technology",
+          position: "USER",
+          memberName: "Hoang Pho Nam",
+          status: "Success"
+        },
+        {
+          id: "Example No. 2",
+          teamName: "Seta International Vietnam",
+          position: "MANAGER",
+          memberName: "Vu Van Hung",
+          status: "Pending"
+        },
+        {
+          id: "Example No. 3",
+          teamName: "School of Electronics and Telecommunications",
+          position: "CUSTORMER",
+          memberName: "Do Van Trieu",
+          status: "Rejected"
+        }
+      ],
       defaultTeamName: "New Name",
       userTiltle: "USERS",
       managerTiltle: "MANAGERS",
@@ -196,7 +219,8 @@ class App extends Component {
       managerTiltle,
       data,
       edittingId,
-      dataAPI
+      dataAPI,
+      members
     } = this.state;
     console.log(dataAPI)
     return (
@@ -221,7 +245,31 @@ class App extends Component {
               <th className="text-center">Action</th>
               <th className="text-center">Status</th>
             </tr>
-            <tr>
+          
+          {members.map((post) =>
+          <tr key={post.id}>
+            <td className="text-center">{post.id}</td>
+            <td>{post.teamName}</td>
+            <td className="text-center">{post.position}</td>
+            <td className="text-center">{post.memberName}</td>
+            <td className="text-center">
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className={
+              post.status==="Success"?"label label-success":(post.status==="Pending"?"label label-primary":"label label-danger")
+            }>
+            {post.status}
+             </span>
+            </td>
+          </tr>
+            )}
+
+            {/* <tr>
             <td>Example No. 1</td>
             <td>
             <span>School of Information and Communications Technology</span>
@@ -280,7 +328,7 @@ class App extends Component {
             <td className="text-center">
             <span className="label label-danger">Rejected</span>
             </td>   
-            </tr>
+            </tr> */}
             <tr>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
@@ -288,6 +336,7 @@ class App extends Component {
             <select className="form-control">
               <option>USER</option>
               <option>MANAGER</option>
+              <option>CUSTORMER</option>
             </select>
             </td>
             <td><input type="text" className="border-input"/></td>

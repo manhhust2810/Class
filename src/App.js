@@ -18,6 +18,7 @@ class App extends Component {
       newTeamName: "",
       newMemberName: "",
       status: "",
+      position: "",
       edittingId: [],
       dataAPI: []
     };
@@ -232,26 +233,50 @@ class App extends Component {
             <tr>
               <th className="text-center">Ordinal number</th>
               <th className="text-center">New team name</th>
-              <th className="text-center">Status</th>
+              <th className="text-center">Position</th>
               <th className="text-center">New member name</th>
               <th className="text-center">Action</th>
+              <th className="text-center">Status</th>
             </tr>
             <tr>
-            <td>Example</td>
+            <td>Example No. 1</td>
             <td>
             <span>Hanoi University of Science and Technology</span>
             </td>
             <td className="text-center">
-            <span className="label label-success">MANAGER</span>
+            <span className="label label-success">USER</span>
             </td>
-            <td className="text-center"><span>Hoàng Phó Nam</span></td>
+            <td className="text-center"><span>Hoang Pho Nam</span></td>
             <td>
             <center>
             <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="btn btn-danger">Delete</button>
             </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-success">Saved</span>
             </td>   
+            </tr>
+            <tr>
+            <td>Example No. 2</td>
+            <td>
+            <span>Seta International Vietnam</span>
+            </td>
+            <td className="text-center">
+            <span className="label label-success">MANAGER</span>
+            </td>
+            <td className="text-center"><span>Vu Van Hung</span></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-success">Pending</span>
+            </td>      
             </tr>
             <tr>
             <td><input type="text"/></td>
@@ -269,13 +294,13 @@ class App extends Component {
             <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button className="btn btn-danger">Delete</button>
             </center>
-            </td>   
+            </td>
+            <td></td>   
             </tr>
           </thead>
           </table>
           </div>
         </div>
-        
       </div>
     );
   };

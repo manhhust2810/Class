@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from "./components/Header.js";
-import Card from "./components/Card.js";
+// import Card from "./components/Card.js";
+import Display from "./components/Display.js";
 import data1 from './quynhanh.json';
 import "./components/Draft.css";
 import "./App.css";
@@ -301,7 +302,20 @@ class App extends Component {
             </tr>
           </thead>
           </table>
-          <div className="my-card">
+          <Display 
+              onClearTeam={this.handleClearTeam}
+              newName={this.state.defaultTeamName}
+              onChangeName={this.handleChangeTeamName}
+              onEditNameTeam={this.handleEditTeamName}
+              onChange={this.handleChangeName}
+              onClickCheckSymbol={this.handleChangeName1}
+              userTiltle={userTiltle}
+              managerTiltle={managerTiltle}
+              data1={data1}
+              data={data}
+              edittingId={edittingId}
+          />
+          {/* <div className="my-card">
           {data.map((post) =>
             <Card
               isEditing={edittingId.includes(post.id)}
@@ -319,7 +333,7 @@ class App extends Component {
               {...post}
             />
           )}
-        </div>
+        </div> */}
           </div>
         </div>
         

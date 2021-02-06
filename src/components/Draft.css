@@ -99,21 +99,26 @@
   height: 300px;
   border-radius: 5px;
 }
+
 .govement1 {
   margin-right: 10px;
 }
+
 .govement1 > i {
   margin-right: 1rem;
 }
+
 .img1 {
   display: flex;
   flex-wrap: nowrap;
   grid-row-start: 3;
 }
+
 .img2 {
   grid-row-start: 5;
   margin-left: 37px;
 }
+
 .govement2 {
   display: grid;
   grid-row-start: 2;

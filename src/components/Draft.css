@@ -74,6 +74,8 @@ body {
 }
 .my-card {
   display: grid;
+  margin-left: 60px;
+  margin-top: 30px;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 30px;
 }

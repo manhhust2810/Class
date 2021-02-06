@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Header from "./components/Header.js";
-import Card from "../src/components/Card.js";
-import data1 from '../src/quynhanh.json';
+import Card from "./components/Card.js";
+import data1 from './quynhanh.json';
+import "./components/Draft.css";
+import "./App.css";
 class App extends Component {
 
   constructor(props) {
@@ -204,7 +206,26 @@ class App extends Component {
           onChange={this.handleChangeSearchBox}
           value={this.state.value}
         />
-        <div className="row-mt-15">
+        <div className="my-card">
+          {data.map((post) =>
+            <Card
+              isEditing={edittingId.includes(post.id)}
+              onClearTeam={this.handleClearTeam}
+              newName={this.state.defaultTeamName}
+              onChangeName={this.handleChangeTeamName}
+              onEditNameTeam={this.handleEditTeamName}
+              onChange={this.handleChangeName}
+              onClickCheckSymbol={this.handleChangeName1}
+              key={post.id}
+              userTiltle={userTiltle}
+              managerTiltle={managerTiltle}
+              cardName={post.name}
+              data1={data1}
+              {...post}
+            />
+          )}
+        </div>
+        <div className="row-mt-15 format-table">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <table className="table table-bordered table-hover">
           <thead>
@@ -254,25 +275,7 @@ class App extends Component {
           </table>
           </div>
         </div>
-        <div className="my-card">
-          {data.map((post) =>
-            <Card
-              isEditing={edittingId.includes(post.id)}
-              onClearTeam={this.handleClearTeam}
-              newName={this.state.defaultTeamName}
-              onChangeName={this.handleChangeTeamName}
-              onEditNameTeam={this.handleEditTeamName}
-              onChange={this.handleChangeName}
-              onClickCheckSymbol={this.handleChangeName1}
-              key={post.id}
-              userTiltle={userTiltle}
-              managerTiltle={managerTiltle}
-              cardName={post.name}
-              data1={data1}
-              {...post}
-            />
-          )}
-        </div>
+        
       </div>
     );
   };

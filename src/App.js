@@ -207,7 +207,101 @@ class App extends Component {
           onChange={this.handleChangeSearchBox}
           value={this.state.value}
         />
-        <div className="my-card">
+        
+        <div className="row-mt-15 format-table">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <table className="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th className="text-center">Ordinal number</th>
+              <th className="text-center">New team name</th>
+              <th className="text-center">Position</th>
+              <th className="text-center">New member name</th>
+              <th className="text-center">Action</th>
+              <th className="text-center">Status</th>
+            </tr>
+            <tr>
+            <td>Example No. 1</td>
+            <td>
+            <span>School of Information and Communications Technology</span>
+            </td>
+            <td className="text-center">
+            <span className="">USER</span>
+            </td>
+            <td className="text-center"><span>Hoang Pho Nam</span></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-success">Success</span>
+            </td>   
+            </tr>
+            <tr>
+            <td>Example No. 2</td>
+            <td>
+            <span>Seta International Vietnam</span>
+            </td>
+            <td className="text-center">
+            <span className="">MANAGER</span>
+            </td>
+            <td className="text-center"><span>Vu Van Hung</span></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-primary">Pending</span>
+            </td>      
+            </tr>
+            <tr>
+            <td>Example No. 3</td>
+            <td>
+            <span>School of Electronics and Telecommunications</span>
+            </td>
+            <td className="text-center">
+            <span className="">CUSTORMER</span>
+            </td>
+            <td className="text-center"><span>Do Van Trieu</span></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-danger">Rejected</span>
+            </td>   
+            </tr>
+            <tr>
+            <td className="format-input-cell"><input type="text" className="border-input"/></td>
+            <td className="format-input-cell"><input type="text" className="border-input"/></td>
+            <td>
+            <select className="form-control">
+              <option>USER</option>
+              <option>MANAGER</option>
+            </select>
+            </td>
+            <td><input type="text" className="border-input"/></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>
+            <td></td>   
+            </tr>
+          </thead>
+          </table>
+          <div className="my-card">
           {data.map((post) =>
             <Card
               isEditing={edittingId.includes(post.id)}
@@ -226,81 +320,9 @@ class App extends Component {
             />
           )}
         </div>
-        <div className="row-mt-15 format-table">
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <table className="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th className="text-center">Ordinal number</th>
-              <th className="text-center">New team name</th>
-              <th className="text-center">Position</th>
-              <th className="text-center">New member name</th>
-              <th className="text-center">Action</th>
-              <th className="text-center">Status</th>
-            </tr>
-            <tr>
-            <td>Example No. 1</td>
-            <td>
-            <span>Hanoi University of Science and Technology</span>
-            </td>
-            <td className="text-center">
-            <span className="label label-success">USER</span>
-            </td>
-            <td className="text-center"><span>Hoang Pho Nam</span></td>
-            <td>
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className="label label-success">Saved</span>
-            </td>   
-            </tr>
-            <tr>
-            <td>Example No. 2</td>
-            <td>
-            <span>Seta International Vietnam</span>
-            </td>
-            <td className="text-center">
-            <span className="label label-success">MANAGER</span>
-            </td>
-            <td className="text-center"><span>Vu Van Hung</span></td>
-            <td>
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className="label label-success">Pending</span>
-            </td>      
-            </tr>
-            <tr>
-            <td><input type="text"/></td>
-            <td><input type="text"/></td>
-            <td>
-            <select className="form-control">
-              <option>USER</option>
-              <option>MANAGER</option>
-            </select>
-            </td>
-            <td><input type="text"/></td>
-            <td>
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td></td>   
-            </tr>
-          </thead>
-          </table>
           </div>
         </div>
+        
       </div>
     );
   };

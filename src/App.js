@@ -1,18 +1,21 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
 import Header from './Component/Header.js'
 import Card from '../src/Component/Card.js'
-// import './Component/Draft.css'
 import data1 from '../src/quynhanh.json'
-class App extends React.Component {
+class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      defaultTeamName: 'New Name',
-      userTiltle: 'USERS',
-      managerTiltle: 'MANAGERS',
+      defaultTeamName: "New Name",
+      userTiltle: "USERS",
+      managerTiltle: "MANAGERS",
       data: data1,
       originData: data1,
+      ordinalNumber: "",
+      newTeamName: "",
+      newMemberName: "",
+      status: "",
       edittingId: [],
       dataAPI: []
     };
@@ -195,12 +198,38 @@ class App extends React.Component {
     return (
       <div>
         <div>{dataAPI.title}</div>
+        <h1 className="text-center">MY FIRST PROJECT WITH REACT APP</h1>
         <Header
-          // className="my-button1"
           onClick={this.handleAddNewTeam}
           onChange={this.handleChangeSearchBox}
           value={this.state.value}
         />
+        <div className="row-mt-15">
+          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <table className="table table-bordered table-hover">
+          <thead>
+            <tr>
+              <th className="text-center">No</th>
+              <th className="text-center">New team name</th>
+              <th className="text-center">Status</th>
+              <th className="text-center">New member name</th>
+            </tr>
+            <tr>
+            <th><input type="text"/></th>
+            <th><input type="text"/></th>
+            <th><input type="text"/></th>
+            <th><input type="text"/></th>  
+            </tr>
+            <tr>
+            <button>Add new member</button>
+            <th></th>
+            <th></th>
+            <button>Save</button>
+            </tr>
+          </thead>
+          </table>
+          </div>
+        </div>
         <div className="my-card">
           {data.map((post) =>
             <Card
@@ -224,4 +253,5 @@ class App extends React.Component {
     );
   };
 };
+
 export default App;

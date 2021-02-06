@@ -3,6 +3,7 @@
   align-items: stretch;
   /* background-color: #f1f1f1; */
 }
+
 .my-button {
   background-color: cornflowerblue;
   width: 200px;
@@ -15,6 +16,7 @@
   border-radius: 6px;
   text-transform: none;
 }
+
 .my-searchbox {
   background-color: #f1f1f1;
   width: 400px;

@@ -3,6 +3,7 @@ import './Card.css'
 import TopCard from "./TopCard.js"
 import UserGroup from './UserGroup.js'
 import './Draft.css'
+
 export default function Card(props) {
   const { onClickCheckSymbol,
     newName,

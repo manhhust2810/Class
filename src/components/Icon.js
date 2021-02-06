@@ -1,5 +1,4 @@
 import React from 'react'
-// import './Icon.css'
 import './Draft.css'
 const style = {
     icon: {

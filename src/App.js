@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Header from './Component/Header.js'
-import Card from '../src/Component/Card.js'
-import data1 from '../src/quynhanh.json'
+import Header from "./components/Header.js";
+import Card from "../src/components/Card.js";
+import data1 from '../src/quynhanh.json';
 class App extends Component {
 
   constructor(props) {
@@ -170,11 +170,11 @@ class App extends Component {
       return item
     })
 
-    console.log('-------------');
-    console.log('originData', originData);
-    console.log('id', id);
-    const test = originData.filter(data => data.id !== id);
-    console.log('test', test);
+    // console.log('-------------');
+    // console.log('originData', originData);
+    // console.log('id', id);
+    // const test = originData.filter(data => data.id !== id);
+    // console.log('test', test);
 
     const newEdittingId = edittingId.filter(item => item !== id)
 
@@ -186,7 +186,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const {
       userTiltle,
       managerTiltle,
@@ -198,7 +198,7 @@ class App extends Component {
     return (
       <div>
         <div>{dataAPI.title}</div>
-        <h1 className="text-center">MY FIRST PROJECT WITH REACT APP</h1>
+        <h1 className="text-center">MY FIRST PROJECT WITH REACT APP AND BOOTSTRAP 4</h1>
         <Header
           onClick={this.handleAddNewTeam}
           onChange={this.handleChangeSearchBox}
@@ -209,22 +209,46 @@ class App extends Component {
           <table className="table table-bordered table-hover">
           <thead>
             <tr>
-              <th className="text-center">No</th>
+              <th className="text-center">Ordinal number</th>
               <th className="text-center">New team name</th>
               <th className="text-center">Status</th>
               <th className="text-center">New member name</th>
+              <th className="text-center">Action</th>
             </tr>
             <tr>
-            <th><input type="text"/></th>
-            <th><input type="text"/></th>
-            <th><input type="text"/></th>
-            <th><input type="text"/></th>  
+            <td>Example</td>
+            <td>
+            <span>Hanoi University of Science and Technology</span>
+            </td>
+            <td className="text-center">
+            <span className="label label-success">MANAGER</span>
+            </td>
+            <td className="text-center"><span>Hoàng Phó Nam</span></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>   
             </tr>
             <tr>
-            <button>Add new member</button>
-            <th></th>
-            <th></th>
-            <button>Save</button>
+            <td><input type="text"/></td>
+            <td><input type="text"/></td>
+            <td>
+            <select className="form-control">
+              <option>USER</option>
+              <option>MANAGER</option>
+            </select>
+            </td>
+            <td><input type="text"/></td>
+            <td>
+            <center>
+            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className="btn btn-danger">Delete</button>
+            </center>
+            </td>   
             </tr>
           </thead>
           </table>

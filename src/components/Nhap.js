@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
-import Header from './Component/Header.js'
-import Card from '../src/Component/Card.js'
-import './Component/Draft.css'
+import Header from './components/Header.js'
+import Card from '../src/components/Card.js'
+import './components/Draft.css'
 import data1 from '../src/quynhanh.json'
 
 
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         console.log("constructor")
         super(props);

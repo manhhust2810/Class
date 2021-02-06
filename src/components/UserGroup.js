@@ -3,6 +3,7 @@ import User from './User.js'
 import Icon from './Icon.js'
 import './Draft.css'
 import './UserGroup.css'
+
 export default function UserGroup({ data1, admin }) {
   function handleSearchName(value) {
     var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)

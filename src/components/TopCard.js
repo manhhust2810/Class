@@ -1,8 +1,7 @@
-// import Symbol from './Symbol.js'
 import NameTeam from './NameTeam.js'
 import React from 'react'
-// import './Draft.css'
 import './TopCard.css'
+
 export default function TopCard(props) {
   const {
     newName,

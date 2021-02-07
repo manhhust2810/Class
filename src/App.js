@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from "./components/Header.js";
 import Display from "./components/Display.js";
-import data1 from './quynhanh.json';
+import data1 from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
 import "./components/Draft.css";
 import "./App.css";
@@ -21,7 +21,8 @@ class App extends Component {
       status: "",
       position: "",
       edittingId: [],
-      isSaveSuccess: false,
+      isSaveOnSuccess: false,
+      isAddOnMoreData: false,
       dataAPI: []
     };
   }
@@ -70,6 +71,20 @@ class App extends Component {
   //   console.log("getDerivedStateFromProps");
   //   return null;
   // }
+
+  handleSaveOnSuccess = (event) => {
+    this.setState({ 
+      isSaveOnSuccess: !this.state.isSaveOnSuccess,
+      status: "Pending"
+    })
+  }
+
+  handleAddMoreData = (event) => {  
+    this.setState({
+      ...this.state.isAddOnMoreData,
+      isAddOnMoreData: true
+    })
+  }
 
   handleAddNewTeam = (event) => {
     console.log(this.state);
@@ -205,13 +220,14 @@ class App extends Component {
     return (
       <div>
         <div>{dataAPI.title}</div>
-        <h1 className="text-center">MY FIRST PROJECT WITH REACT APP AND BOOTSTRAP 4</h1>
+        <h1 className="text-center">
+        MY FIRST PROJECT WITH REACT APP AND GRID LAYOUT/BOOTSTRAP 4
+        </h1>
         <Header
           onClick={this.handleAddNewTeam}
           onChange={this.handleChangeSearchBox}
           value={this.state.value}
-        />
-        
+        />     
         <div className="row-mt-15 format-table">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <table className="table table-bordered table-hover">
@@ -223,8 +239,7 @@ class App extends Component {
               <th className="text-center">New member name</th>
               <th className="text-center">Action</th>
               <th className="text-center">Status</th>
-            </tr>
-          
+            </tr>    
           {sampleMemberData.map((post) =>
           <tr key={post.id}>
             <td className="text-center">{post.id}</td>
@@ -245,9 +260,7 @@ class App extends Component {
             {post.status}
              </span>
             </td>
-          </tr>
-            )}
-
+          </tr>)}
             <tr>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
@@ -261,15 +274,65 @@ class App extends Component {
             <td><input type="text" className="border-input"/></td>
             <td>
             <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
+            <button 
+            className="btn btn-info"
+            onClick={this.handleAddMoreData}>
+            Add more
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button 
+            className="btn btn-success" 
+            onClick={this.handleSaveOnSuccess}>
+            Save
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button 
+            className="btn btn-danger">
+            Delete
+            </button>
             </center>
             </td>
-            <td></td>   
-            </tr>
+            <td className="text-center">
+            <span className="label label-primary">{this.state.status}</span>
+            </td>        
+            </tr>{(this.state.isAddOnMoreData)&&(<tr>
+            <td className="format-input-cell"><input type="text" className="border-input"/></td>
+            <td className="format-input-cell"><input type="text" className="border-input"/></td>
+            <td>
+            <select className="form-control">
+              <option>USER</option>
+              <option>MANAGER</option>
+              <option>CUSTORMER</option>
+            </select>
+            </td>
+            <td><input type="text" className="border-input"/></td>
+            <td>
+            <center>
+            <button 
+            className="btn btn-info"
+            onClick={this.handleAddMoreData}>
+            Add more
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button 
+            className="btn btn-success" 
+            onClick={this.handleSaveOnSuccess}>
+            Save
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button 
+            className="btn btn-danger">
+            Delete
+            </button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-primary">{this.state.status}</span>
+            </td>        
+            </tr>)}
           </thead>
           </table>
+          <span>{(this.state.isSaveOnSuccess)&&
+          (<div class="alert alert-success">
+              <strong>Saved New Member On Success Action!</strong>
+          </div>)}  
+          </span>         
           <Display 
               onClearTeam={this.handleClearTeam}
               newName={this.state.defaultTeamName}
@@ -284,8 +347,7 @@ class App extends Component {
               edittingId={edittingId}
           />
           </div>
-        </div>
-        
+        </div>      
       </div>
     );
   };

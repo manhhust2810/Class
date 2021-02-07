@@ -3,7 +3,7 @@ import Card from "./Card.js";
 import "./Draft.css";
 
 export default function Header(props) {
-    const { data1, 
+    const { dataMember, 
         edittingId,
         onClearTeam, 
         userTiltle, 
@@ -30,7 +30,7 @@ export default function Header(props) {
             userTiltle={userTiltle}
             managerTiltle={managerTiltle}
             cardName={post.name}
-            data1={data1}
+            dataMember={dataMember}
             {...post}
           />
         )}

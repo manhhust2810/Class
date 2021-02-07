@@ -65,14 +65,14 @@ export default function Card(props) {
       <UserGroup
         // userTiltle="Admin"
         managerTiltle={managerTiltle}
-        data1={memberIds}
+        dataMember={memberIds}
         admin={userTiltle}
       // onChange={handleSearchName}
       />
       <UserGroup
         // userTiltle="User"
         managerTiltle={managerTiltle}
-        data1={managerIds}
+        dataMember={managerIds}
         admin={managerTiltle}
       // onChange={handleSearchName}
       />

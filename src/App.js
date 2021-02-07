@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import Header from "./components/Header.js";
 import Display from "./components/Display.js";
-import data1 from "./allDataMember.json";
+import dataMember from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
+import NewRow from "./components/NewRow";
 import "./components/Draft.css";
 import "./App.css";
 class App extends Component {
@@ -13,9 +14,9 @@ class App extends Component {
       defaultTeamName: "New Name",
       userTiltle: "USERS",
       managerTiltle: "MANAGERS",
-      data: data1,
-      originData: data1,
-      ordinalNumber: "",
+      data: dataMember,
+      originData: dataMember,
+      ordinalNumber: "Auto",
       newTeamName: "",
       newMemberName: "",
       status: "",
@@ -75,19 +76,22 @@ class App extends Component {
   handleSaveOnSuccess = (event) => {
     this.setState({ 
       isSaveOnSuccess: !this.state.isSaveOnSuccess,
+      ordinalNumber: 1,
       status: "Pending"
     })
   }
 
   handleAddMoreData = (event) => {  
+    
     this.setState({
+      // ordinalNumber: "Auto",
       ...this.state.isAddOnMoreData,
-      isAddOnMoreData: true
+      isAddOnMoreData: true,
     })
   }
 
   handleAddNewTeam = (event) => {
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({
       data: [
         ...this.state.data,
@@ -262,39 +266,7 @@ class App extends Component {
             </td>
           </tr>)}
             <tr>
-            <td className="format-input-cell"><input type="text" className="border-input"/></td>
-            <td className="format-input-cell"><input type="text" className="border-input"/></td>
-            <td>
-            <select className="form-control">
-              <option>USER</option>
-              <option>MANAGER</option>
-              <option>CUSTORMER</option>
-            </select>
-            </td>
-            <td><input type="text" className="border-input"/></td>
-            <td>
-            <center>
-            <button 
-            className="btn btn-info"
-            onClick={this.handleAddMoreData}>
-            Add more
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button 
-            className="btn btn-success" 
-            onClick={this.handleSaveOnSuccess}>
-            Save
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button 
-            className="btn btn-danger">
-            Delete
-            </button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className="label label-primary">{this.state.status}</span>
-            </td>        
-            </tr>{(this.state.isAddOnMoreData)&&(<tr>
-            <td className="format-input-cell"><input type="text" className="border-input"/></td>
+            <td className="text-center format-input-cell"><b>{this.state.ordinalNumber}</b></td>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
             <td>
             <select className="form-control">
@@ -325,7 +297,13 @@ class App extends Component {
             <td className="text-center">
             <span className="label label-primary">{this.state.status}</span>
             </td>        
-            </tr>)}
+            </tr>{(this.state.isAddOnMoreData)&&
+            (<NewRow 
+            status={this.state.status} 
+            handleSaveOnSuccess={this.handleSaveOnSuccess}
+            handleAddMoreData={this.handleAddMoreData}
+            ordinalNumber={this.state.ordinalNumber}  
+            />)}
           </thead>
           </table>
           <span>{(this.state.isSaveOnSuccess)&&
@@ -342,7 +320,7 @@ class App extends Component {
               onClickCheckSymbol={this.handleChangeName1}
               userTiltle={userTiltle}
               managerTiltle={managerTiltle}
-              data1={data1}
+              dataMember={dataMember}
               data={data}
               edittingId={edittingId}
           />

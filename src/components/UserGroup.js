@@ -4,20 +4,20 @@ import Icon from './Icon.js'
 import './Draft.css'
 import './UserGroup.css'
 
-export default function UserGroup({ data1, admin }) {
+export default function UserGroup({ dataMember, admin }) {
   function handleSearchName(value) {
-    var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)
+    var item = ((dataMember.firstName.startsWith(value)) || (dataMember.lastName.startsWith(value)) ? (dataMember.firstName.includes(value)) || (dataMember.lastName.includes(value)) : null)
     return item;
   }
   return (
     <div>
-      <User type={data1.length} admin={admin} />
+      <User type={dataMember.length} admin={admin} />
       <div
         className="img3"
       >
-        {(data1.length <= 6) ?
+        {(dataMember.length <= 6) ?
           <>
-            {data1.map(post => (
+            {dataMember.map(post => (
               <Icon
                 key={post.id}
                 email={post.email}
@@ -30,7 +30,7 @@ export default function UserGroup({ data1, admin }) {
           </>
           :
           <>
-            {data1.map((post, index) => {
+            {dataMember.map((post, index) => {
               if (index > 4) {
                 return null
               }
@@ -45,7 +45,7 @@ export default function UserGroup({ data1, admin }) {
                 />
               )
             })}
-            <div className="number iconStyle">+{data1.length - 5}</div>
+            <div className="number iconStyle">+{dataMember.length - 5}</div>
           </>
         }
       </div>

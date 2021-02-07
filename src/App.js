@@ -52,12 +52,12 @@ class App extends Component {
     }
     this.setState({
       isSaveOnSuccess: !this.state.isSaveOnSuccess,
-      ordinalNumber: 1,
+      ordinalNumber: (this.state.status==="Pending")&& 1,
       status: checkStatus(),
     })
   }
 
-  handleAddMoreData = (event) => {  
+  handleAddMoreData = () => {  
     this.setState({
       // ordinalNumber: "Auto",
       ...this.state.isAddOnMoreData,
@@ -140,7 +140,6 @@ class App extends Component {
     const { newName } = event.target;
     this.setState({
       defaultTeamName: newName,
-      // edittingId: id
     })
     console.log(newName)
   }
@@ -214,7 +213,7 @@ class App extends Component {
             </td>
             <td className="text-center">
             <span className={
-              post.status==="Success"?"label label-success":(post.status==="Pending"?"label label-primary":"label label-danger")
+              post.status==="Success"?"label label-success":(post.status==="Pending"?"label label-primary":(post.status==="Rejected")?"label label-warning":"label label-danger")
             }>
             {post.status}
              </span>
@@ -266,7 +265,17 @@ class App extends Component {
             </center>
             </td>
             <td className="text-center">
-            <span className="label label-primary">{this.state.status}</span>
+            <span className={
+            (this.state.status==="Pending")
+            ?
+            "label label-success"
+            :
+            (this.state.status==="Error")
+            ?
+            "label label-danger"
+            :
+            null
+            }>{this.state.status}</span>
             </td>        
             </tr>{(this.state.isAddOnMoreData)&&
             (<NewRow 
@@ -279,17 +288,24 @@ class App extends Component {
             newMemberName={this.state.newMemberName}
             newTeamName={this.state.newTeamName}    
             />)}
-          </thead>
-          </table>
-          <span>{(this.state.isSaveOnSuccess)&&
-          (<div class="alert alert-success">
+            </thead>
+            </table>
+            <span>{(this.state.status==="Pending")
+          ?
+          (<div className="alert alert-success">
               <strong>Saved New Member On Success Action!</strong>
-          </div>)}  
+          </div>)
+          :
+          (this.state.status==="Error")
+          ?
+          (<div className="alert alert-danger">
+              <strong>Saved New Member On Failure Action!</strong>
+          </div>):
+          null}  
           </span>         
           <Display 
               onClearTeam={this.handleClearTeam}
               newName={this.state.defaultTeamName}
-              // onChangeName={this.handleChangeTeamName}
               onEditNameTeam={this.handleEditTeamName}
               onChange={this.handleChangeName}
               onClickCheckSymbol={this.handleChangeName1}

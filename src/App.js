@@ -3,7 +3,10 @@ import Header from "./components/Header.js";
 import Display from "./components/Display.js";
 import dataMember from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
-import NewRow from "./components/NewRow";
+import NewRow from "./components/NewRow.js";
+import HandleRow from "./components/HandleRow.js";
+import CurrentRow from "./components/CurrentRow.js";
+import SampleRow from "./components/SampleRow.js";
 import "./components/Draft.css";
 import "./App.css";
 class App extends Component {
@@ -32,7 +35,6 @@ class App extends Component {
     try {
       const data = await fetch('https://jsonplaceholder.typicode.com/todos')
       const data2 = await data.json()
-
       this.setState({
         dataAPI: data2
       })
@@ -197,87 +199,36 @@ class App extends Component {
               <th className="text-center">New member name</th>
               <th className="text-center">Action</th>
               <th className="text-center">Status</th>
-            </tr>    
-          {sampleMemberData.map((post) =>
-          <tr key={post.id}>
-            <td className="text-center">{post.id}</td>
-            <td>{post.teamName}</td>
-            <td className="text-center">{post.position}</td>
-            <td className="text-center">{post.memberName}</td>
-            <td className="text-center">
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className={
-              post.status==="Success"?"label label-success":(post.status==="Pending"?"label label-primary":(post.status==="Rejected")?"label label-warning":"label label-danger")
-            }>
-            {post.status}
-             </span>
-            </td>
-          </tr>)}
-            <tr>
-            <td className="text-center format-input-cell"><b>{this.state.ordinalNumber}</b></td>
-            <td className="format-input-cell">
-            <input 
-            type="text" 
-            className="border-input"
-            onChange={this.handleChangeTeamName}
-            value={this.state.newTeamName}
-            />
-            </td>
-            <td>
-            <select className="form-control">
-              <option>USER</option>
-              <option>MANAGER</option>
-              <option>CUSTORMER</option>
-            </select>
-            </td>
-            <td>
-            <input 
-            type="text" 
-            className="border-input"
-            onChange={this.handleChangeMemberName}
-            value={this.state.newMemberName}
-            />
-            </td>
-            <td>
-            <center>
-            <button 
-            className="btn btn-info"
-            onClick={this.handleAddMoreData}>
-            Add more
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button 
-            className="btn btn-success"
-            handleSave={this.handleSave} 
-            onClick={this.handleSave}>
-            Save
-            </button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button 
-            className="btn btn-danger"
-            >
-            Delete
-            </button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className={
-            (this.state.status==="Pending")
-            ?
-            "label label-success"
+            </tr>
+          </thead>
+          <tbody>
+          <SampleRow 
+            sampleMemberData={sampleMemberData}
+          />
+          </tbody>    
+          <tfoot>
+          {(this.state.status==="Pending")
+           ?
+           (<HandleRow 
+           status={this.state.status} 
+            handleSave={this.handleSave}
+            handleAddMoreData={this.handleAddMoreData}
+            ordinalNumber={this.state.ordinalNumber}
+            newMemberName={this.state.newMemberName}
+            newTeamName={this.state.newTeamName}   
+            />)
             :
-            (this.state.status==="Error")
-            ?
-            "label label-danger"
-            :
-            null
-            }>{this.state.status}</span>
-            </td>        
-            </tr>{(this.state.isAddOnMoreData)&&
+            (<CurrentRow 
+            status={this.state.status} 
+            handleSave={this.handleSave}
+            handleAddMoreData={this.handleAddMoreData}
+            ordinalNumber={this.state.ordinalNumber}
+            newMemberName={this.state.newMemberName}
+            newTeamName={this.state.newTeamName}
+            handleChangeTeamName={this.handleChangeTeamName}
+            handleChangeMemberName={this.handleChangeMemberName}  
+            />)}
+            <>{(this.state.isAddOnMoreData)&&
             (<NewRow 
             status={this.state.status} 
             handleSave={this.handleSave}
@@ -287,8 +238,8 @@ class App extends Component {
             handleChangeMemberName={this.handleChangeMemberName}
             newMemberName={this.state.newMemberName}
             newTeamName={this.state.newTeamName}    
-            />)}
-            </thead>
+            />)}</>
+          </tfoot>         
             </table>
             <span>{(this.state.status==="Pending")
           ?

@@ -1,38 +1,15 @@
 import React, { Component } from 'react';
 import Header from "./components/Header.js";
-// import Card from "./components/Card.js";
 import Display from "./components/Display.js";
 import data1 from './quynhanh.json';
+import sampleMemberData from "./sampleData.json";
 import "./components/Draft.css";
 import "./App.css";
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      members: [
-        {
-          id: "Example No. 1",
-          teamName: "School of Information and Communications Technology",
-          position: "USER",
-          memberName: "Hoang Pho Nam",
-          status: "Success"
-        },
-        {
-          id: "Example No. 2",
-          teamName: "Seta International Vietnam",
-          position: "MANAGER",
-          memberName: "Vu Van Hung",
-          status: "Pending"
-        },
-        {
-          id: "Example No. 3",
-          teamName: "School of Electronics and Telecommunications",
-          position: "CUSTORMER",
-          memberName: "Do Van Trieu",
-          status: "Rejected"
-        }
-      ],
+      sampleMemberData: sampleMemberData,
       defaultTeamName: "New Name",
       userTiltle: "USERS",
       managerTiltle: "MANAGERS",
@@ -44,6 +21,7 @@ class App extends Component {
       status: "",
       position: "",
       edittingId: [],
+      isSaveSuccess: false,
       dataAPI: []
     };
   }
@@ -94,6 +72,7 @@ class App extends Component {
   // }
 
   handleAddNewTeam = (event) => {
+    console.log(this.state);
     this.setState({
       data: [
         ...this.state.data,
@@ -138,7 +117,7 @@ class App extends Component {
   }
 
   handleChangeTeamName = (id, newName) => {
-    console.log(this.state);
+    // console.log(this.state);
     // this.setState((oldState) => ({
     //   ...oldState,
     //   data: oldState.data.map(item => {
@@ -220,7 +199,7 @@ class App extends Component {
       data,
       edittingId,
       dataAPI,
-      members
+      sampleMemberData
     } = this.state;
     console.log(dataAPI)
     return (
@@ -246,7 +225,7 @@ class App extends Component {
               <th className="text-center">Status</th>
             </tr>
           
-          {members.map((post) =>
+          {sampleMemberData.map((post) =>
           <tr key={post.id}>
             <td className="text-center">{post.id}</td>
             <td>{post.teamName}</td>
@@ -269,66 +248,6 @@ class App extends Component {
           </tr>
             )}
 
-            {/* <tr>
-            <td>Example No. 1</td>
-            <td>
-            <span>School of Information and Communications Technology</span>
-            </td>
-            <td className="text-center">
-            <span className="">USER</span>
-            </td>
-            <td className="text-center"><span>Hoang Pho Nam</span></td>
-            <td>
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className="label label-success">Success</span>
-            </td>   
-            </tr>
-            <tr>
-            <td>Example No. 2</td>
-            <td>
-            <span>Seta International Vietnam</span>
-            </td>
-            <td className="text-center">
-            <span className="">MANAGER</span>
-            </td>
-            <td className="text-center"><span>Vu Van Hung</span></td>
-            <td>
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className="label label-primary">Pending</span>
-            </td>      
-            </tr>
-            <tr>
-            <td>Example No. 3</td>
-            <td>
-            <span>School of Electronics and Telecommunications</span>
-            </td>
-            <td className="text-center">
-            <span className="">CUSTORMER</span>
-            </td>
-            <td className="text-center"><span>Do Van Trieu</span></td>
-            <td>
-            <center>
-            <button className="btn btn-info">Add more</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-success">Save</button>&nbsp;&nbsp;&nbsp;&nbsp;
-            <button className="btn btn-danger">Delete</button>
-            </center>
-            </td>
-            <td className="text-center">
-            <span className="label label-danger">Rejected</span>
-            </td>   
-            </tr> */}
             <tr>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
             <td className="format-input-cell"><input type="text" className="border-input"/></td>
@@ -364,25 +283,6 @@ class App extends Component {
               data={data}
               edittingId={edittingId}
           />
-          {/* <div className="my-card">
-          {data.map((post) =>
-            <Card
-              isEditing={edittingId.includes(post.id)}
-              onClearTeam={this.handleClearTeam}
-              newName={this.state.defaultTeamName}
-              onChangeName={this.handleChangeTeamName}
-              onEditNameTeam={this.handleEditTeamName}
-              onChange={this.handleChangeName}
-              onClickCheckSymbol={this.handleChangeName1}
-              key={post.id}
-              userTiltle={userTiltle}
-              managerTiltle={managerTiltle}
-              cardName={post.name}
-              data1={data1}
-              {...post}
-            />
-          )}
-        </div> */}
           </div>
         </div>
         

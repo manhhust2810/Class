@@ -2,9 +2,13 @@ import React from "react";
 export default function NewRow(props) {
     const { 
         status,
-        handleSaveOnSuccess,
+        handleSave,
         handleAddMoreData,
-        ordinalNumber
+        ordinalNumber,
+        handleChangeTeamName,
+        handleChangeMemberName,
+        newMemberName,
+        newTeamName
      } = props;   
     return (
         <tr>
@@ -12,7 +16,12 @@ export default function NewRow(props) {
             <b>{ordinalNumber}</b>
             </td>
             <td className="format-input-cell">
-            <input type="text" className="border-input"/>
+            <input 
+            type="text" 
+            className="border-input"
+            onChange={handleChangeTeamName}
+            value={newTeamName}
+            />
             </td>
             <td>
             <select className="form-control">
@@ -22,7 +31,13 @@ export default function NewRow(props) {
             </select>
             </td>
             <td>
-            <input type="text" className="border-input"/></td>
+            <input 
+            type="text" 
+            className="border-input"
+            onChange={handleChangeMemberName}
+            value={newMemberName}
+            />
+            </td>
             <td>
             <center>
             <button 
@@ -32,7 +47,8 @@ export default function NewRow(props) {
             </button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button 
             className="btn btn-success" 
-            onClick={handleSaveOnSuccess}>
+            onClick={handleSave}
+            handleSave={handleSave}>
             Save
             </button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button 

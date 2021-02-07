@@ -28,22 +28,6 @@ class App extends Component {
     };
   }
 
-  // componentDidMount() {
-  //   fetch('https://jsonplaceholder.typicode.com/todos/1',
-  //     {
-  //       // headers: 'abc',
-  //       // body: {
-  //       // }
-  //     })
-  //     .then(data => data.json())
-  //     .then(res => {
-  //       this.setState({
-  //         dataAPI: res
-  //       })
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-
   async componentDidMount() {
     try {
       const data = await fetch('https://jsonplaceholder.typicode.com/todos')
@@ -57,32 +41,23 @@ class App extends Component {
     }
   }
 
-  // componentDidMount = () => {
-  //   fetch('https://jsonplaceholder.typicode.com/todos/1')
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       console.log(data);
-  //       const { tiltle } = data;
-  //       this.setState({ userTiltle: tiltle });
-  //     })
-  //     .catch(error => console.log('Big error', error))
-  // }
-
-  // static getDerivedStateFromProps = () => {
-  //   console.log("getDerivedStateFromProps");
-  //   return null;
-  // }
-
-  handleSaveOnSuccess = (event) => {
-    this.setState({ 
+  handleSave = () => {
+    console.log(this.state)
+    const checkStatus = () => {
+      if(this.state.newMemberName!== "" &&this.state.newTeamName!== "")
+      {
+        return "Pending"
+      }
+      return "Error"
+    }
+    this.setState({
       isSaveOnSuccess: !this.state.isSaveOnSuccess,
       ordinalNumber: 1,
-      status: "Pending"
+      status: checkStatus(),
     })
   }
 
   handleAddMoreData = (event) => {  
-    
     this.setState({
       // ordinalNumber: "Auto",
       ...this.state.isAddOnMoreData,
@@ -91,7 +66,6 @@ class App extends Component {
   }
 
   handleAddNewTeam = (event) => {
-    // console.log(this.state);
     this.setState({
       data: [
         ...this.state.data,
@@ -108,6 +82,20 @@ class App extends Component {
     })
   }
 
+  handleChangeTeamName = (event) => {
+    const { value } = event.target;
+    this.setState({
+      newTeamName: value 
+    })
+  }
+
+  handleChangeMemberName = (event) => {
+    const { value } = event.target;
+    this.setState({
+      newMemberName: value
+    })
+  }
+
   handleChangeSearchBox = (event) => {
     const { value } = event.target;
     const { originData } = this.state;
@@ -119,7 +107,6 @@ class App extends Component {
       }
       return item.name.includes(value);
     })
-    console.log(newData)
     this.setState((oldState) => ({
       ...oldState,
       value,
@@ -135,22 +122,6 @@ class App extends Component {
     }))
   }
 
-  handleChangeTeamName = (id, newName) => {
-    // console.log(this.state);
-    // this.setState((oldState) => ({
-    //   ...oldState,
-    //   data: oldState.data.map(item => {
-    //     if (item.id === id) {
-    //       return {
-    //         ...item,
-    //         name: "New Name",
-    //       }
-    //     }
-    //     return item;
-    //   })
-    // }))
-  }
-
   handleEditTeamName = (id, event) => {
     const { newName } = event.target;
     const { edittingId } = this.state;
@@ -163,10 +134,6 @@ class App extends Component {
       defaultTeamName: newName,
       edittingId: newEdittingId,
     })
-    // console.log(id)
-    // this.setState({
-    //   edittingId: id
-    // })
   }
 
   handleChangeName = (event) => {
@@ -180,11 +147,6 @@ class App extends Component {
 
   handleChangeName1 = (id, newName) => {
     const { originData, edittingId } = this.state;
-    // for(item in originData) {
-    //   if(item.id === id) {
-    //     item.name = newName
-    //     }
-    // }
     const newData = originData.map(item => {
       if (item.id === id) {
         return {
@@ -194,12 +156,6 @@ class App extends Component {
       }
       return item
     })
-
-    // console.log('-------------');
-    // console.log('originData', originData);
-    // console.log('id', id);
-    // const test = originData.filter(data => data.id !== id);
-    // console.log('test', test);
 
     const newEdittingId = edittingId.filter(item => item !== id)
 
@@ -211,7 +167,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.state);
     const {
       userTiltle,
       managerTiltle,
@@ -267,7 +222,14 @@ class App extends Component {
           </tr>)}
             <tr>
             <td className="text-center format-input-cell"><b>{this.state.ordinalNumber}</b></td>
-            <td className="format-input-cell"><input type="text" className="border-input"/></td>
+            <td className="format-input-cell">
+            <input 
+            type="text" 
+            className="border-input"
+            onChange={this.handleChangeTeamName}
+            value={this.state.newTeamName}
+            />
+            </td>
             <td>
             <select className="form-control">
               <option>USER</option>
@@ -275,7 +237,14 @@ class App extends Component {
               <option>CUSTORMER</option>
             </select>
             </td>
-            <td><input type="text" className="border-input"/></td>
+            <td>
+            <input 
+            type="text" 
+            className="border-input"
+            onChange={this.handleChangeMemberName}
+            value={this.state.newMemberName}
+            />
+            </td>
             <td>
             <center>
             <button 
@@ -284,12 +253,14 @@ class App extends Component {
             Add more
             </button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button 
-            className="btn btn-success" 
-            onClick={this.handleSaveOnSuccess}>
+            className="btn btn-success"
+            handleSave={this.handleSave} 
+            onClick={this.handleSave}>
             Save
             </button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button 
-            className="btn btn-danger">
+            className="btn btn-danger"
+            >
             Delete
             </button>
             </center>
@@ -300,9 +271,13 @@ class App extends Component {
             </tr>{(this.state.isAddOnMoreData)&&
             (<NewRow 
             status={this.state.status} 
-            handleSaveOnSuccess={this.handleSaveOnSuccess}
+            handleSave={this.handleSave}
             handleAddMoreData={this.handleAddMoreData}
-            ordinalNumber={this.state.ordinalNumber}  
+            ordinalNumber={this.state.ordinalNumber}
+            handleChangeTeamName={this.handleChangeTeamName}
+            handleChangeMemberName={this.handleChangeMemberName}
+            newMemberName={this.state.newMemberName}
+            newTeamName={this.state.newTeamName}    
             />)}
           </thead>
           </table>
@@ -314,7 +289,7 @@ class App extends Component {
           <Display 
               onClearTeam={this.handleClearTeam}
               newName={this.state.defaultTeamName}
-              onChangeName={this.handleChangeTeamName}
+              // onChangeName={this.handleChangeTeamName}
               onEditNameTeam={this.handleEditTeamName}
               onChange={this.handleChangeName}
               onClickCheckSymbol={this.handleChangeName1}

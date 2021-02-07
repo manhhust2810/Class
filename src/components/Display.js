@@ -10,7 +10,6 @@ export default function Header(props) {
         managerTiltle, 
         data,
         newName,
-        onChangeName,
         onEditNameTeam,
         onChange,
         onClickCheckSymbol
@@ -22,7 +21,6 @@ export default function Header(props) {
             isEditing={edittingId.includes(post.id)}
             onClearTeam={onClearTeam}
             newName={newName}
-            onChangeName={onChangeName}
             onEditNameTeam={onEditNameTeam}
             onChange={onChange}
             onClickCheckSymbol={onClickCheckSymbol}

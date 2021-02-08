@@ -9,8 +9,10 @@ export default function CurrentRow(props){
         newMemberName,
         handleChangeTeamName,
         handleChangeMemberName,
-        newTeamName
-     } = props;   
+        newTeamName,
+        handleSelectOption,
+        position
+     } = props; 
     return (
         <tr>
         <td className="text-center format-input-cell"><b>{ordinalNumber}</b></td>
@@ -23,10 +25,10 @@ export default function CurrentRow(props){
         />
         </td>
         <td>
-        <select className="form-control">
-          <option>USER</option>
-          <option>MANAGER</option>
-          <option>CUSTORMER</option>
+        <select className="form-control" value={position} onChange={handleSelectOption}>
+            <option value="user">USER</option>
+            <option value="manager">MANAGER</option>
+            <option value="custormer">CUSTORMER</option>
         </select>
         </td>
         <td>

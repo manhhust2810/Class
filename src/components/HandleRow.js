@@ -7,23 +7,17 @@ export default function HandleRow(props){
         handleAddMoreData,
         ordinalNumber,
         newMemberName,
-        newTeamName
-     } = props;   
+        newTeamName,
+        position,
+     } = props;  
     return (
         <tr>
             <td className="text-center format-input-cell">
             <b>{ordinalNumber}</b>
             </td>
-            <td className="text-center">{newTeamName}</td>
-            <td>
-            <select className="form-control">
-              <option>USER</option>
-              <option>MANAGER</option>
-              <option>CUSTORMER</option>
-            </select>
-            </td>
-            <td>{newMemberName}
-            </td>
+            <td className="">{newTeamName}</td>
+            <td className="text-center">{position.toUpperCase()}</td>
+            <td className="text-center">{newMemberName}</td>
             <td>
             <center>
             <button 

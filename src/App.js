@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import Header from "./components/Header.js";
-import Display from "./components/Display.js";
+import Header from "./components/Header";
+import Display from "./components/Display";
 import dataMember from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
-import NewRow from "./components/NewRow.js";
-import HandleRow from "./components/HandleRow.js";
-import CurrentRow from "./components/CurrentRow.js";
-import SampleRow from "./components/SampleRow.js";
+import NewRow from "./components/NewRow";
+import HandleRow from "./components/HandleRow";
+import CurrentRow from "./components/CurrentRow";
+import SampleRow from "./components/SampleRow";
 import "./components/Draft.css";
 import "./App.css";
+import demo from "./redux/demo";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -23,7 +24,7 @@ class App extends Component {
       newTeamName: "",
       newMemberName: "",
       status: "",
-      position: "",
+      position: "user",
       edittingId: [],
       isSaveOnSuccess: false,
       isAddOnMoreData: false,
@@ -54,7 +55,7 @@ class App extends Component {
     }
     this.setState({
       isSaveOnSuccess: !this.state.isSaveOnSuccess,
-      ordinalNumber: (this.state.status==="Pending")&& 1,
+      ordinalNumber: (this.state.status==="Pending")?"1":"",
       status: checkStatus(),
     })
   }
@@ -143,7 +144,13 @@ class App extends Component {
     this.setState({
       defaultTeamName: newName,
     })
-    console.log(newName)
+  }
+
+  handleSelectOption = (event) => {
+    const { value } = event.target; 
+    this.setState({
+      position: value
+    });
   }
 
   handleChangeName1 = (id, newName) => {
@@ -215,7 +222,8 @@ class App extends Component {
             handleAddMoreData={this.handleAddMoreData}
             ordinalNumber={this.state.ordinalNumber}
             newMemberName={this.state.newMemberName}
-            newTeamName={this.state.newTeamName}   
+            newTeamName={this.state.newTeamName}
+            position={this.state.position}    
             />)
             :
             (<CurrentRow 
@@ -226,7 +234,9 @@ class App extends Component {
             newMemberName={this.state.newMemberName}
             newTeamName={this.state.newTeamName}
             handleChangeTeamName={this.handleChangeTeamName}
-            handleChangeMemberName={this.handleChangeMemberName}  
+            handleChangeMemberName={this.handleChangeMemberName}
+            position={this.state.position} 
+            handleSelectOption={this.handleSelectOption} 
             />)}
             <>{(this.state.isAddOnMoreData)&&
             (<NewRow 

@@ -42,7 +42,7 @@ function SampleRow(props){
     )
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     sampleMembers : state.sampleMembers
   }

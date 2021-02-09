@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import * as actions from "./../actions/index";
 
 function CurrentRow(props){
     const { 
         status,
         handleSave,
-        handleAddMoreData,
+        // handleAddMoreData,
         ordinalNumber,
         newMemberName,
         handleChangeTeamName,
@@ -12,7 +14,14 @@ function CurrentRow(props){
         newTeamName,
         handleSelectOption,
         position
-     } = props; 
+    } = props;
+     
+    const [isClickAdd, setIsClickAdd] = useState(false);
+
+    function handleAddMoreData(isClickAdd){
+
+    }
+
     return (
         <tr>
         <td className="text-center format-input-cell"><b>{ordinalNumber}</b></td>
@@ -42,8 +51,9 @@ function CurrentRow(props){
         <td>
         <center>
         <button 
-        className="btn btn-info"
-        onClick={handleAddMoreData}>
+        // onClick={handleAddMoreData}
+        onClick={()=>setIsClickAdd(true)}
+        className="btn btn-info">
         Add more
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 
@@ -75,4 +85,18 @@ function CurrentRow(props){
     )
 }
 
-export default CurrentRow;
+const mapStateToProps = state => {
+    return {
+      
+    }
+  };
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        onAddTask: (task) => {
+            dispatch(actions.addTask(task))
+        }
+      }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrentRow);

@@ -39,7 +39,7 @@ function TopCard(props) {
   }
 
   function handleClickTickSymbol() {
-    console.log(id, value)
+    // console.log(id, value)
     onClickTickSymbol(id, value)
   }
 

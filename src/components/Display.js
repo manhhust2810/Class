@@ -4,6 +4,7 @@ import "./Draft.css";
 import { connect } from "react-redux";
 
 function Header(props) {
+  
     const { 
         dataMembers, 
         edittingId,
@@ -15,9 +16,7 @@ function Header(props) {
         onChange,
         onClickCheckSymbol
      } = props;
-     
-    //  console.log("dataMembers", props.dataMembers);
-   
+
     return (
         <div className = "my-card">
         {dataMembers.map((post) =>
@@ -42,7 +41,6 @@ function Header(props) {
 const mapStateToProps = (state) => {
   return {
     dataMembers: state.dataMembers
-
   }
 };
 

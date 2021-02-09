@@ -4,16 +4,15 @@ import TopCard from "./TopCard.js"
 import UserGroup from './UserGroup.js'
 import './Draft.css'
 
-export default function Card(props) {
+function Card(props) {
+
   const { 
     onClickCheckSymbol,
     newName,
     isEditing,
     onChange,
     defaultTeamName,
-    // onChangeName, 
     onEditNameTeam,
-    // data1,
     isClickOnEditSymbol,
     cardName,
     userTiltle,
@@ -23,6 +22,7 @@ export default function Card(props) {
     id, 
     onClearTeam 
   } = props;
+
   function handleClearTeam() {
     onClearTeam && onClearTeam(id);
     // if (onClearTeam) {
@@ -55,29 +55,24 @@ export default function Card(props) {
         newName={newName}
         onEditNameTeam={onEditNameTeam}
         cardName={cardName}
-        // onChange={handleSearchName}
-        // onChangeNameTeam={handleChangeName}
         defaultTeamName={defaultTeamName}
         onClick={handleClearTeam}
-        // onChangeName={handleChangeTeamName}
         isClickOnEditSymbol={isClickOnEditSymbol}
         onChange={onChange}
         onClickTickSymbol={onClickCheckSymbol}
       />
       <UserGroup
-        // userTiltle="Admin"
         managerTiltle={managerTiltle}
         dataMembers={memberIds}
         admin={userTiltle}
-      // onChange={handleSearchName}
       />
       <UserGroup
-        // userTiltle="User"
         managerTiltle={managerTiltle}
         dataMembers={managerIds}
         admin={managerTiltle}
-      // onChange={handleSearchName}
       />
     </div>
   )
 }
+
+export default Card;

@@ -54,7 +54,6 @@ export default function TopCard(props) {
           <>
             <input
               type="text"
-              // onChange={onEditNameTeam}
               newName={newName}
               onChange={handleChangeName}
               onClick={handleEditTeamName}
@@ -76,28 +75,15 @@ export default function TopCard(props) {
             />
             <div className="iconStyle">
               <div className="fas fa-edit symbolStyle"
-                // onClick={onChangeName}
                 onClick={handleClickEditNameTeam}>
               </div>
               <div className="fa fa-trash-o symbolStyle"
                 onClick={onClick}
-                // onChangeName={onChangeName}
                 onClearTeam={onClearTeam}>
               </div>
             </div>
           </>
         }
-        {/* <div className="iconStyle">
-                    <div className="fas fa-edit symbolStyle"
-                        // onClick={onChangeName}
-                        onClick={onEditNameTeam}>
-                    </div>
-                    <div className="fa fa-trash-o symbolStyle"
-                        onClick={onClick}
-                        // onChangeName={onChangeName}
-                        onClearTeam={onClearTeam}>
-                    </div>
-                </div> */}
       </ul>
     </div>
   )

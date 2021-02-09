@@ -188,7 +188,7 @@ class App extends Component {
       userTiltle,
       managerTiltle,
       edittingId,
-      dataAPI,
+      dataAPI
     } = this.state;
     // console.log(dataAPI);
     return (

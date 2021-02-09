@@ -5,7 +5,8 @@ import UserGroup from './UserGroup.js'
 import './Draft.css'
 
 export default function Card(props) {
-  const { onClickCheckSymbol,
+  const { 
+    onClickCheckSymbol,
     newName,
     isEditing,
     onChange,
@@ -20,7 +21,8 @@ export default function Card(props) {
     memberIds,
     managerIds,
     id, 
-    onClearTeam } = props;
+    onClearTeam 
+  } = props;
   function handleClearTeam() {
     onClearTeam && onClearTeam(id);
     // if (onClearTeam) {
@@ -65,14 +67,14 @@ export default function Card(props) {
       <UserGroup
         // userTiltle="Admin"
         managerTiltle={managerTiltle}
-        dataMember={memberIds}
+        dataMembers={memberIds}
         admin={userTiltle}
       // onChange={handleSearchName}
       />
       <UserGroup
         // userTiltle="User"
         managerTiltle={managerTiltle}
-        dataMember={managerIds}
+        dataMembers={managerIds}
         admin={managerTiltle}
       // onChange={handleSearchName}
       />

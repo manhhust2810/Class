@@ -1,11 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 
-export default function SampleRow(props){
+function SampleRow(props){
 
-    const { sampleMemberData } = props;   
+    const { sampleMembers } = props;   
     
     return (
-        sampleMemberData.map((post) =>
+      sampleMembers.map((post) =>
             <tr key={post.id}>
               <td className="text-center">{post.id}</td>
               <td>{post.teamName}</td>
@@ -28,3 +29,12 @@ export default function SampleRow(props){
             </tr>)
     )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    sampleMembers : state.sampleMembers
+  }
+};
+
+export default connect(mapStateToProps, null)(SampleRow);
+

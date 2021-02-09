@@ -1,22 +1,26 @@
 import React from "react";
 import Card from "./Card.js";
 import "./Draft.css";
+import { connect } from "react-redux";
 
-export default function Header(props) {
-    const { dataMember, 
+function Header(props) {
+    const { 
+        dataMembers, 
         edittingId,
         onClearTeam, 
         userTiltle, 
         managerTiltle, 
-        data,
         newName,
         onEditNameTeam,
         onChange,
         onClickCheckSymbol
      } = props;
+     
+    //  console.log("dataMembers", props.dataMembers);
+   
     return (
-        <div className="my-card">
-        {data.map((post) =>
+        <div className = "my-card">
+        {dataMembers.map((post) =>
           <Card
             isEditing={edittingId.includes(post.id)}
             onClearTeam={onClearTeam}
@@ -28,10 +32,18 @@ export default function Header(props) {
             userTiltle={userTiltle}
             managerTiltle={managerTiltle}
             cardName={post.name}
-            dataMember={dataMember}
             {...post}
           />
         )}
       </div>
     )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dataMembers: state.dataMembers
+
+  }
+};
+
+export default connect(mapStateToProps, null)(Header);

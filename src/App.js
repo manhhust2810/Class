@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./components/Header";
 import Display from "./components/Display";
-import dataMember from "./allDataMember.json";
+import dataMembers from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
 import NewRow from "./components/NewRow";
 import HandleRow from "./components/HandleRow";
@@ -9,7 +9,7 @@ import CurrentRow from "./components/CurrentRow";
 import SampleRow from "./components/SampleRow";
 import "./components/Draft.css";
 import "./App.css";
-import demo from "./redux/demo";
+import demoRedux from "./redux/demoRedux";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,8 +18,8 @@ class App extends Component {
       defaultTeamName: "New Name",
       userTiltle: "USERS",
       managerTiltle: "MANAGERS",
-      data: dataMember,
-      originData: dataMember,
+      data: dataMembers,
+      originData: dataMembers,
       ordinalNumber: "Auto",
       newTeamName: "",
       newMemberName: "",
@@ -43,6 +43,15 @@ class App extends Component {
       console.log('loi', err);
     }
   }
+
+  // componentWillMount(){
+  //   if(localStorage&&localStorage.getItem("task")){
+  //     var tasks = JSON.parse(localStorage.getItem("task"))
+  //     this.setState({
+  //       tasks : tasks
+  //     });
+  //   }
+  // }
 
   handleSave = () => {
     console.log(this.state)
@@ -183,7 +192,7 @@ class App extends Component {
       dataAPI,
       sampleMemberData
     } = this.state;
-    console.log(dataAPI)
+    // console.log(dataAPI);
     return (
       <div>
         <div>{dataAPI.title}</div>
@@ -210,7 +219,7 @@ class App extends Component {
           </thead>
           <tbody>
           <SampleRow 
-            sampleMemberData={sampleMemberData}
+            // sampleMemberData={sampleMemberData}
           />
           </tbody>    
           <tfoot>
@@ -272,8 +281,6 @@ class App extends Component {
               onClickCheckSymbol={this.handleChangeName1}
               userTiltle={userTiltle}
               managerTiltle={managerTiltle}
-              dataMember={dataMember}
-              data={data}
               edittingId={edittingId}
           />
           </div>

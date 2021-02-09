@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "./../actions/index";
 
@@ -8,13 +8,28 @@ function CurrentRow(props){
         handleSave,
         handleAddMoreData,
         ordinalNumber,
+        isAddOnMoreData,
         newMemberName,
         handleChangeTeamName,
         handleChangeMemberName,
         newTeamName,
         handleSelectOption,
         position
-     } = props; 
+     } = props;
+
+    const [isClickAdd, setIsClickAdd] = useState(isAddOnMoreData);
+    const [numberOfRow, setNumberOfRow] = useState(0);
+     
+    function handleAddData(){
+        setIsClickAdd(!isClickAdd);
+        setNumberOfRow(numberOfRow+1);
+        handleAddMoreData();
+    }
+
+    console.log("isClickAdd", isClickAdd);
+    console.log("isAddOnMoreData", isAddOnMoreData);
+    console.log(`Bạn đã thêm ${numberOfRow} hàng`, isClickAdd);
+
     return (
         <tr>
         <td className="text-center format-input-cell"><b>{ordinalNumber}</b></td>
@@ -45,7 +60,9 @@ function CurrentRow(props){
         <center>
         <button 
         className="btn btn-info"
-        onClick={handleAddMoreData}>
+        // onClick={handleAddMoreData}
+        onClick={handleAddData}
+        >
         Add more
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 

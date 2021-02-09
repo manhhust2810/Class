@@ -8,6 +8,7 @@ var myReducer = (state = initialState, action) => {
         case types.LIST_ALL_SAMPLE_MEMBERS:
             return state;
         case types.ADD_TASK:
+            console.log(action);
             return state;
         default: 
             return state; 

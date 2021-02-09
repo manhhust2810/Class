@@ -28,6 +28,7 @@ class App extends Component {
       edittingId: [],
       isSaveOnSuccess: false,
       isAddOnMoreData: false,
+      numberOfRow: 0,
       dataAPI: []
     };
   }
@@ -74,6 +75,7 @@ class App extends Component {
       // ordinalNumber: "Auto",
       ...this.state.isAddOnMoreData,
       isAddOnMoreData: true,
+      numberOfRow: this.state.numberOfRow+1
     })
   }
 
@@ -191,6 +193,7 @@ class App extends Component {
       dataAPI
     } = this.state;
     // console.log(dataAPI);
+    console.log("numberOfRow", this.state.numberOfRow)
     return (
       <div>
         <div>{dataAPI.title}</div>
@@ -231,7 +234,8 @@ class App extends Component {
             position={this.state.position}    
             />)
             :
-            (<CurrentRow 
+            (<CurrentRow
+            isAddOnMoreData={this.state.isAddOnMoreData}
             status={this.state.status} 
             handleSave={this.handleSave}
             handleAddMoreData={this.handleAddMoreData}

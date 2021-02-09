@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function HandleRow(props){
+function HandleRow(props){
     const { 
         status,
         handleSave,
@@ -43,3 +43,5 @@ export default function HandleRow(props){
         </tr>
     )
 }
+
+export default HandleRow;

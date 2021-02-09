@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import './Draft.css'
 const style = {
     icon: {
@@ -7,7 +7,9 @@ const style = {
         width: "50px",
     }
 };
-export default function Icon() {
+
+function Icon() {
+
     return (
         <div>
             <img 
@@ -18,3 +20,5 @@ export default function Icon() {
         </div>
     )
 }
+
+export default Icon;

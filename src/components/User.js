@@ -9,7 +9,7 @@ const style2 = {
     }
 }
 
-export default function User(props) {
+function User(props) {
     const { type, admin } = props;
     return (
         <div>
@@ -19,3 +19,5 @@ export default function User(props) {
         </div>
     )
 }
+
+export default User;

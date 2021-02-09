@@ -187,10 +187,8 @@ class App extends Component {
     const {
       userTiltle,
       managerTiltle,
-      data,
       edittingId,
       dataAPI,
-      sampleMemberData
     } = this.state;
     // console.log(dataAPI);
     return (
@@ -200,8 +198,8 @@ class App extends Component {
         MY FIRST PROJECT WITH REACT APP AND GRID LAYOUT/BOOTSTRAP 4
         </h1>
         <Header
-          onClick={this.handleAddNewTeam}
-          onChange={this.handleChangeSearchBox}
+          handleAddNewTeam = {this.handleAddNewTeam}
+          handleChangeSearchBox={this.handleChangeSearchBox}
           value={this.state.value}
         />     
         <div className="row-mt-15 format-table">
@@ -218,9 +216,7 @@ class App extends Component {
             </tr>
           </thead>
           <tbody>
-          <SampleRow 
-            // sampleMemberData={sampleMemberData}
-          />
+          <SampleRow />
           </tbody>    
           <tfoot>
           {(this.state.status==="Pending")
@@ -274,14 +270,14 @@ class App extends Component {
           null}  
           </span>         
           <Display 
-              onClearTeam={this.handleClearTeam}
-              newName={this.state.defaultTeamName}
-              onEditNameTeam={this.handleEditTeamName}
-              onChange={this.handleChangeName}
-              onClickCheckSymbol={this.handleChangeName1}
-              userTiltle={userTiltle}
-              managerTiltle={managerTiltle}
-              edittingId={edittingId}
+              onClearTeam = {this.handleClearTeam}
+              newName = {this.state.defaultTeamName}
+              onEditNameTeam = {this.handleEditTeamName}
+              handleChangeName = {this.handleChangeName}
+              onClickCheckSymbol = {this.handleChangeName1}
+              userTiltle = {userTiltle}
+              managerTiltle = {managerTiltle}
+              edittingId = {edittingId}
           />
           </div>
         </div>      

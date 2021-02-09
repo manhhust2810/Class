@@ -1,5 +1,6 @@
 import React from "react";
-export default function NewRow(props) {
+
+function NewRow(props) {
     const { 
         status,
         handleSave,
@@ -63,3 +64,5 @@ export default function NewRow(props) {
             </tr>
     )
 }
+
+export default NewRow;

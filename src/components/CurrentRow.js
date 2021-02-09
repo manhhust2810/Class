@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CurrentRow(props){
+function CurrentRow(props){
     const { 
         status,
         handleSave,
@@ -74,3 +74,5 @@ export default function CurrentRow(props){
         </tr>
     )
 }
+
+export default CurrentRow;

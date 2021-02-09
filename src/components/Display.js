@@ -3,8 +3,8 @@ import Card from "./Card.js";
 import "./Draft.css";
 import { connect } from "react-redux";
 
-function Header(props) {
-  
+function Display(props){
+
     const { 
         dataMembers, 
         edittingId,
@@ -13,7 +13,7 @@ function Header(props) {
         managerTiltle, 
         newName,
         onEditNameTeam,
-        onChange,
+        handleChangeName,
         onClickCheckSymbol
      } = props;
 
@@ -25,7 +25,7 @@ function Header(props) {
             onClearTeam={onClearTeam}
             newName={newName}
             onEditNameTeam={onEditNameTeam}
-            onChange={onChange}
+            onChange={handleChangeName}
             onClickCheckSymbol={onClickCheckSymbol}
             key={post.id}
             userTiltle={userTiltle}
@@ -44,4 +44,4 @@ const mapStateToProps = (state) => {
   }
 };
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, null)(Display);

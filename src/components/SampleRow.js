@@ -6,7 +6,7 @@ function SampleRow(props){
     const { sampleMembers } = props;   
     
     return (
-      sampleMembers.map((post) =>
+      null||sampleMembers.map((post) =>
             <tr key={post.id}>
               <td className="text-center">{post.id}</td>
               <td>{post.teamName}</td>
@@ -21,7 +21,19 @@ function SampleRow(props){
               </td>
               <td className="text-center">
               <span className={
-                post.status==="Success"?"label label-success":(post.status==="Pending"?"label label-primary":(post.status==="Rejected")?"label label-warning":"label label-danger")
+                post.status==="Success"
+                ?
+                "label label-success"
+                :
+                (post.status==="Pending"
+                ?
+                "label label-primary"
+                :
+                (post.status==="Rejected")
+                ?
+                "label label-warning"
+                :
+                "label label-danger")
               }>
               {post.status}
                </span>

@@ -1,5 +1,6 @@
-import React from 'react'
-export default function Symbol({
+import React from 'react';
+
+function Symbol({
     onClearTeam
 }) {
     return (
@@ -8,3 +9,5 @@ export default function Symbol({
         </div>
     )
 }
+
+export default Symbol;

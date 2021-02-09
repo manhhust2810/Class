@@ -1,8 +1,8 @@
-import NameTeam from './NameTeam.js'
-import React from 'react'
+import NameTeam from "./NameTeam.js";
+import React, { useEffect, useState } from "react";
 import './TopCard.css'
 
-export default function TopCard(props) {
+function TopCard(props) {
   const {
     newName,
     handleEditTeamName,
@@ -23,9 +23,9 @@ export default function TopCard(props) {
     }
   }
 
-  const [value, setValue] = React.useState(cardName);
+  const [value, setValue] = useState(cardName);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setValue('SETA')
   }, [isEditing])
 
@@ -88,3 +88,5 @@ export default function TopCard(props) {
     </div>
   )
 }
+
+export default TopCard;

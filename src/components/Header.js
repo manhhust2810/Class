@@ -1,17 +1,21 @@
-import React from 'react'
-import './Item.css'
-// import './Draft.css'
-export default function Header(props) {
-    const { onClick, onChange } = props;
+import React from "react";
+import './Item.css';
+
+function Header(props) {
+
+    const { handleAddNewTeam, handleChangeSearchBox } = props;
+
     return (
         <div>
             <button
-                className="my-button"
-                onClick={onClick}>CREATE NEW TEAM</button>
+                className = "my-button"
+                onClick = {handleAddNewTeam}>CREATE NEW TEAM</button>
             <input
-                className="my-searchbox"
-                onChange={onChange}
+                className = "my-searchbox"
+                onChange = {handleChangeSearchBox}
             />
         </div>
     )
 }
+
+export default Header;

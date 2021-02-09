@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 import User from './User.js'
 import Icon from './Icon.js'
 import './Draft.css'
 import './UserGroup.css'
 
-export default function UserGroup({ dataMembers, admin }) {
+function UserGroup({ dataMembers, admin }) {
   function handleSearchName(value) {
     var item = ((dataMembers.firstName.startsWith(value)) || (dataMembers.lastName.startsWith(value)) ? (dataMembers.firstName.includes(value)) || (dataMembers.lastName.includes(value)) : null)
     return item;
@@ -52,3 +52,5 @@ export default function UserGroup({ dataMembers, admin }) {
     </div>
   )
 }
+
+export default UserGroup;

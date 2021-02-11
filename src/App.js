@@ -31,7 +31,8 @@ class App extends Component {
       numberOfRow: 0,
       dataAPI: [],
       newRow: {},
-      data15: dataMembers
+      data15: dataMembers,
+      columnTitles: ["Ordinal number", "New team name", "Position", "New Member Name", "Action", "Status"]
     };
   }
 
@@ -208,7 +209,8 @@ class App extends Component {
       managerTiltle,
       edittingId,
       dataAPI,
-      value
+      value,
+      columnTitles
     } = this.state;
     // console.log(dataAPI);
     console.log("numberOfRow", this.state.numberOfRow);
@@ -229,12 +231,7 @@ class App extends Component {
           <table className="table table-bordered table-hover">
           <thead>
             <tr>
-              <th className="text-center">Ordinal number</th>
-              <th className="text-center">New team name</th>
-              <th className="text-center">Position</th>
-              <th className="text-center">New member name</th>
-              <th className="text-center">Action</th>
-              <th className="text-center">Status</th>
+              {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
             </tr>
           </thead>
           <tbody>

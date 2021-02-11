@@ -11,12 +11,12 @@ function Header(props) {
         dataMembers 
     } = props;
 
-    console.log("dataMembers", dataMembers);
+    // console.log("dataMembers", dataMembers);
 
     const [allDataTeam, setAllDataTeam] = useState(dataMembers);
     console.log("allDataTeam", allDataTeam);
 
-    function handleCreateNewTeam(){
+    function handleCreateNewTeam(allDataTeam, callback){
         setAllDataTeam([
             ...allDataTeam,
             {
@@ -30,16 +30,22 @@ function Header(props) {
             },
         ])
         console.log("allDataTeam", allDataTeam)
-        handleCreateNew(allDataTeam);
+        return callback();
     }
 
     console.log("allDataTeam", allDataTeam);
+
+    function processClick(){
+        handleCreateNewTeam(allDataTeam, function() {
+        handleCreateNew(allDataTeam);
+        });
+    } 
 
     return (
     <div>
         <button
             className = "my-button"
-            onClick = {handleCreateNewTeam}>CREATE NEW TEAM</button>
+            onClick = {processClick}>CREATE NEW TEAM</button>
         <input
             className = "my-searchbox"
             onChange = {handleChangeSearchBox}

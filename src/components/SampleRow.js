@@ -6,7 +6,7 @@ function SampleRow(props){
     const { sampleMembers } = props;   
     
     return (
-      null||sampleMembers.map((post) =>
+      sampleMembers.map((post) =>
             <tr key={post.id}>
               <td className="text-center">{post.id}</td>
               <td>{post.teamName}</td>

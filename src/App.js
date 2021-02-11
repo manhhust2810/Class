@@ -29,7 +29,9 @@ class App extends Component {
       isSaveOnSuccess: false,
       isAddOnMoreData: false,
       numberOfRow: 0,
-      dataAPI: []
+      dataAPI: [],
+      newRow: {},
+      data15: dataMembers
     };
   }
 
@@ -75,7 +77,14 @@ class App extends Component {
       // ordinalNumber: "Auto",
       ...this.state.isAddOnMoreData,
       isAddOnMoreData: true,
-      numberOfRow: this.state.numberOfRow+1
+      numberOfRow: this.state.numberOfRow+1,
+      newRow: {
+        ordinalNumber: "Auto",
+        newTeamName: "",
+        position: "user",
+        newMemberName: "",
+        status: ""
+      }
     })
   }
 
@@ -185,25 +194,35 @@ class App extends Component {
     })
   }
 
+  handleCreateNew = (newState) => {
+    console.log("newState", newState)
+    this.setState({
+      data15: newState
+    })
+    console.log("data15", this.state.data15)
+  }
+
   render() {
     const {
       userTiltle,
       managerTiltle,
       edittingId,
-      dataAPI
+      dataAPI,
+      value
     } = this.state;
     // console.log(dataAPI);
-    console.log("numberOfRow", this.state.numberOfRow)
+    console.log("numberOfRow", this.state.numberOfRow);
     return (
       <div>
         <div>{dataAPI.title}</div>
         <h1 className="text-center">
-        MY FIRST PROJECT WITH REACT APP AND GRID LAYOUT/BOOTSTRAP 4
+        BUILD FIRST PROJECT WITH REACT APP + REDUX + GRID LAYOUT/BOOTSTRAP 4
         </h1>
         <Header
           handleAddNewTeam = {this.handleAddNewTeam}
           handleChangeSearchBox={this.handleChangeSearchBox}
-          value={this.state.value}
+          handleCreateNew={this.handleCreateNew}
+          value={value}
         />     
         <div className="row-mt-15 format-table">
           <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -223,41 +242,41 @@ class App extends Component {
           </tbody>    
           <tfoot>
           {(this.state.status==="Pending")
-           ?
-           (<HandleRow 
-           status={this.state.status} 
-            handleSave={this.handleSave}
-            handleAddMoreData={this.handleAddMoreData}
-            ordinalNumber={this.state.ordinalNumber}
-            newMemberName={this.state.newMemberName}
-            newTeamName={this.state.newTeamName}
-            position={this.state.position}    
-            />)
-            :
-            (<CurrentRow
-            isAddOnMoreData={this.state.isAddOnMoreData}
-            status={this.state.status} 
-            handleSave={this.handleSave}
-            handleAddMoreData={this.handleAddMoreData}
-            ordinalNumber={this.state.ordinalNumber}
-            newMemberName={this.state.newMemberName}
-            newTeamName={this.state.newTeamName}
-            handleChangeTeamName={this.handleChangeTeamName}
-            handleChangeMemberName={this.handleChangeMemberName}
-            position={this.state.position} 
-            handleSelectOption={this.handleSelectOption} 
-            />)}
-            <>{(this.state.isAddOnMoreData)&&
-            (<NewRow 
-            status={this.state.status} 
-            handleSave={this.handleSave}
-            handleAddMoreData={this.handleAddMoreData}
-            ordinalNumber={this.state.ordinalNumber}
-            handleChangeTeamName={this.handleChangeTeamName}
-            handleChangeMemberName={this.handleChangeMemberName}
-            newMemberName={this.state.newMemberName}
-            newTeamName={this.state.newTeamName}    
-            />)}</>
+          ?
+          (<HandleRow 
+          status={this.state.status} 
+          handleSave={this.handleSave}
+          handleAddMoreData={this.handleAddMoreData}
+          ordinalNumber={this.state.ordinalNumber}
+          newMemberName={this.state.newMemberName}
+          newTeamName={this.state.newTeamName}
+          position={this.state.position}    
+          />)
+          :
+          (<CurrentRow
+          isAddOnMoreData={this.state.isAddOnMoreData}
+          status={this.state.status} 
+          handleSave={this.handleSave}
+          handleAddMoreData={this.handleAddMoreData}
+          ordinalNumber={this.state.ordinalNumber}
+          newMemberName={this.state.newMemberName}
+          newTeamName={this.state.newTeamName}
+          handleChangeTeamName={this.handleChangeTeamName}
+          handleChangeMemberName={this.handleChangeMemberName}
+          position={this.state.position} 
+          handleSelectOption={this.handleSelectOption} 
+          />)}
+          <>{(this.state.isAddOnMoreData)&&
+          (<NewRow 
+          status={this.state.status} 
+          handleSave={this.handleSave}
+          handleAddMoreData={this.handleAddMoreData}
+          ordinalNumber={this.state.ordinalNumber}
+          handleChangeTeamName={this.handleChangeTeamName}
+          handleChangeMemberName={this.handleChangeMemberName}
+          newMemberName={this.state.newMemberName}
+          newTeamName={this.state.newTeamName}    
+          />)}</>
           </tfoot>         
             </table>
             <span>{(this.state.status==="Pending")
@@ -282,6 +301,7 @@ class App extends Component {
               userTiltle = {userTiltle}
               managerTiltle = {managerTiltle}
               edittingId = {edittingId}
+              data15={this.state.data15}
           />
           </div>
         </div>      

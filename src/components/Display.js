@@ -14,12 +14,13 @@ function Display(props){
         newName,
         onEditNameTeam,
         handleChangeName,
-        onClickCheckSymbol
+        onClickCheckSymbol,
+        data15
      } = props;
 
     return (
         <div className = "my-card">
-        {dataMembers.map((post) =>
+        {data15.map((post) =>
           <Card
             isEditing={edittingId.includes(post.id)}
             onClearTeam={onClearTeam}

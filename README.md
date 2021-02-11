@@ -1,4 +1,12 @@
-MY FIRST PROJECT WITH REACT APP AND GRID LAYOUT/BOOTSTRAP 4
+BUILD FIRST PROJECT WITH 
+
+1. REACT APP 
+
+2. REDUX 
+
+3. GRID LAYOUT
+
+4. BOOTSTRAP 4
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

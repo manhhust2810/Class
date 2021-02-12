@@ -17,9 +17,26 @@ function Display(props){
         onClickCheckSymbol,
         data15
      } = props;
-
+//my-card
     return (
-        <div className = "my-card">
+        // <div className = "grid-container">
+        // {data15.map((post) =>
+        //   (<div className="grid-item">
+        //   <Card
+        //     isEditing={edittingId.includes(post.id)}
+        //     onClearTeam={onClearTeam}
+        //     newName={newName}
+        //     onEditNameTeam={onEditNameTeam}
+        //     onChange={handleChangeName}
+        //     onClickCheckSymbol={onClickCheckSymbol}
+        //     key={post.id}
+        //     userTiltle={userTiltle}
+        //     managerTiltle={managerTiltle}
+        //     cardName={post.name}
+        //     {...post}
+        //   /></div>))}
+        // </div>
+        <div className = "grid-container">
         {data15.map((post) =>
           <Card
             isEditing={edittingId.includes(post.id)}
@@ -33,10 +50,8 @@ function Display(props){
             managerTiltle={managerTiltle}
             cardName={post.name}
             {...post}
-          />
-        )}
-      </div>
-    )
+          />)}
+        </div>)
 }
 
 const mapStateToProps = state => {

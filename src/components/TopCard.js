@@ -1,6 +1,6 @@
 import NameTeam from "./NameTeam.js";
 import React, { useEffect, useState } from "react";
-import './TopCard.css'
+import './TopCard.css';
 
 function TopCard(props) {
   const {
@@ -44,8 +44,7 @@ function TopCard(props) {
   }
 
   return (
-    <div>
-      <ul className="topCardStyle"
+      <div className="topCardStyle"
         isClickOnEditSymbol={isClickOnEditSymbol}
         newName={newName}
       >
@@ -84,9 +83,7 @@ function TopCard(props) {
             </div>
           </>
         }
-      </ul>
-    </div>
-  )
+      </div>)
 }
 
 export default TopCard;

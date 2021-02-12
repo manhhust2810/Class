@@ -7,8 +7,8 @@ function NameTeam(props){
     const { cardName } = props;
 
     return (
-        <div className="name">
-            <div>{cardName}</div>
+        <div className="nameTeam">
+            {cardName}
         </div>
     )
 }

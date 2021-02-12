@@ -11,7 +11,9 @@ function UserGroup({ dataMembers, admin }) {
   }
   return (
     <div>
-      <User type={dataMembers.length} admin={admin} />
+      <User type={dataMembers.length} 
+        admin={admin}  
+      />
       <div
         className="img3"
       >

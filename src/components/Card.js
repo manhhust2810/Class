@@ -1,8 +1,8 @@
 import React from 'react'
-import './Card.css'
-import TopCard from "./TopCard.js"
-import UserGroup from './UserGroup.js'
-import './Draft.css'
+// import './Card.css'
+import TopCard from "./TopCard.js";
+import UserGroup from "./UserGroup.js";
+// import "./Draft.css";
 
 function Card(props) {
 
@@ -46,9 +46,9 @@ function Card(props) {
   //     onChangeName(id);
   //   }
   // }
-
+//training
   return (
-    <div className="training">
+    <div className="grid-item">
       <TopCard
         isEditing={isEditing}
         id={id}
@@ -71,8 +71,7 @@ function Card(props) {
         dataMembers={managerIds}
         admin={managerTiltle}
       />
-    </div>
-  )
+    </div>)
 }
 
 export default Card;

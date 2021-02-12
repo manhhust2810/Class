@@ -12,11 +12,7 @@ const style2 = {
 function User(props) {
     const { type, admin } = props;
     return (
-        <div>
-            <ul>
-                <div className="training2" style={style2.p3}>{type} {admin} </div>
-            </ul>
-        </div>
+        <div className="img3" style={style2.p3}>{type} {admin} </div>
     )
 }
 

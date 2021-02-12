@@ -6,10 +6,13 @@
   font-size: 20px;
   color: rgb(95, 95, 99);
   font-weight: bold;
+  margin-right: 5px;
 }
 .iconStyle {
   float: right;
+  margin-right: 50px;
 }
 .topCardStyle {
-  margin-right: 10px;
+  margin-top: 20px;
+  /* margin-right: 10px; */
 }

@@ -1,13 +1,10 @@
 import React from 'react';
 
-function Symbol({
-    onClearTeam
-}) {
+function Symbol({onClearTeam}) {
     return (
-        <div onClick={onClearTeam}>
-            <div className="fa fa-trash-o"></div>
-        </div>
-    )
+        <div className="fa fa-trash-o" 
+            onClick={onClearTeam}>
+        </div>)
 }
 
 export default Symbol;

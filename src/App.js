@@ -11,6 +11,7 @@ import NewRow from "./components/NewRow";
 import HandleRow from "./components/HandleRow";
 import CurrentRow from "./components/CurrentRow";
 import SampleRow from "./components/SampleRow";
+import TodoList from './components/TodoList';
 import "./App.css";
 import demoRedux from "./redux/demoRedux";
 class App extends Component {
@@ -215,7 +216,6 @@ class App extends Component {
       value,
       columnTitles
     } = this.state;
-    // console.log(dataAPI);
     console.log("numberOfRow", this.state.numberOfRow);
     return (
       <div>
@@ -223,6 +223,7 @@ class App extends Component {
         <h1 className="text-center">
         BUILD SIMPLE PROJECT WITH REACT APP + REDUX + GRID LAYOUT/BOOTSTRAP 4
         </h1>
+        <TodoList />  
         <div className={"App " + this.props.visibleTheme}>
         <ChangeThem />
         <TodoContainer />
@@ -282,7 +283,7 @@ class App extends Component {
           newTeamName={this.state.newTeamName}    
           />)}</>
           </tfoot>         
-            </table>
+            </table> 
             <span>{(this.state.status==="Pending")
           ?
           (<div className="alert alert-success">
@@ -308,8 +309,9 @@ class App extends Component {
               data15={this.state.data15}
           />
           </div>
-          
-        </div>      
+                 
+        </div>
+            
       </div>
     );
   };

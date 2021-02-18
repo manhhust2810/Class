@@ -8,8 +8,12 @@ import 'font-awesome/css/font-awesome.min.css';
 import { createStore } from "redux";
 import myReducer from "./reducers/index";
 import { Provider } from "react-redux";
+import store from "./store";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./scss/reset.scss";
+import "./scss/components.scss";
 
-const store = createStore(myReducer);
+// const store = createStore(myReducer);
 
 ReactDOM.render(
   <React.StrictMode>

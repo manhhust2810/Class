@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import './App.scss';
+import TodoContainer from './components/todo-container/TodoContainer';
+import { connect } from "react-redux";
+import ChangeThem from './components/change-theme/ChangeThem';
 import Header from "./components/Header";
 import Display from "./components/Display";
 import dataMembers from "./allDataMember.json";
@@ -7,7 +11,6 @@ import NewRow from "./components/NewRow";
 import HandleRow from "./components/HandleRow";
 import CurrentRow from "./components/CurrentRow";
 import SampleRow from "./components/SampleRow";
-// import "./components/Draft.css";
 import "./App.css";
 import demoRedux from "./redux/demoRedux";
 class App extends Component {
@@ -218,8 +221,12 @@ class App extends Component {
       <div>
         <div>{dataAPI.title}</div>
         <h1 className="text-center">
-        BUILD FIRST PROJECT WITH REACT APP + REDUX + GRID LAYOUT/BOOTSTRAP 4
+        BUILD SIMPLE PROJECT WITH REACT APP + REDUX + GRID LAYOUT/BOOTSTRAP 4
         </h1>
+        <div className={"App " + this.props.visibleTheme}>
+        <ChangeThem />
+        <TodoContainer />
+        </div>
         <Header
           handleAddNewTeam = {this.handleAddNewTeam}
           handleChangeSearchBox={this.handleChangeSearchBox}
@@ -300,17 +307,6 @@ class App extends Component {
               edittingId = {edittingId}
               data15={this.state.data15}
           />
-          {/* <div className="grid-container">
-          <div className="grid-item">1</div>
-          <div className="grid-item">2</div>
-          <div className="grid-item">3</div>  
-          <div className="grid-item">4</div>
-          <div className="grid-item">5</div>
-          <div className="grid-item">6</div>  
-          <div className="grid-item">7</div>
-          <div className="grid-item">8</div>
-          <div className="grid-item">9</div>  
-          </div> */}
           </div>
           
         </div>      
@@ -319,4 +315,10 @@ class App extends Component {
   };
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    visibleTheme: state.visibleTheme
+  }
+}
+
+export default connect(mapStateToProps, null)(App);

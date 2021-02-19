@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { actChangeTheme } from "../../actions/theme.action";
 
 function ChangeThem(props) {
-
     const handleChangeTheme = () => {
         if (props.visibleTheme === "light") {
             props.changeTheme("dark");
@@ -17,7 +16,11 @@ function ChangeThem(props) {
     return (
         <form className="change-theme-wrapper">
             <label htmlFor="change-theme-toggle">Dark theme: </label>
-            <input id="change-theme-toggle" type="checkbox" onChange={handleChangeTheme}></input>
+            <input 
+            id="change-theme-toggle" 
+            type="checkbox" 
+            onChange={handleChangeTheme}>
+            </input>
         </form>
     )
 }

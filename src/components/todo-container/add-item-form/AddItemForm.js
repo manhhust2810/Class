@@ -4,13 +4,12 @@ import { actAddItem } from "../../../actions/todo-item.action";
 import { setVisibleFilter } from "../../../actions/visibleTodoFitler.action";
 import { connect } from 'react-redux';
 import { SHOW_ALL, DONE_ONLY, UNDONE_ONLY } from "../../../constants/visibleState";
-
 class AddItemForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             dropdownOpen: false,
-            content: ''
+            content: ""
         }
     }
 
@@ -23,7 +22,7 @@ class AddItemForm extends Component {
     handleAddTodoItem = (e) => {
         const { content } = this.state;
         e.preventDefault();
-        if (content !== '') {
+        if (content !== "") {
             const newItem = {
                 content,
                 isFinished: false,
@@ -31,7 +30,7 @@ class AddItemForm extends Component {
             }
             this.props.addItem(newItem);
             this.setState({
-                content: ''
+                content: ""
             })
         }
     }
@@ -47,8 +46,12 @@ class AddItemForm extends Component {
         const { visibleTodoListFilter, setFilter } = this.props;
         return (
             <div className="add-item-wrapper">
-                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                    <DropdownToggle color="" caret>
+                <Dropdown 
+                isOpen={this.state.dropdownOpen} 
+                toggle={this.toggle}>
+                    <DropdownToggle 
+                    color="" 
+                    caret>
                         {visibleTodoListFilter}
                     </DropdownToggle>
                     <DropdownMenu>
@@ -59,10 +62,21 @@ class AddItemForm extends Component {
                         </ul>
                     </DropdownMenu>
                 </Dropdown>
-                <form className="add-item-form" onSubmit={this.handleAddTodoItem}>
-                    <input type="text" placeholder="What needed to be done?"
-                        autoFocus name="content" autoComplete="off" onChange={this.handleChangeInput} value={content} />
-                    <button className="circle-btn success" type="submit">
+                <form 
+                className="add-item-form" 
+                onSubmit={this.handleAddTodoItem}>
+                    <input 
+                    type="text" 
+                    placeholder="What needed to be done?"
+                    autoFocus 
+                    name="content" 
+                    autoComplete="off" 
+                    onChange={this.handleChangeInput} 
+                    value={content} 
+                    />
+                    <button 
+                    className="circle-btn success" 
+                    type="submit">
                         <i className="fas fa-plus"></i>
                     </button>
                 </form>

@@ -220,10 +220,9 @@ class App extends Component {
     return (
       <div>
         <div>{dataAPI.title}</div>
-        <h1 className="text-center">
-        BUILD SIMPLE PROJECT WITH REACT APP + REDUX + GRID LAYOUT/BOOTSTRAP 4
-        </h1>
-        <TodoList />  
+        <span>
+        <TodoList /> 
+        </span>
         <div className={"App " + this.props.visibleTheme}>
         <ChangeThem />
         <TodoContainer />

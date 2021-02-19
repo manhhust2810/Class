@@ -65,6 +65,7 @@
   color: #f5365c;
   margin-right: 15px;
 }
+
 .buttonHigh {
   outline: none;
   -webkit-appearance: none;
@@ -74,6 +75,7 @@
   outline: none;
   box-shadow: 0 0 0 2px #f5365c;
 }
+
 .buttonHigh:checked {
   background: #f5365c;
 }

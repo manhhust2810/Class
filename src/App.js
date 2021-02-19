@@ -225,7 +225,7 @@ class App extends Component {
         </span>
         <div className={"App " + this.props.visibleTheme}>
         <ChangeThem />
-        <TodoContainer />
+        {/* <TodoContainer /> */}
         </div>
         <Header
           handleAddNewTeam = {this.handleAddNewTeam}

@@ -17,7 +17,7 @@ input:focus {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 60px 60px;
-  background-color: #2196F3;
+  background-color: yellow;
   padding-top: 15px;
   padding-bottom: 15px;
 }

@@ -107,17 +107,14 @@ export const TaskReducer = (state = stateDefault, action) => {
         }
         case 'UPDATE_TASK': {
             let taskUpdate = [...state.data];
-
             let check = taskUpdate.find(item => item.name === state.oldName);
             if (check !== null) {
                 let taskNotUpdate = taskUpdate.filter(item => item.name !== state.oldName);
                 const checkExists = taskNotUpdate.findIndex(item => item.name === state.store.name);
-
                 if (checkExists === -1) {
                     check.name = state.store.name;
                     check.priority = state.store.priority;
                     check.edited = now;
-
                     const resetUpdate = { name: '', priority: 'Ưu tiên thường', done: false }
                     state.store = resetUpdate;
                     state.data = taskUpdate;

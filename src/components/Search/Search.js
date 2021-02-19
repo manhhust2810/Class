@@ -2,10 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from './Search.module.css';
 
-export default function Search() {
+function Search() {
 
     const dispatch = useDispatch();
-
     const { name, priority } = useSelector(state => state.TaskReducer.store);
     const typeAction = useSelector(state => state.TaskReducer.typeAction);
 
@@ -16,16 +15,15 @@ export default function Search() {
         })
     }
 
-    const changeTask = () => {
+    const changeTask = (e) => {
         const taskName = document.querySelector('#search').value;
         const priority = document.querySelector('[name="priority"]:checked').value;
-
         const task = {
             name: taskName,
             priority,
             done: false
         }
-
+        // e.preventDefault();
         dispatch({
             type: 'CHANGE_TASK_NAME',
             task
@@ -45,10 +43,20 @@ export default function Search() {
     }
 
     return (
-        <div className={style.containerSearch}>
+        <form className={style.containerSearch}>
             <div className={style.contentSearch}>
-                <input id="search" defaultValue={name} onChange={() => changeTask()} placeholder="Task" className={style.iSearch} key={`${Math.floor((Math.random() * 1000))}-min`} />
-                <button className={style.btnAdd} onClick={() => addTask()}>{typeAction ? 'Thêm việc' : 'Cập nhật'}</button>
+                <input 
+                id="search" 
+                defaultValue={name} 
+                onChange={() => changeTask()} 
+                placeholder="Task" 
+                className={style.iSearch} 
+                key={`${Math.floor((Math.random() * 1000))}-min`}
+                />
+                <button 
+                className={style.btnAdd} 
+                onClick={() => addTask()}>{typeAction ? 'Thêm việc' : 'Cập nhật'}
+                </button>
             </div>
             <div className={style.priority}>
                 <span className={style.lowPri}>
@@ -61,6 +69,8 @@ export default function Search() {
                     <input type="radio" name="priority" id="chigh" value="Ưu tiên cao" checked={priority === 'Ưu tiên cao' ? true : false} onChange={() => setCheck("Ưu tiên cao")} className={style.buttonHigh} /> <label htmlFor="chigh"><span className={style.notMobile}>Ưu tiên</span> cao</label>
                 </span>
             </div>
-        </div>
+        </form>
     )
 }
+
+export default Search;

@@ -1,25 +1,69 @@
-import React from 'react';
+import React, { useState }from 'react';
 import { useDispatch } from 'react-redux';
 import style from './Item.module.css';
 import Moment from 'react-moment';
 import 'moment/locale/vi';
 import 'moment-timezone';
-import TodoList from '../TodoList';
-
+// import TodoList from '../TodoList';
+import "./Item.css";
+import { 
+    Button, 
+    Modal, 
+    ModalBody, 
+    ModalFooter, 
+    ModalHeader, 
+    Container, 
+    Row, 
+    Col, 
+    Label 
+} from "reactstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
-export default function Item(props) {
-
+function Item(props) {
     const dispatch = useDispatch();
-
     const { name, priority, done, created, edited } = props.data;
-
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
     const confirmDelete = () => {
         confirmAlert({
             customUI: ({ onClose }) => {
                 return (
-                    <div className='custom-ui'>
+                    // <Modal 
+                    // isOpen={modal} 
+                    // toggle={toggle}
+                    // id="success-modal"
+                    // className="member-modal"
+                    // >
+                    // <ModalHeader 
+                    // toggle={toggle}
+                    // className="modal-header glyph-icon simple-icon-info"
+                    // >
+                    // Xóa nào
+                    // </ModalHeader>
+                    // <ModalBody>
+                    // Xác nhận xóa {name}
+                    // </ModalBody>
+                    // <ModalFooter>
+                    // <Button 
+                    // color="primary" 
+                    // onClick={() => {
+                    // dispatch({
+                    //     type: 'DELETE_TASK',
+                    //     name
+                    // })
+                    //     onClose();
+                    // }}>
+                    // Xóa
+                    // </Button>{' '}
+                    // <Button 
+                    // color="secondary" 
+                    // onClick={onClose}>
+                    // Hủy
+                    // </Button>
+                    // </ModalFooter>
+                    // </Modal>
+                    <div className="custom-ui">
                         <div className={style.sure}>
                             <div className={style.sureIcon}>
                                 <i className="fa fa-ban"></i>
@@ -40,6 +84,43 @@ export default function Item(props) {
                             </div>
                         </div>
                     </div>
+                    // <Modal 
+                    //     // isOpen={modal} 
+                    //     // toggle={toggle} 
+                    //     // onOpened={handleOnClosePopupSuccessError} 
+                    //     id="success-modal"
+                    //     className="member-modal"
+                    // >
+                    // <ModalHeader 
+                    //     // toggle={toggle} 
+                    //     className="modal-header glyph-icon simple-icon-info"
+                    // >
+                    // Xóa
+                    // </ModalHeader>
+                    // <ModalBody>
+                    // Xác nhận xóa công việc này?
+                    // </ModalBody>
+                    // <ModalFooter>
+                    // <Button 
+                    // color="primary" 
+                    // onClick={() => {
+                    // dispatch({
+                    //     type: 'DELETE_TASK',
+                    //     name
+                    //     })
+                    //     onClose();
+                    // }}
+                    // >
+                    // Xác nhận
+                    // </Button>
+                    // <Button 
+                    // color="secondary" 
+                    // onClick={onClose}
+                    // >
+                    // Hủy
+                    // </Button>
+                    // </ModalFooter>
+                    // </Modal>
                 );
             }
         });
@@ -92,3 +173,5 @@ export default function Item(props) {
         </div>
     )
 }
+
+export default Item;

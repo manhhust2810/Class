@@ -4,7 +4,6 @@ import "./Draft.css";
 import { connect } from "react-redux";
 
 function Display(props){
-
     const { 
         dataMembers, 
         edittingId,

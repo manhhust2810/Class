@@ -3,7 +3,6 @@ import './Item.css';
 import { connect } from "react-redux";
 
 function Header(props) {
-
     const { 
         handleAddNewTeam,
         handleCreateNew, 
@@ -11,12 +10,10 @@ function Header(props) {
         dataMembers 
     } = props;
 
-    // console.log("dataMembers", dataMembers);
-
     const [allDataTeam, setAllDataTeam] = useState(dataMembers);
     console.log("allDataTeam", allDataTeam);
 
-    function handleCreateNewTeam(allDataTeam, callback){
+    function handleCreateNewTeam(allDataTeam){
         setAllDataTeam([
             ...allDataTeam,
             {
@@ -29,8 +26,6 @@ function Header(props) {
               ]
             },
         ])
-        console.log("allDataTeam", allDataTeam)
-        return callback();
     }
 
     console.log("allDataTeam", allDataTeam);
@@ -39,7 +34,11 @@ function Header(props) {
         handleCreateNewTeam(allDataTeam, function() {
         handleCreateNew(allDataTeam);
         });
-    } 
+    }
+    
+    useEffect(()=>{
+        handleCreateNew(allDataTeam);
+    }, [allDataTeam])
 
     return (
     <div>

@@ -19,3 +19,10 @@ export const addTask = (task) => {
     }
 };
 
+export const createNewTeam = (task) => {
+    return {
+        type : types.CREATE_NEW_TEAM,
+        task: task
+    }
+};
+

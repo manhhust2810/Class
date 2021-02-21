@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import './App.scss';
-import TodoContainer from './components/todo-container/TodoContainer';
+// import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
 import ChangeThem from './components/change-theme/ChangeThem';
 import Header from "./components/Header";
@@ -13,7 +13,7 @@ import CurrentRow from "./components/CurrentRow";
 import SampleRow from "./components/SampleRow";
 import TodoList from './components/TodoList';
 import "./App.css";
-import demoRedux from "./redux/demoRedux";
+// import demoRedux from "./redux/demoRedux";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -214,7 +214,9 @@ class App extends Component {
       edittingId,
       dataAPI,
       value,
-      columnTitles
+      columnTitles,
+      status,
+      position
     } = this.state;
     console.log("numberOfRow", this.state.numberOfRow);
     return (
@@ -245,21 +247,21 @@ class App extends Component {
           <SampleRow />
           </tbody>    
           <tfoot>
-          {(this.state.status==="Pending")
+          {(status==="Pending")
           ?
           (<HandleRow 
-          status={this.state.status} 
+          status={status} 
           handleSave={this.handleSave}
           handleAddMoreData={this.handleAddMoreData}
           ordinalNumber={this.state.ordinalNumber}
           newMemberName={this.state.newMemberName}
           newTeamName={this.state.newTeamName}
-          position={this.state.position}    
+          position={position}    
           />)
           :
           (<CurrentRow
           isAddOnMoreData={this.state.isAddOnMoreData}
-          status={this.state.status} 
+          status={status} 
           handleSave={this.handleSave}
           handleAddMoreData={this.handleAddMoreData}
           ordinalNumber={this.state.ordinalNumber}
@@ -267,12 +269,12 @@ class App extends Component {
           newTeamName={this.state.newTeamName}
           handleChangeTeamName={this.handleChangeTeamName}
           handleChangeMemberName={this.handleChangeMemberName}
-          position={this.state.position} 
+          position={position} 
           handleSelectOption={this.handleSelectOption} 
           />)}
           <>{(this.state.isAddOnMoreData)&&
           (<NewRow 
-          status={this.state.status} 
+          status={status} 
           handleSave={this.handleSave}
           handleAddMoreData={this.handleAddMoreData}
           ordinalNumber={this.state.ordinalNumber}
@@ -283,13 +285,13 @@ class App extends Component {
           />)}</>
           </tfoot>         
             </table> 
-            <span>{(this.state.status==="Pending")
+            <span>{(status==="Pending")
           ?
           (<div className="alert alert-success">
               <strong>Saved New Member On Success Action!</strong>
           </div>)
           :
-          (this.state.status==="Error")
+          (status==="Error")
           ?
           (<div className="alert alert-danger">
               <strong>Saved New Member On Failure Action!</strong>
@@ -301,7 +303,7 @@ class App extends Component {
               newName = {this.state.defaultTeamName}
               onEditNameTeam = {this.handleEditTeamName}
               handleChangeName = {this.handleChangeName}
-              onClickCheckSymbol = {this.handleChangeName1}
+              handleChangeName1 = {this.handleChangeName1}
               userTiltle = {userTiltle}
               managerTiltle = {managerTiltle}
               edittingId = {edittingId}

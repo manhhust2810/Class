@@ -3,3 +3,17 @@ export const LIST_ALL_TEAM_MEMBERS = "LIST_ALL_TEAM_MEMBERS";
 export const LIST_ALL_SAMPLE_MEMBERS = "LIST_ALL_SAMPLE_MEMBERS";
 
 export const ADD_TASK = "ADD_TASK";
+
+export const ADD_ITEM = "ADD_ITEM";
+
+export const SET_VISIBLE_FILTER = "SET_VISIBLE_FILTER";
+
+export const CHANGE_THEME = "CHANGE_THEME";
+
+export const CHANGE_ITEM_CONTENT = "CHANGE_ITEM_CONTENT";
+
+export const DELETE_ITEM = "DELETE_ITEM";
+
+export const TOGGLE_COMPLETE = "TOGGLE_COMPLETE";
+
+export const CREATE_NEW_TEAM = "CREATE_NEW_TEAM";

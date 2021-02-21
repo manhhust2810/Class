@@ -7,7 +7,7 @@ import UserGroup from "./UserGroup.js";
 function Card(props) {
 
   const { 
-    onClickCheckSymbol,
+    handleChangeName1,
     newName,
     isEditing,
     onChange,
@@ -25,10 +25,8 @@ function Card(props) {
 
   function handleClearTeam() {
     onClearTeam && onClearTeam(id);
-    // if (onClearTeam) {
-    //   onClearTeam(id);
-    // }
   }
+  
   // function handleSearchName(value) {
   //   var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)
   //   return item;
@@ -59,7 +57,7 @@ function Card(props) {
         onClick={handleClearTeam}
         isClickOnEditSymbol={isClickOnEditSymbol}
         onChange={onChange}
-        onClickTickSymbol={onClickCheckSymbol}
+        handleChangeName1={handleChangeName1}
       />
       <UserGroup
         managerTiltle={managerTiltle}

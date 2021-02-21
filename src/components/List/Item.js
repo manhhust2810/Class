@@ -154,21 +154,36 @@ function Item(props) {
     return (
         <div className={style.containerItem}>
             <div className={style.iconTitle}>
-                {done ? <i className="fa fa-clipboard-check"></i> : <i className="fa fa-clipboard" style={{ color: '#555' }}></i>}
+                {done ? <i className="fa fa-clipboard-check"></i> : <i className="fa fa-clipboard" 
+                style={{ color: '#555' }}></i>}
             </div>
             <div className={style.itemTitle}>
                 <div className={done ? style.titleDone : style.titlePen}>
                     {name.length <= 35 ? name : name.substring(0, 35) + '...'}
                 </div>
-                <div className={style.time}><Moment fromNow>{created}</Moment> {edited !== '' ? '(Đã sửa ' : ''}{edited !== '' ? <Moment fromNow>{edited}</Moment> : ''}{edited !== '' ? ')' : ''}</div>
+                <div className={style.time}>
+                <Moment fromNow>{created}</Moment> 
+                {edited !== '' ? '(Đã sửa ' : ''}{edited !== '' ? 
+                <Moment fromNow>{edited}</Moment> : ''}{edited !== '' ? ')' : ''}
+                </div>
             </div>
             <div className={style.itemMiddle}>
-                <div className={classPri}><div className={iconPri}></div> <span className={style.notMobile}>{priority}</span></div>
+                <div className={classPri}>
+                <div className={iconPri}></div> 
+                <span className={style.notMobile}>{priority}</span>
+                </div>
             </div>
             <div className={style.itemUD}>
-                <button className={style.btnCheck} onClick={() => checkTask(name)}>{done ? <i className="fa fa-minus-circle" style={{ color: '#686868' }}></i> : <i className="fa fa-check-circle"></i>}</button>
-                <button className={style.btnEdit} onClick={() => editTask()}><i className="fa fa-pen"></i></button>
-                <button className={style.btnDelete} onClick={() => confirmDelete()}><i className="fa fa-trash"></i></button>
+                <button 
+                className={style.btnCheck} 
+                onClick={() => checkTask(name)}>{done ? <i className="fa fa-minus-circle" 
+                style={{ color: '#686868' }}></i> : <i className="fa fa-check-circle"></i>}</button>
+                <button 
+                className={style.btnEdit} 
+                onClick={() => editTask()}><i className="fa fa-pen"></i></button>
+                <button 
+                className={style.btnDelete} 
+                onClick={() => confirmDelete()}><i className="fa fa-trash"></i></button>
             </div>
         </div>
     )

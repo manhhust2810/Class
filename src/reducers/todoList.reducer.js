@@ -1,10 +1,10 @@
-import * as Types from "../constants/Types";
+import * as types from "../constants/ActionTypes";
 
 export default function todoListReducer(state = [], action) {
     switch (action.type) {
-        case Types.ADD_ITEM:
+        case types.ADD_ITEM:
             return [action.item, ...state];
-        case Types.TOGGLE_COMPLETE:
+        case types.TOGGLE_COMPLETE:
             return state.map((todo) => {
                 if (todo.itemId === action.itemId) {
                     return Object.assign({}, todo, {
@@ -13,14 +13,14 @@ export default function todoListReducer(state = [], action) {
                 }
                 return todo;
             })
-        case Types.CHANGE_ITEM_CONTENT:
+        case types.CHANGE_ITEM_CONTENT:
             return state.map((todo) => {
                 if (todo.itemId === action.itemId) {
                     return Object.assign({}, todo, { content: action.content })
                 }
                 return todo;
             });
-        case Types.DELETE_ITEM:
+        case types.DELETE_ITEM:
             return state.filter(todo => todo.itemId !== action.itemId);
         default:
             return state;

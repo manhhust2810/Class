@@ -1,4 +1,3 @@
-import { SHOW_ALL } from "../constants/visibleState";
 import * as types from "../constants/ActionTypes";
 
 export default function visibleTodoListReducer(state = SHOW_ALL, action) {

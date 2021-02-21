@@ -1,8 +1,8 @@
-import * as Types from "../constants/Types";
+import * as types from "../constants/ActionTypes";
 
 export function actChangeTheme(theme) {
     return {
-        type: Types.CHANGE_THEME,
+        type: types.CHANGE_THEME,
         theme
     }
 }

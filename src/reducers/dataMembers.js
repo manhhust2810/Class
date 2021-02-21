@@ -18,6 +18,21 @@ var myReducer = (state = initialState, action) => {
     switch(action.type){
         case types.LIST_ALL_TEAM_MEMBERS:
             return state;
+        case types.CREATE_NEW_TEAM:
+            const newTask = 
+                {
+                    "id": "null",
+                    "name": "",
+                    "creator": "",
+                    "memberIds": [
+                    ],
+                    "managerIds": [
+                    ]
+                }
+            state.push(newTask);
+            console.log("newTask",newTask)               
+            localStorage.setItem("tasks", JSON.stringify(state));
+            return [...state];
         default: 
             return state; 
     }

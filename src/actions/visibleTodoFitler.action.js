@@ -1,8 +1,8 @@
-import * as Types from "../constants/Types";
+import * as types from "../constants/Types";
 
 export function setVisibleFilter(value) {
     return {
-        type: Types.SET_VISIBLE_FILTER,
+        type: types.SET_VISIBLE_FILTER,
         value
     }
 }

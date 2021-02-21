@@ -14,7 +14,7 @@ function TopCard(props) {
     onClick,
     id,
     isEditing,
-    onClickTickSymbol,
+    handleChangeName1,
   } = props;
 
   const style = {
@@ -26,7 +26,7 @@ function TopCard(props) {
   const [value, setValue] = useState(cardName);
 
   useEffect(() => {
-    setValue('SETA')
+    setValue("SETA")
   }, [isEditing])
 
   function handleClickEditNameTeam(event) {
@@ -40,7 +40,7 @@ function TopCard(props) {
 
   function handleClickTickSymbol() {
     // console.log(id, value)
-    onClickTickSymbol(id, value)
+    handleChangeName1(id, value)
   }
 
   return (
@@ -78,7 +78,8 @@ function TopCard(props) {
               </div>
               <div className="fa fa-trash-o symbolStyle"
                 onClick={onClick}
-                onClearTeam={onClearTeam}>
+                // onClearTeam={onClearTeam}
+                >
               </div>
             </div>
           </>

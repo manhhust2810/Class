@@ -26,3 +26,10 @@ export const createNewTeam = (task) => {
     }
 };
 
+export const deleteTeamById = (id) => {
+    return {
+        type: types.DELETE_TEAM_BY_ID,
+        id: id
+    }
+}
+

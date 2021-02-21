@@ -1,6 +1,9 @@
 import NameTeam from "./NameTeam.js";
 import React, { useEffect, useState } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
 import './TopCard.css';
+import * as action from "./../actions/index";
+import { DELETE_TEAM_BY_ID } from "../constants/ActionTypes";
 
 function TopCard(props) {
   const {
@@ -10,11 +13,13 @@ function TopCard(props) {
     onEditNameTeam,
     isClickOnEditSymbol,
     cardName,
-    onClearTeam,
-    onClick,
     id,
+    // onClearTeam,
+    // onClick,
     isEditing,
     handleChangeName1,
+    // handleClearTeam,
+    deleteTeamById
   } = props;
 
   const style = {
@@ -23,7 +28,17 @@ function TopCard(props) {
     }
   }
 
+  const dispatch = useDispatch();
+
   const [value, setValue] = useState(cardName);
+
+  // const [idDeleted, setIdDeleted] = useState("");
+
+  function handleClearTeam() {
+    // handleClearTeam && handleClearTeam(id);
+    // console.log("id", id);
+    deleteTeamById(id);
+  }
 
   useEffect(() => {
     setValue("SETA")
@@ -31,6 +46,7 @@ function TopCard(props) {
 
   function handleClickEditNameTeam(event) {
     onEditNameTeam(id, event)
+    console.log("id", id)
   }
 
   function handleChangeName(e) {
@@ -77,8 +93,7 @@ function TopCard(props) {
                 onClick={handleClickEditNameTeam}>
               </div>
               <div className="fa fa-trash-o symbolStyle"
-                onClick={onClick}
-                // onClearTeam={onClearTeam}
+                onClick={handleClearTeam}
                 >
               </div>
             </div>
@@ -87,4 +102,18 @@ function TopCard(props) {
       </div>)
 }
 
-export default TopCard;
+// const mapStateToProps = state => {
+//     return {
+//       dataMembers: state.dataMembers
+//     }
+//   };
+
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+      deleteTeamById: (id) => {
+        dispatch(action.deleteTeamById(id));
+      }
+  }
+};
+
+export default connect(null, mapDispatchToProps)(TopCard);;

@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'font-awesome/css/font-awesome.min.css';
 //store
-import { createStore } from "redux";
-import myReducer from "./reducers/index";
+// import { createStore } from "redux";
+// import myReducer from "./reducers/index";
 import { Provider } from "react-redux";
 import store from "./store";
 import "bootstrap/dist/css/bootstrap.min.css";

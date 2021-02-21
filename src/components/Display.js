@@ -7,7 +7,7 @@ function Display(props){
     const { 
         dataMembers, 
         edittingId,
-        onClearTeam, 
+        handleClearTeam, 
         userTiltle, 
         managerTiltle, 
         newName,
@@ -39,7 +39,7 @@ function Display(props){
         {dataMembers.map((post) =>
           <Card
             isEditing={edittingId.includes(post.id)}
-            onClearTeam={onClearTeam}
+            handleClearTeam={handleClearTeam}
             newName={newName}
             onEditNameTeam={onEditNameTeam}
             onChange={handleChangeName}
@@ -55,8 +55,7 @@ function Display(props){
 
 const mapStateToProps = state => {
   return {
-    dataMembers: state.dataMembers,
-    // createNewTeam: state.createNewTeam
+    dataMembers: state.dataMembers
   }
 };
 

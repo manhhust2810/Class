@@ -299,7 +299,7 @@ class App extends Component {
           null}  
           </span>         
           <Display 
-              onClearTeam = {this.handleClearTeam}
+              handleClearTeam = {this.handleClearTeam}
               newName = {this.state.defaultTeamName}
               onEditNameTeam = {this.handleEditTeamName}
               handleChangeName = {this.handleChangeName}

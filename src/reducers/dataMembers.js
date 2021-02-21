@@ -30,9 +30,14 @@ var myReducer = (state = initialState, action) => {
                     ]
                 }
             state.push(newTask);
-            console.log("newTask",newTask)               
+            console.log("state",state)               
             localStorage.setItem("tasks", JSON.stringify(state));
             return [...state];
+        case types.DELETE_TEAM_BY_ID:
+            // const id1 = action.id;
+            console.log("id", action.id);
+            console.log("state",state);
+            return state.filter(item => item.id !== action.id);
         default: 
             return state; 
     }

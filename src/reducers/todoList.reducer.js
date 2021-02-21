@@ -1,6 +1,6 @@
 import * as types from "../constants/ActionTypes";
 
-export default function todoListReducer(state = [], action) {
+function todoListReducer(state = [], action) {
     switch (action.type) {
         case types.ADD_ITEM:
             return [action.item, ...state];
@@ -26,3 +26,5 @@ export default function todoListReducer(state = [], action) {
             return state;
     }
 }
+
+export default todoListReducer;

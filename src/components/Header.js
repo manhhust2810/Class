@@ -65,11 +65,11 @@ function Header(props) {
     </div>)
 }
 
-const mapStateToProps = state => {
-    return {
-      dataMembers: state.dataMembers
-    }
-  };
+// const mapStateToProps = state => {
+//     return {
+//       dataMembers: state.dataMembers
+//     }
+//   };
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -79,4 +79,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 };
   
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

@@ -17,3 +17,5 @@ export const DELETE_ITEM = "DELETE_ITEM";
 export const TOGGLE_COMPLETE = "TOGGLE_COMPLETE";
 
 export const CREATE_NEW_TEAM = "CREATE_NEW_TEAM";
+
+export const DELETE_TEAM_BY_ID = "DELETE_TEAM_BY_ID";

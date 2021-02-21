@@ -20,12 +20,10 @@ function Card(props) {
     memberIds,
     managerIds,
     id, 
-    onClearTeam 
+    handleClearTeam 
   } = props;
 
-  function handleClearTeam() {
-    onClearTeam && onClearTeam(id);
-  }
+  
   
   // function handleSearchName(value) {
   //   var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)
@@ -54,7 +52,7 @@ function Card(props) {
         onEditNameTeam={onEditNameTeam}
         cardName={cardName}
         defaultTeamName={defaultTeamName}
-        onClick={handleClearTeam}
+        handleClearTeam={handleClearTeam}
         isClickOnEditSymbol={isClickOnEditSymbol}
         onChange={onChange}
         handleChangeName1={handleChangeName1}

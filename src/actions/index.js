@@ -41,3 +41,10 @@ export const changeNameById = (id, value) => {
     }
 }
 
+export const searchAnything = (value) => {
+    return {
+        type: types.SEARCH_ANYTHING,
+        value: value
+    }
+}
+

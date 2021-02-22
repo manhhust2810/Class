@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import './Item.css';
 import { connect, useDispatch, useSelector } from "react-redux";
 import * as action from "./../actions/index";
-import { CREATE_NEW_TEAM } from "../constants/ActionTypes";
 
 function Header(props) {
     const { 
         // handleAddNewTeam,
         // handleCreateNew, 
         handleChangeSearchBox,
-        createNewTeam
+        createNewTeam,
+        searchAnything,
+        id,
+        value
         // dataMembers
     } = props;
 
@@ -50,17 +52,29 @@ function Header(props) {
     //     })
     // }
 
+    const [search, setSearch] = useState("");
+
+    function handleSearchBox(event){
+        const { value } = event.target;
+        setSearch(value);
+        searchAnything(search);
+    }
+
+    useEffect(() => {  
+        searchAnything(search);
+        console.log("search", search);
+    }, [search])
+
     return (
     <div>
         <button
             className = "my-button"
             onClick = {createNewTeam}
-            >
-            CREATE NEW TEAM
+        >CREATE NEW TEAM
         </button>
         <input
             className = "my-searchbox"
-            onChange = {handleChangeSearchBox}
+            onChange = {handleSearchBox}
         />
     </div>)
 }
@@ -75,6 +89,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         createNewTeam: (task) => {
             dispatch(action.createNewTeam(task));
+        },
+        searchAnything: (value) => {
+            dispatch(action.searchAnything(value));
         }
     }
 };

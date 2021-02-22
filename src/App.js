@@ -307,7 +307,7 @@ class App extends Component {
               userTiltle = {userTiltle}
               managerTiltle = {managerTiltle}
               edittingId = {edittingId}
-              data15={this.state.data15}
+              // data15={this.state.data15}
           />
           </div>
                  

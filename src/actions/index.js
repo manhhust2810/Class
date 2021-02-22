@@ -33,3 +33,11 @@ export const deleteTeamById = (id) => {
     }
 }
 
+export const changeNameById = (id, value) => {
+    return {
+        type: types.CHANGE_NAME_BY_ID,
+        id: id,
+        value: value
+    }
+}
+

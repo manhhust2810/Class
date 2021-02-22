@@ -19,7 +19,9 @@ function TopCard(props) {
     isEditing,
     handleChangeName1,
     // handleClearTeam,
-    deleteTeamById
+    deleteTeamById,
+    changeNameById,
+    newTeamName
   } = props;
 
   const style = {
@@ -28,15 +30,10 @@ function TopCard(props) {
     }
   }
 
-  const dispatch = useDispatch();
-
   const [value, setValue] = useState(cardName);
-
-  // const [idDeleted, setIdDeleted] = useState("");
 
   function handleClearTeam() {
     // handleClearTeam && handleClearTeam(id);
-    // console.log("id", id);
     deleteTeamById(id);
   }
 
@@ -44,9 +41,10 @@ function TopCard(props) {
     setValue("SETA")
   }, [isEditing])
 
-  function handleClickEditNameTeam(event) {
+  function handleSaveName(event) {
     onEditNameTeam(id, event)
     console.log("id", id)
+    changeNameById(id, value);
   }
 
   function handleChangeName(e) {
@@ -54,15 +52,16 @@ function TopCard(props) {
     setValue(newName)
   }
 
-  function handleClickTickSymbol() {
-    // console.log(id, value)
-    handleChangeName1(id, value)
-  }
+  // function handleSaveName(id, value) {
+  //   console.log("id", id)
+  //   console.log("value", value)
+  //   changeNameById(id, value);
+  // }
 
   return (
       <div className="topCardStyle"
         isClickOnEditSymbol={isClickOnEditSymbol}
-        newName={newName}
+        // newName={newName}
       >
         {(isEditing)
           ?
@@ -71,14 +70,11 @@ function TopCard(props) {
               type="text"
               newName={newName}
               onChange={handleChangeName}
-              onClick={handleEditTeamName}
             />
             <div
               className="iconStyle fas fa-check-circle symbolStyle"
               style={style.icon}
-              onChange={onChange}
-              onClick={handleClickTickSymbol}
-              newName={newName}
+              onClick={handleSaveName}
             >
             </div>
           </>
@@ -90,7 +86,7 @@ function TopCard(props) {
             />
             <div className="iconStyle">
               <div className="fas fa-edit symbolStyle"
-                onClick={handleClickEditNameTeam}>
+                onClick={handleSaveName}>
               </div>
               <div className="fa fa-trash-o symbolStyle"
                 onClick={handleClearTeam}
@@ -102,18 +98,21 @@ function TopCard(props) {
       </div>)
 }
 
-// const mapStateToProps = state => {
-//     return {
-//       dataMembers: state.dataMembers
-//     }
-//   };
+const mapStateToProps = state => {
+    return {
+      newTeamName: state.dataMembers.name
+    }
+  };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
       deleteTeamById: (id) => {
         dispatch(action.deleteTeamById(id));
+      },
+      changeNameById: (id, value) => {
+        dispatch(action.changeNameById(id, value));
       }
   }
 };
 
-export default connect(null, mapDispatchToProps)(TopCard);;
+export default connect(mapStateToProps, mapDispatchToProps)(TopCard);;

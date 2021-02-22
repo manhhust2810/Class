@@ -19,7 +19,7 @@ var myReducer = (state = initialState, action) => {
         case types.LIST_ALL_TEAM_MEMBERS:
             return state;
         case types.CREATE_NEW_TEAM:
-            const newTask = 
+            const newTeam = 
                 {
                     "id": "null",
                     "name": "",
@@ -29,15 +29,22 @@ var myReducer = (state = initialState, action) => {
                     "managerIds": [
                     ]
                 }
-            state.push(newTask);
-            console.log("state",state)               
+            state.push(newTeam);            
             localStorage.setItem("tasks", JSON.stringify(state));
             return [...state];
         case types.DELETE_TEAM_BY_ID:
-            // const id1 = action.id;
-            console.log("id", action.id);
-            console.log("state",state);
             return state.filter(item => item.id !== action.id);
+        case types.CHANGE_NAME_BY_ID:
+            console.log("value", action.value)
+            console.log("id", action.id)
+            console.log("state", state)
+            const newName = { name: action.value };
+            return state.map((item)=>{
+                if(item.id === action.id){
+                    return {...item, ...newName}
+                }
+                return item;
+            });
         default: 
             return state; 
     }

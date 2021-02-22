@@ -1,27 +1,19 @@
 import NameTeam from "./NameTeam.js";
 import React, { useEffect, useState } from "react";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import './TopCard.css';
 import * as action from "./../actions/index";
-import { DELETE_TEAM_BY_ID } from "../constants/ActionTypes";
 
 function TopCard(props) {
   const {
     newName,
-    handleEditTeamName,
-    onChange,
     onEditNameTeam,
     isClickOnEditSymbol,
     cardName,
     id,
-    // onClearTeam,
-    // onClick,
     isEditing,
-    handleChangeName1,
-    // handleClearTeam,
     deleteTeamById,
     changeNameById,
-    newTeamName
   } = props;
 
   const style = {
@@ -42,7 +34,7 @@ function TopCard(props) {
   }, [isEditing])
 
   function handleSaveName(event) {
-    onEditNameTeam(id, event)
+    onEditNameTeam(id, event);
     console.log("id", id)
     changeNameById(id, value);
   }
@@ -52,17 +44,9 @@ function TopCard(props) {
     setValue(newName)
   }
 
-  // function handleSaveName(id, value) {
-  //   console.log("id", id)
-  //   console.log("value", value)
-  //   changeNameById(id, value);
-  // }
-
   return (
       <div className="topCardStyle"
-        isClickOnEditSymbol={isClickOnEditSymbol}
-        // newName={newName}
-      >
+        isClickOnEditSymbol={isClickOnEditSymbol}>
         {(isEditing)
           ?
           <>

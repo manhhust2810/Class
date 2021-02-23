@@ -1,4 +1,4 @@
-import React, { useState }from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import style from './Item.module.css';
 import Moment from 'react-moment';
@@ -6,25 +6,25 @@ import 'moment/locale/vi';
 import 'moment-timezone';
 // import TodoList from '../TodoList';
 import "./Item.css";
-import { 
-    Button, 
-    Modal, 
-    ModalBody, 
-    ModalFooter, 
-    ModalHeader, 
-    Container, 
-    Row, 
-    Col, 
-    Label 
-} from "reactstrap";
+// import { 
+//     Button, 
+//     Modal, 
+//     ModalBody, 
+//     ModalFooter, 
+//     ModalHeader, 
+//     Container, 
+//     Row, 
+//     Col, 
+//     Label 
+// } from "reactstrap";
 import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function Item(props) {
     const dispatch = useDispatch();
     const { name, priority, done, created, edited } = props.data;
-    const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
+    // const [modal, setModal] = useState(false);
+    // const toggle = () => setModal(!modal);
     const confirmDelete = () => {
         confirmAlert({
             customUI: ({ onClose }) => {

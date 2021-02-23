@@ -1,8 +1,7 @@
 import React from 'react'
-// import './Card.css'
+import PropTypes from 'prop-types';
 import TopCard from "./TopCard.js";
 import UserGroup from "./UserGroup.js";
-// import "./Draft.css";
 
 function Card(props) {
 
@@ -10,9 +9,9 @@ function Card(props) {
     handleChangeName1,
     newName,
     isEditing,
-    onChange,
+    // handleChangeName,
     defaultTeamName,
-    onEditNameTeam,
+    handleEditTeamName,
     isClickOnEditSymbol,
     cardName,
     userTiltle,
@@ -23,8 +22,6 @@ function Card(props) {
     handleClearTeam 
   } = props;
 
-  
-  
   // function handleSearchName(value) {
   //   var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)
   //   return item;
@@ -49,12 +46,11 @@ function Card(props) {
         isEditing={isEditing}
         id={id}
         newName={newName}
-        onEditNameTeam={onEditNameTeam}
+        handleEditTeamName={handleEditTeamName}
         cardName={cardName}
         defaultTeamName={defaultTeamName}
         handleClearTeam={handleClearTeam}
         isClickOnEditSymbol={isClickOnEditSymbol}
-        onChange={onChange}
         handleChangeName1={handleChangeName1}
       />
       <UserGroup
@@ -69,5 +65,11 @@ function Card(props) {
       />
     </div>)
 }
+
+Card.propTypes = {
+  isEditing: PropTypes.bool,
+  id: PropTypes.string,
+  cardName: PropTypes.string
+};
 
 export default Card;

@@ -11,38 +11,18 @@ function Display(props){
         userTiltle, 
         managerTiltle, 
         newName,
-        onEditNameTeam,
-        handleChangeName,
+        handleEditTeamName,
         handleChangeName1,
-        data15
      } = props;
 //my-card
     return (
-        // <div className = "grid-container">
-        // {data15.map((post) =>
-        //   (<div className="grid-item">
-        //   <Card
-        //     isEditing={edittingId.includes(post.id)}
-        //     onClearTeam={onClearTeam}
-        //     newName={newName}
-        //     onEditNameTeam={onEditNameTeam}
-        //     onChange={handleChangeName}
-        //     onClickCheckSymbol={onClickCheckSymbol}
-        //     key={post.id}
-        //     userTiltle={userTiltle}
-        //     managerTiltle={managerTiltle}
-        //     cardName={post.name}
-        //     {...post}
-        //   /></div>))}
-        // </div>
         <div className = "grid-container">
         {dataMembers.map((post) =>
           <Card
             isEditing={edittingId.includes(post.id)}
             handleClearTeam={handleClearTeam}
             newName={newName}
-            onEditNameTeam={onEditNameTeam}
-            onChange={handleChangeName}
+            handleEditTeamName={handleEditTeamName}
             handleChangeName1={handleChangeName1}
             key={post.id}
             userTiltle={userTiltle}

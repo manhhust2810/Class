@@ -19,7 +19,6 @@ class App extends Component {
     super(props);
     this.state = {
       sampleMemberData: sampleMemberData,
-      defaultTeamName: "New Name",
       userTiltle: "USERS",
       managerTiltle: "MANAGERS",
       data: dataMembers,
@@ -79,7 +78,6 @@ class App extends Component {
 
   handleAddMoreData = () => {  
     this.setState({
-      // ordinalNumber: "Auto",
       ...this.state.isAddOnMoreData,
       isAddOnMoreData: true,
       numberOfRow: this.state.numberOfRow+1,
@@ -150,8 +148,7 @@ class App extends Component {
     }))
   }
 
-  handleEditTeamName = (id, event) => {
-    const { newName } = event.target;
+  handleEditTeamName = (id) => {
     const { edittingId } = this.state;
     const newEdittingId = edittingId.includes(id)
       ?
@@ -159,15 +156,7 @@ class App extends Component {
       :
       [...edittingId, id]
     this.setState({
-      defaultTeamName: newName,
-      edittingId: newEdittingId,
-    })
-  }
-
-  handleChangeName = (event) => {
-    const { newName } = event.target;
-    this.setState({
-      defaultTeamName: newName,
+      edittingId: newEdittingId
     })
   }
 
@@ -301,13 +290,11 @@ class App extends Component {
           <Display 
               handleClearTeam = {this.handleClearTeam}
               newName = {this.state.defaultTeamName}
-              onEditNameTeam = {this.handleEditTeamName}
-              handleChangeName = {this.handleChangeName}
+              handleEditTeamName = {this.handleEditTeamName}
               handleChangeName1 = {this.handleChangeName1}
               userTiltle = {userTiltle}
               managerTiltle = {managerTiltle}
               edittingId = {edittingId}
-              // data15={this.state.data15}
           />
           </div>
                  

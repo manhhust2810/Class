@@ -16,11 +16,11 @@ import "./scss/components.scss";
 // const store = createStore(myReducer);
 
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
   <Provider store={store}>
       <App />
-  </Provider>   
-  </React.StrictMode>,
+  </Provider>,   
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

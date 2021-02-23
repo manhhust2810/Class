@@ -1,5 +1,6 @@
 import NameTeam from "./NameTeam.js";
 import React, { useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import './TopCard.css';
 import * as action from "./../actions/index";
@@ -7,7 +8,7 @@ import * as action from "./../actions/index";
 function TopCard(props) {
   const {
     newName,
-    onEditNameTeam,
+    handleEditTeamName,
     isClickOnEditSymbol,
     cardName,
     id,
@@ -34,8 +35,8 @@ function TopCard(props) {
   }, [isEditing])
 
   function handleSaveName(event) {
-    onEditNameTeam(id, event);
-    console.log("id", id)
+    handleEditTeamName(id, event);
+    console.log("id", id);
     changeNameById(id, value);
   }
 
@@ -81,6 +82,12 @@ function TopCard(props) {
         }
       </div>)
 }
+
+TopCard.propTypes = {
+  isEditing: PropTypes.bool,
+  id: PropTypes.string,
+  cardName: PropTypes.string
+};
 
 const mapStateToProps = state => {
     return {

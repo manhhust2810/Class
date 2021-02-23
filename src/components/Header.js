@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import './Item.css';
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import * as action from "./../actions/index";
 
 function Header(props) {
     const { 
         // handleAddNewTeam,
         // handleCreateNew, 
-        handleChangeSearchBox,
+        // handleChangeSearchBox,
         createNewTeam,
         searchAnything,
-        id,
-        value
+        // id,
+        // value
         // dataMembers
     } = props;
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     // const [allDataTeam, setAllDataTeam] = useState(dataMembers);
     // console.log("allDataTeam", allDataTeam);
@@ -57,13 +57,14 @@ function Header(props) {
     function handleSearchBox(event){
         const { value } = event.target;
         setSearch(value);
-        searchAnything(search);
+        // searchAnything(search);
     }
 
-    useEffect(() => {  
+    useEffect(() => { 
         searchAnything(search);
-        console.log("search", search);
-    }, [search])
+        console.log("search", search);       
+    }, [searchAnything, search])
+
 
     return (
     <div>

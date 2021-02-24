@@ -212,7 +212,7 @@ class App extends Component {
       <div>
         <div>{dataAPI.title}</div>
         <span>
-        <TodoList /> 
+        {/* <TodoList />  */}
         </span>
         <div className={"App " + this.props.visibleTheme}>
         <ChangeThem />

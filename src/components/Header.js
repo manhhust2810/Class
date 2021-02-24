@@ -2,17 +2,12 @@ import React, { useState, useEffect, useCallback } from "react";
 import './Item.css';
 import { connect, useDispatch } from "react-redux";
 import * as action from "./../actions/index";
+import TodoList from './TodoList';
 
 function Header(props) {
     const { 
-        // handleAddNewTeam,
-        // handleCreateNew, 
-        // handleChangeSearchBox,
         createNewTeam,
         searchAnything,
-        // id,
-        // value
-        // dataMembers
     } = props;
 
     const dispatch = useDispatch();
@@ -53,11 +48,12 @@ function Header(props) {
     // }
 
     const [search, setSearch] = useState("");
+    const [hidden, setHidden] = useState(true);
 
     function handleSearchBox(event){
         const { value } = event.target;
         setSearch(value);
-        // searchAnything(search);
+        searchAnything(search);
     }
 
     useEffect(() => { 
@@ -65,6 +61,13 @@ function Header(props) {
         console.log("search", search);       
     }, [searchAnything, search])
 
+    function processClick1(){
+        setHidden(false);
+    };
+
+    function processClick2(){
+        setHidden(true);
+    };
 
     return (
     <div>
@@ -77,6 +80,19 @@ function Header(props) {
             className = "my-searchbox"
             onChange = {handleSearchBox}
         />
+        <button 
+            className = "my-button"
+            onClick={processClick1}>
+            DISPLAY TO DO
+        </button>
+        <button 
+            className = "my-button"
+            onClick={processClick2}>
+            CLOSE LIST
+        </button>
+        <TodoList    
+            hidden={hidden}
+        />
     </div>)
 }
 
@@ -88,10 +104,10 @@ function Header(props) {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        createNewTeam: (task) => {
+        createNewTeam: task => {
             dispatch(action.createNewTeam(task));
         },
-        searchAnything: (value) => {
+        searchAnything: value => {
             dispatch(action.searchAnything(value));
         }
     }

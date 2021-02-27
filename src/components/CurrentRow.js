@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// import classNames from "classnames";
 import { connect } from "react-redux";
 import * as actions from "./../actions/index";
 
@@ -17,8 +18,26 @@ function CurrentRow(props){
         position
      } = props;
 
-    const [isClickAdd, setIsClickAdd] = useState(isAddOnMoreData);
-    const [numberOfRow, setNumberOfRow] = useState(0);
+     const [isClickAdd, setIsClickAdd] = useState(isAddOnMoreData);
+     const [numberOfRow, setNumberOfRow] = useState(0);
+
+    const actionsArray = [
+        {
+            name: "Add more",
+            buttonType: "success",
+            handleEvent: handleAddData
+        },
+        {           
+            name: "Save",
+            buttonType: "info",
+            handleEvent: handleSave
+        },
+        {
+            name: "Delete",
+            buttonType: "danger",
+            handleEvent: "handleDelete"
+        }
+    ]
      
     function handleAddData(){
         setIsClickAdd(!isClickAdd);
@@ -58,9 +77,13 @@ function CurrentRow(props){
         </td>
         <td>
         <center>
+        {/* {actionsArray.map((item)=>(<button 
+        className={`btn btn-${item.buttonType}`}
+        onClick={item.handleEvent}
+        >{item.name}
+        </button>))} */}
         <button 
         className="btn btn-info"
-        // onClick={handleAddMoreData}
         onClick={handleAddData}
         >
         Add more

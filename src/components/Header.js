@@ -7,7 +7,7 @@ import TodoList from './TodoList';
 function Header(props) {
     const { 
         createNewTeam,
-        searchAnything,
+        searchAnything
     } = props;
 
     const dispatch = useDispatch();
@@ -98,7 +98,7 @@ function Header(props) {
 
 // const mapStateToProps = state => {
 //     return {
-//       dataMembers: state.dataMembers
+//         originData: state.dataMembers
 //     }
 //   };
 
@@ -107,7 +107,8 @@ const mapDispatchToProps = (dispatch, props) => {
         createNewTeam: task => {
             dispatch(action.createNewTeam(task));
         },
-        searchAnything: value => {
+
+        searchAnything: (value) => {
             dispatch(action.searchAnything(value));
         }
     }

@@ -54,18 +54,17 @@ var myReducer = (state = initialState, action) => {
                 return item;
             });
         case types.SEARCH_ANYTHING:
-            console.log("value", action.value)
-            return state.filter(item => {
+            return dataMembers.filter(item => {
                 const { memberIds, managerIds } = item;
                 const { value } = action;
                 const matchUserId = [...memberIds, ...managerIds].filter(({ firstName = "", lastName = "" }) => firstName.includes(value) || lastName.includes(value))
                 if (matchUserId.length > 0) {
-                  return true;
+                    return true;
                 }
                 return item.name.includes(value);
-            }); 
+            });
         default: 
-            return state; 
+            return state 
     }
 };
 

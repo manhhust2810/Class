@@ -24,7 +24,7 @@ function TodoList({hidden}) {
     
     return (
         <span className={classNames({hidden: hidden})}>
-            <div className={style.containerTodo}>
+        <div className={style.containerTodo}>
             {message.active === true ? <Message /> : ''}
             <Total />
             <Search />

@@ -1,6 +1,6 @@
 import React from 'react'
 import './User.css'
-import './Draft.css'
+// import './Draft.css'
 const style2 = {
     p3: {
         fonStyle: "normal",

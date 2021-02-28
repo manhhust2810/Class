@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import './NameTeam.css';
-import './Draft.css';
+// import './Draft.css';
 
 function NameTeam({cardName}){
     return (

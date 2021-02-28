@@ -2,14 +2,10 @@ import React from "react";
 import PropTypes from 'prop-types';
 import User from './User.js'
 import Icon from './Icon.js'
-import './Draft.css'
+// import './Draft.css'
 import './UserGroup.css'
 
 function UserGroup({ dataMembers, admin }) {
-  // function handleSearchName(value) {
-  //   var item = ((dataMembers.firstName.startsWith(value)) || (dataMembers.lastName.startsWith(value)) ? (dataMembers.firstName.includes(value)) || (dataMembers.lastName.includes(value)) : null)
-  //   return item;
-  // }
   return (
     <div>
       <User 
@@ -28,7 +24,6 @@ function UserGroup({ dataMembers, admin }) {
                 firstName={post.firstName}
                 lastName={post.lastName}
                 status={post.status}
-                // onChange={handleSearchName}
               />
             ))}
           </>
@@ -45,7 +40,6 @@ function UserGroup({ dataMembers, admin }) {
                   firstName={post.firstName}
                   lastName={post.lastName}
                   status={post.status}
-                  // onChange={handleSearchName}
                 />
               )
             })}

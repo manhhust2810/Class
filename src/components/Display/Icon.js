@@ -1,5 +1,6 @@
 import React from "react";
-import './Draft.css'
+// import './Draft.css'
+
 const style = {
     icon: {
         borderRadius: "40px",

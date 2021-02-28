@@ -7,11 +7,12 @@ import Header from "./components/Header";
 import Display from "./components/Display";
 import dataMembers from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
-import NewRow from "./components/NewRow";
-import HandleRow from "./components/HandleRow";
-import CurrentRow from "./components/CurrentRow";
-import SampleRow from "./components/SampleRow";
+// import NewRow from "./components/NewRow";
+// import HandleRow from "./components/HandleRow";
+// import CurrentRow from "./components/CurrentRow";
+// import SampleRow from "./components/SampleRow";
 import TodoList from './components/TodoList';
+import Table from './components/Table';
 import {
   BrowserRouter as Router,
   Route,
@@ -170,9 +171,6 @@ class App extends Component {
       edittingId,
       dataAPI,
       value,
-      columnTitles,
-      status,
-      position
     } = this.state;
     console.log("numberOfRow", this.state.numberOfRow);
     return (
@@ -248,7 +246,19 @@ class App extends Component {
               <UserManager />
             </Route>
             <Route path="/table" exact>
-              <UserManager />
+              <Table 
+                columnTitles={this.state.columnTitles}
+                status={this.state.status}
+                position={this.state.position}
+                isAddOnMoreData={this.state.isAddOnMoreData}
+                handleSave={this.handleSave}
+                handleAddMoreData={this.handleAddMoreData}
+                ordinalNumber={this.state.ordinalNumber}
+                newMemberName={this.state.newMemberName}
+                newTeamName={this.state.newTeamName}
+                handleChangeTeamName={this.handleChangeTeamName}
+                handleChangeMemberName={this.handleChangeMemberName}     
+              />
             </Route>
             {/* <Route component={NotFound} /> */}
           </Switch>
@@ -263,12 +273,6 @@ class App extends Component {
       //   <ChangeThem />
       //   {/* <TodoContainer /> */}
       //   </div>
-      //   <Header
-      //     handleAddNewTeam = {this.handleAddNewTeam}
-      //     handleChangeSearchBox={this.handleChangeSearchBox}
-      //     handleCreateNew={this.handleCreateNew}
-      //     value={value}
-      //   />     
       //   <div className="row-mt-15 format-table">
       //     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       //     <table className="table table-bordered table-hover">

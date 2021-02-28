@@ -17,12 +17,14 @@ input:focus {
   grid-template-columns: auto auto auto;
   grid-gap: 60px 60px;
   background-color: yellow;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  /* padding-top: 25px; */
+  /* padding-bottom: 15px; */
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 60px;
 }
 
 .grid-item {
-  /* display: grid; */
   border-width: 1px;
   border-style: solid;
   border-color: rgb(201, 200, 200);
@@ -32,8 +34,6 @@ input:focus {
   height: 300px;
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.8);
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-
-/* .hidden {
-  display: none;
-} */

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as action from "./../actions/index";
+import * as action from "./../../actions/index";
 
 function NewRow(props) {
     const { 

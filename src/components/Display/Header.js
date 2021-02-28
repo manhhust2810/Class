@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import './Item.css';
 import { connect } from "react-redux";
 import * as action from "./../../actions/index";
-import TodoList from '../TodoList';
 
 function Header(props) {
     const { 
@@ -46,7 +44,7 @@ function Header(props) {
     // }
 
     const [search, setSearch] = useState("");
-    const [hidden, setHidden] = useState(true);
+    
 
     function handleSearchBox(event){
         const { value } = event.target;
@@ -59,37 +57,16 @@ function Header(props) {
         console.log("search", search);       
     }, [searchAnything, search])
 
-    function processClick1(){
-        setHidden(false);
-    };
-
-    function processClick2(){
-        setHidden(true);
-    };
-
     return (
     <div>
         <button
             className = "my-button"
-            onClick = {createNewTeam}
-        >CREATE NEW TEAM
+            onClick = {createNewTeam}>
+        CREATE NEW TEAM
         </button>
         <input
             className = "my-searchbox"
             onChange = {handleSearchBox}
-        />
-        <button 
-            className = "my-button"
-            onClick={processClick1}>
-            DISPLAY TO DO
-        </button>
-        <button 
-            className = "my-button"
-            onClick={processClick2}>
-            CLOSE LIST
-        </button>
-        <TodoList    
-            hidden={hidden}
         />
     </div>)
 }

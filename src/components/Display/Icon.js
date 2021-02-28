@@ -1,5 +1,4 @@
 import React from "react";
-// import './Draft.css'
 
 const style = {
     icon: {
@@ -10,7 +9,6 @@ const style = {
 };
 
 function Icon() {
-
     return (
         <div>
             <img 

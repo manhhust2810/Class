@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import './Item.css';
 import { connect } from "react-redux";
-import * as action from "./../actions/index";
-import TodoList from './TodoList';
+import * as action from "./../../actions/index";
+import TodoList from '../TodoList';
 
 function Header(props) {
     const { 

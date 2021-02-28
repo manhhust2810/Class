@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import './TopCard.css';
-import * as action from "./../actions/index";
+import * as action from "./../../actions/index";
 
 function TopCard(props) {
   const {

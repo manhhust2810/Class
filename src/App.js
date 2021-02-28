@@ -3,27 +3,21 @@ import './App.scss';
 // import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
 import ChangeThem from './components/change-theme/ChangeThem';
-import Header from "./components/Header";
+import Header from "./components/Display/Header";
 import Display from "./components/Display";
 import dataMembers from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
-// import NewRow from "./components/NewRow";
-// import HandleRow from "./components/HandleRow";
-// import CurrentRow from "./components/CurrentRow";
-// import SampleRow from "./components/SampleRow";
 import TodoList from './components/TodoList';
 import Table from './components/Table';
 import {
   BrowserRouter as Router,
   Route,
-  Link,
   NavLink,
   Switch
 }
   from "react-router-dom";
 import UserManager from "./components/UserManager";
 import Home from './components/Home';
-import About from './components/About';
 import "./App.css";
 // import demoRedux from "./redux/demoRedux";
 class App extends Component {

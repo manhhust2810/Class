@@ -1,6 +1,6 @@
 import React from "react";
-import Card from "./Card.js";
-import "./Draft.css";
+import Card from "./Display/Card.js";
+import "./Display/Draft.css";
 import { connect } from "react-redux";
 
 function Display(props){

@@ -10,6 +10,16 @@ var myReducer = (state = initialState, action) => {
         case types.ADD_TASK:
             console.log(action);
             return state;
+        case types.ADD_NEW_ROW: 
+            const newRow =  {
+                ordinalNumber: "Auto",
+                newTeamName: "",
+                position: "",
+                newMemberName: "",
+                action: "",
+                status: ""
+            };
+            return newRow;        
         default: 
             return state; 
     }

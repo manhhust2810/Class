@@ -2,9 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 function SampleRow(props){
-
-    const { sampleMembers } = props;   
-    
+    const { sampleMembers } = props;    
     return (
       sampleMembers.map((post) =>
             <tr key={post.id}>

@@ -1,20 +1,26 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as action from "./../actions/index";
 
 function NewRow(props) {
     const { 
         status,
         handleSave,
         handleAddMoreData,
-        ordinalNumber,
+        newRow,
         handleChangeTeamName,
         handleChangeMemberName,
         newMemberName,
         newTeamName
-     } = props;   
+     } = props;
+     
+    function log(){
+        console.log("newRow", newRow)
+    }
     return (
         <tr>
             <td className="text-center format-input-cell">
-            <b>{ordinalNumber}</b>
+            <b>Auto</b>
             </td>
             <td className="format-input-cell">
             <input 
@@ -53,7 +59,9 @@ function NewRow(props) {
             Save
             </button>&nbsp;&nbsp;&nbsp;&nbsp;
             <button 
-            className="btn btn-danger">
+            className="btn btn-danger"
+            onClick={log}
+            >
             Delete
             </button>
             </center>
@@ -65,4 +73,22 @@ function NewRow(props) {
     )
 }
 
-export default NewRow;
+const mapStateToProps = state => {
+    return {
+        newRow: state.sampleMembers
+    }
+};
+
+const mapDispatchToProps = (dispatch, props) => {
+    return {
+        createNewTeam: task => {
+            dispatch(action.createNewTeam(task));
+        },
+
+        searchAnything: (value) => {
+            dispatch(action.searchAnything(value));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewRow);

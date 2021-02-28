@@ -15,34 +15,36 @@ function CurrentRow(props){
         handleChangeMemberName,
         newTeamName,
         handleSelectOption,
-        position
+        position,
+        addNewRow
      } = props;
 
      const [isClickAdd, setIsClickAdd] = useState(isAddOnMoreData);
      const [numberOfRow, setNumberOfRow] = useState(0);
 
-    const actionsArray = [
-        {
-            name: "Add more",
-            buttonType: "success",
-            handleEvent: handleAddData
-        },
-        {           
-            name: "Save",
-            buttonType: "info",
-            handleEvent: handleSave
-        },
-        {
-            name: "Delete",
-            buttonType: "danger",
-            handleEvent: "handleDelete"
-        }
-    ]
+    // const actionsArray = [
+    //     {
+    //         name: "Add more",
+    //         buttonType: "success",
+    //         handleEvent: handleAddData
+    //     },
+    //     {           
+    //         name: "Save",
+    //         buttonType: "info",
+    //         handleEvent: handleSave
+    //     },
+    //     {
+    //         name: "Delete",
+    //         buttonType: "danger",
+    //         handleEvent: "handleDelete"
+    //     }
+    // ]
      
     function handleAddData(){
         setIsClickAdd(!isClickAdd);
         setNumberOfRow(numberOfRow+1);
         handleAddMoreData();
+        // addNewRow();
     }
 
     console.log("isClickAdd", isClickAdd);
@@ -51,7 +53,9 @@ function CurrentRow(props){
 
     return (
         <tr>
-        <td className="text-center format-input-cell"><b>{ordinalNumber}</b></td>
+        <td className="text-center format-input-cell">
+        <b>Auto</b>
+        </td>
         <td className="format-input-cell">
         <input 
         type="text" 
@@ -119,7 +123,7 @@ function CurrentRow(props){
 
 const mapStateToProps = state => {
     return {
-      
+        newRow: state.sampleMembers 
     }
   };
 
@@ -127,6 +131,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddTask: (task) => {
             dispatch(actions.addTask(task))
+        },
+        addNewRow: ()=>{
+            dispatch(actions.addNewRow())
         }
       }
 };

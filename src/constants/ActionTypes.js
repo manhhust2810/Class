@@ -23,3 +23,5 @@ export const DELETE_TEAM_BY_ID = "DELETE_TEAM_BY_ID";
 export const CHANGE_NAME_BY_ID = "CHANGE_NAME_BY_ID";
 
 export const SEARCH_ANYTHING = "SEARCH_ANYTHING";
+
+export const ADD_NEW_ROW = "ADD_NEW_ROW";

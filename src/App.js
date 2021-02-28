@@ -12,6 +12,17 @@ import HandleRow from "./components/HandleRow";
 import CurrentRow from "./components/CurrentRow";
 import SampleRow from "./components/SampleRow";
 import TodoList from './components/TodoList';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  NavLink,
+  Switch
+}
+  from "react-router-dom";
+import UserManager from "./components/UserManager";
+import Home from './components/Home';
+import About from './components/About';
 import "./App.css";
 // import demoRedux from "./redux/demoRedux";
 class App extends Component {
@@ -63,24 +74,23 @@ class App extends Component {
   handleSave = () => {
     console.log(this.state)
     const checkStatus = () => {
-      if(this.state.newMemberName!== "" &&this.state.newTeamName!== "")
-      {
+      if (this.state.newMemberName !== "" && this.state.newTeamName !== "") {
         return "Pending"
       }
       return "Error"
     }
     this.setState({
       isSaveOnSuccess: !this.state.isSaveOnSuccess,
-      ordinalNumber: (this.state.status==="Pending")?"1":"",
+      ordinalNumber: (this.state.status === "Pending") ? "1" : "",
       status: checkStatus(),
     })
   }
 
-  handleAddMoreData = () => {  
+  handleAddMoreData = () => {
     this.setState({
       ...this.state.isAddOnMoreData,
       isAddOnMoreData: true,
-      numberOfRow: this.state.numberOfRow+1,
+      numberOfRow: this.state.numberOfRow + 1,
       newRow: {
         ordinalNumber: "Auto",
         newTeamName: "",
@@ -91,27 +101,10 @@ class App extends Component {
     })
   }
 
-  handleAddNewTeam = (event) => {
-    this.setState({
-      data: [
-        ...this.state.data,
-        {
-          "id": "null",
-          "name": "",
-          "creator": "",
-          "memberIds": [
-          ],
-          "managerIds": [
-          ]
-        },
-      ]
-    })
-  }
-
   handleChangeTeamName = (event) => {
     const { value } = event.target;
     this.setState({
-      newTeamName: value 
+      newTeamName: value
     })
   }
 
@@ -120,32 +113,6 @@ class App extends Component {
     this.setState({
       newMemberName: value
     })
-  }
-
-  handleChangeSearchBox = (event) => {
-    const { value } = event.target;
-    const { originData } = this.state;
-    const newData = originData.filter(item => {
-      const { memberIds, managerIds } = item;
-      const matchUserId = [...memberIds, ...managerIds].filter(({ firstName = "", lastName = "" }) => firstName.includes(value) || lastName.includes(value))
-      if (matchUserId.length > 0) {
-        return true;
-      }
-      return item.name.includes(value);
-    })
-    this.setState((oldState) => ({
-      ...oldState,
-      value,
-      data: newData,
-    }))
-  }
-
-  handleClearTeam = (id) => {
-    console.log(this.state);
-    this.setState((oldState) => ({
-      ...oldState,
-      data: oldState.data.filter(item => item.id !== id)
-    }))
   }
 
   handleEditTeamName = (id) => {
@@ -161,7 +128,7 @@ class App extends Component {
   }
 
   handleSelectOption = (event) => {
-    const { value } = event.target; 
+    const { value } = event.target;
     this.setState({
       position: value
     });
@@ -209,105 +176,181 @@ class App extends Component {
     } = this.state;
     console.log("numberOfRow", this.state.numberOfRow);
     return (
-      <div>
-        <div>{dataAPI.title}</div>
-        <span>
-        {/* <TodoList />  */}
-        </span>
-        <div className={"App " + this.props.visibleTheme}>
-        <ChangeThem />
-        {/* <TodoContainer /> */}
+      <Router>
+        <div>
+          <nav className="navbar navbar-inverse">
+            <ul className="nav navbar-nav"></ul>
+            <li>
+              <NavLink
+                className="nav-link"
+                id="home-tab"
+                data-toggle="tab1"
+                to="/">Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="nav-link"
+                id="display-tab"
+                data-toggle="tab2"
+                to="/display">Display
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="nav-link"
+                id="todo-tab"
+                data-toggle="tab3"
+                to="/todolist">To do
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="nav-link"
+                id="manage-tab"
+                data-toggle="tab4"
+                to="/usermanager">User Manager
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="nav-link"
+                id="table-tab"
+                data-toggle="tab5"
+                to="/table">Table
+              </NavLink>
+            </li>
+          </nav>
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/display" exact>
+              <Header
+                handleAddNewTeam={this.handleAddNewTeam}
+                handleChangeSearchBox={this.handleChangeSearchBox}
+                handleCreateNew={this.handleCreateNew}
+                value={value}
+              />
+              <Display
+                newName={this.state.defaultTeamName}
+                handleEditTeamName={this.handleEditTeamName}
+                handleChangeName1={this.handleChangeName1}
+                userTiltle={userTiltle}
+                managerTiltle={managerTiltle}
+                edittingId={edittingId}
+              />
+            </Route>
+            <Route path="/todolist" exact>
+              <TodoList />
+            </Route>
+            <Route path="/usermanager" exact>
+              <UserManager />
+            </Route>
+            <Route path="/table" exact>
+              <UserManager />
+            </Route>
+            {/* <Route component={NotFound} /> */}
+          </Switch>
         </div>
-        <Header
-          handleAddNewTeam = {this.handleAddNewTeam}
-          handleChangeSearchBox={this.handleChangeSearchBox}
-          handleCreateNew={this.handleCreateNew}
-          value={value}
-        />     
-        <div className="row-mt-15 format-table">
-          <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <table className="table table-bordered table-hover">
-          <thead>
-            <tr>
-              {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
-            </tr>
-          </thead>
-          <tbody>
-          <SampleRow />
-          </tbody>    
-          <tfoot>
-          {(status==="Pending")
-          ?
-          (<HandleRow 
-          status={status} 
-          handleSave={this.handleSave}
-          handleAddMoreData={this.handleAddMoreData}
-          ordinalNumber={this.state.ordinalNumber}
-          newMemberName={this.state.newMemberName}
-          newTeamName={this.state.newTeamName}
-          position={position}    
-          />)
-          :
-          (<CurrentRow
-          isAddOnMoreData={this.state.isAddOnMoreData}
-          status={status} 
-          handleSave={this.handleSave}
-          handleAddMoreData={this.handleAddMoreData}
-          ordinalNumber={this.state.ordinalNumber}
-          newMemberName={this.state.newMemberName}
-          newTeamName={this.state.newTeamName}
-          handleChangeTeamName={this.handleChangeTeamName}
-          handleChangeMemberName={this.handleChangeMemberName}
-          position={position} 
-          handleSelectOption={this.handleSelectOption} 
-          />)}
-          <>{(this.state.isAddOnMoreData)&&
-          (<NewRow 
-          status={status} 
-          handleSave={this.handleSave}
-          handleAddMoreData={this.handleAddMoreData}
-          ordinalNumber={this.state.ordinalNumber}
-          handleChangeTeamName={this.handleChangeTeamName}
-          handleChangeMemberName={this.handleChangeMemberName}
-          newMemberName={this.state.newMemberName}
-          newTeamName={this.state.newTeamName}    
-          />)}</>
-          </tfoot>         
-            </table> 
-            <span>{(status==="Pending")
-          ?
-          (<div className="alert alert-success">
-              <strong>Saved New Member On Success Action!</strong>
-          </div>)
-          :
-          (status==="Error")
-          ?
-          (<div className="alert alert-danger">
-              <strong>Saved New Member On Failure Action!</strong>
-          </div>):
-          null}  
-          </span>         
-          <Display 
-              handleClearTeam = {this.handleClearTeam}
-              newName = {this.state.defaultTeamName}
-              handleEditTeamName = {this.handleEditTeamName}
-              handleChangeName1 = {this.handleChangeName1}
-              userTiltle = {userTiltle}
-              managerTiltle = {managerTiltle}
-              edittingId = {edittingId}
-          />
-          </div>
-                 
-        </div>
-            
-      </div>
+      </Router>
+      // <div>
+      //   <div>{dataAPI.title}</div>
+      //   <span>
+      //   {/* <TodoList />  */}
+      //   </span>
+      //   <div className={"App " + this.props.visibleTheme}>
+      //   <ChangeThem />
+      //   {/* <TodoContainer /> */}
+      //   </div>
+      //   <Header
+      //     handleAddNewTeam = {this.handleAddNewTeam}
+      //     handleChangeSearchBox={this.handleChangeSearchBox}
+      //     handleCreateNew={this.handleCreateNew}
+      //     value={value}
+      //   />     
+      //   <div className="row-mt-15 format-table">
+      //     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      //     <table className="table table-bordered table-hover">
+      //     <thead>
+      //       <tr>
+      //         {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
+      //       </tr>
+      //     </thead>
+      //     <tbody>
+      //     <SampleRow />
+      //     </tbody>    
+      //     <tfoot>
+      //     {(status==="Pending")
+      //     ?
+      //     (<HandleRow 
+      //     status={status} 
+      //     handleSave={this.handleSave}
+      //     handleAddMoreData={this.handleAddMoreData}
+      //     ordinalNumber={this.state.ordinalNumber}
+      //     newMemberName={this.state.newMemberName}
+      //     newTeamName={this.state.newTeamName}
+      //     position={position}    
+      //     />)
+      //     :
+      //     (<CurrentRow
+      //     isAddOnMoreData={this.state.isAddOnMoreData}
+      //     status={status} 
+      //     handleSave={this.handleSave}
+      //     handleAddMoreData={this.handleAddMoreData}
+      //     ordinalNumber={this.state.ordinalNumber}
+      //     newMemberName={this.state.newMemberName}
+      //     newTeamName={this.state.newTeamName}
+      //     handleChangeTeamName={this.handleChangeTeamName}
+      //     handleChangeMemberName={this.handleChangeMemberName}
+      //     position={position} 
+      //     handleSelectOption={this.handleSelectOption} 
+      //     />)}
+      //     <>{(this.state.isAddOnMoreData)&&
+      //     (<NewRow 
+      //     status={status} 
+      //     handleSave={this.handleSave}
+      //     handleAddMoreData={this.handleAddMoreData}
+      //     ordinalNumber={this.state.ordinalNumber}
+      //     handleChangeTeamName={this.handleChangeTeamName}
+      //     handleChangeMemberName={this.handleChangeMemberName}
+      //     newMemberName={this.state.newMemberName}
+      //     newTeamName={this.state.newTeamName}    
+      //     />)}</>
+      //     </tfoot>         
+      //       </table> 
+      //       <span>{(status==="Pending")
+      //     ?
+      //     (<div className="alert alert-success">
+      //         <strong>Saved New Member On Success Action!</strong>
+      //     </div>)
+      //     :
+      //     (status==="Error")
+      //     ?
+      //     (<div className="alert alert-danger">
+      //         <strong>Saved New Member On Failure Action!</strong>
+      //     </div>):
+      //     null}  
+      //     </span>         
+      //     <Display
+      //         newName = {this.state.defaultTeamName}
+      //         handleEditTeamName = {this.handleEditTeamName}
+      //         handleChangeName1 = {this.handleChangeName1}
+      //         userTiltle = {userTiltle}
+      //         managerTiltle = {managerTiltle}
+      //         edittingId = {edittingId}
+      //     />
+      //     </div>         
+      //   </div>      
+      // </div>
     );
   };
 };
 
 const mapStateToProps = (state) => {
   return {
-    visibleTheme: state.visibleTheme
+    visibleTheme: state.visibleTheme,
+    newRow: state.sampleMembers
   }
 }
 

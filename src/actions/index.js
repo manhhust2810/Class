@@ -48,3 +48,8 @@ export const searchAnything = (value) => {
     }
 }
 
+export const addNewRow = () => {
+    return {
+        type: types.ADD_NEW_ROW
+    }
+}

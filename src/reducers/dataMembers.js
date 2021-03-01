@@ -1,5 +1,4 @@
 import * as types from "../constants/ActionTypes";
-// import sampleMemberData from "../sampleData.json";
 import dataMembers from "../allDataMember.json";
 
 // var data = JSON.parse(localStorage.getItem("task"));
@@ -8,10 +7,10 @@ import dataMembers from "../allDataMember.json";
 
 // export default dataMembers = () => dataMembers;
 
-var initialState = dataMembers ? dataMembers : [];
+const initialState = dataMembers ? dataMembers : [];
 
 const myReducer = (state = initialState, action) => {
-    switch(action.type){
+    switch(action.type) {
         case types.LIST_ALL_TEAM_MEMBERS:
             return state;
         case types.CREATE_NEW_TEAM:

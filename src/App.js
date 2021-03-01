@@ -40,8 +40,7 @@ class App extends Component {
       numberOfRow: 0,
       dataAPI: [],
       newRow: {},
-      data15: dataMembers,
-      columnTitles: ["Ordinal number", "New team name", "Position", "New Member Name", "Action", "Status"]
+      // data15: dataMembers
     };
   }
 
@@ -240,8 +239,7 @@ class App extends Component {
               <UserManager />
             </Route>
             <Route path="/table" exact>
-              <Table 
-                columnTitles={this.state.columnTitles}
+              <Table
                 status={this.state.status}
                 position={this.state.position}
                 isAddOnMoreData={this.state.isAddOnMoreData}

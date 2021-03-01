@@ -24,4 +24,6 @@ export const CHANGE_NAME_BY_ID = "CHANGE_NAME_BY_ID";
 
 export const SEARCH_ANYTHING = "SEARCH_ANYTHING";
 
+export const CURRENT_ROW = "CURRENT_ROW";
+
 export const ADD_NEW_ROW = "ADD_NEW_ROW";

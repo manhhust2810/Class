@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "./../../actions/index";
+import { v4 as uuidv4 } from 'uuid';
 
 function CurrentRow(props){
     const { 
         status,
         handleSave,
         handleAddMoreData,
-        ordinalNumber,
         isAddOnMoreData,
         newMemberName,
         handleChangeTeamName,
@@ -15,11 +15,14 @@ function CurrentRow(props){
         newTeamName,
         handleSelectOption,
         position,
+        newRow,
         addNewRow
      } = props;
 
      const [isClickAdd, setIsClickAdd] = useState(isAddOnMoreData);
      const [numberOfRow, setNumberOfRow] = useState(0);
+     const [newId, setNewId] = useState("");
+     setNewId(uuidv4());
 
     // const actionsArray = [
     //     {
@@ -42,18 +45,20 @@ function CurrentRow(props){
     function handleAddData(){
         setIsClickAdd(!isClickAdd);
         setNumberOfRow(numberOfRow+1);
-        handleAddMoreData();
-        // addNewRow();
+        addNewRow();
+        console.log("newRow", newRow);
     }
 
     console.log("isClickAdd", isClickAdd);
     console.log("isAddOnMoreData", isAddOnMoreData);
     console.log(`Bạn đã thêm ${numberOfRow} hàng`, isClickAdd);
+    console.log("newRow", newRow)
 
     return (
+        <>{newRow.map((item)=>(
         <tr>
         <td className="text-center format-input-cell">
-        <b>Auto</b>
+        <b>{item.ordinalNumber}</b>
         </td>
         <td className="format-input-cell">
         <input 
@@ -105,33 +110,34 @@ function CurrentRow(props){
         </td>
         <td className="text-center">
         <span className={
-        (status==="Pending")
+        (item.status==="Pending")
         ?
         "label label-success"
         :
-        (status==="Error")
+        (item.status==="Error")
         ?
         "label label-danger"
         :
         null
-        }>{status}</span>
+        }>{item.status}</span>
         </td>        
         </tr>
+        ))}</> 
     )
 }
 
 const mapStateToProps = state => {
     return {
-        newRow: state.sampleMembers 
+        newRow: state.TableData 
     }
-  };
+};
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
         onAddTask: (task) => {
             dispatch(actions.addTask(task))
         },
-        addNewRow: ()=>{
+        addNewRow: () => {
             dispatch(actions.addNewRow())
         }
       }

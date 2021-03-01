@@ -29,3 +29,7 @@ export const CURRENT_ROW = "CURRENT_ROW";
 export const ADD_NEW_ROW = "ADD_NEW_ROW";
 
 export const DELETE_ROW = "DELETE_ROW";
+
+export const UPDATE_NAME = "UPDATE_NAME";
+
+// export const UPDATE_MEMBER_NAME = "UPDATE_MEMBER_NAME";

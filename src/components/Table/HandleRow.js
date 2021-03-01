@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 
 function HandleRow(props){
     const { 
@@ -9,8 +10,10 @@ function HandleRow(props){
         newMemberName,
         newTeamName,
         position,
+        newRow
      } = props;  
     return (
+        <>{newRow.map((item)=>
         <tr>
             <td className="text-center format-input-cell">
             <b>{ordinalNumber}</b>
@@ -40,8 +43,14 @@ function HandleRow(props){
             <td className="text-center">
             <span className="label label-primary">{status}</span>
             </td>        
-        </tr>
+        </tr>)}</>
     )
 }
 
-export default HandleRow;
+const mapStateToProps = state => {
+    return {
+        newRow: state.TableData 
+    }
+};
+
+export default connect(mapStateToProps, null)(HandleRow);

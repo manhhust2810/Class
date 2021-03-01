@@ -60,3 +60,20 @@ export const deleteRow = (id) => {
         id: id
     }
 }
+
+// export const updateTeamName = (id, value) => {
+//     return {
+//         type: types.UPDATE_TEAM_NAME,
+//         id: id,
+//         value: value,
+//     }
+// }
+
+export const updateName = (id, newTeamName,newMemberName) => {
+    return {
+        type: types.UPDATE_NAME,
+        id: id,
+        newTeamName: newTeamName,
+        newMemberName: newMemberName
+    }
+}

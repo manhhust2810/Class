@@ -5,22 +5,76 @@ import * as actions from "./../../actions/index";
 function CurrentRow(props){
     const { 
         // status,
-        handleSave,
+        // handleSave,
         // isAddOnMoreData,
-        newMemberName,
-        handleChangeTeamName,
-        handleChangeMemberName,
-        newTeamName,
+        // newMemberName,
+        // handleChangeTeamName,
+        // handleChangeMemberName,
+        // newTeamName,
         handleSelectOption,
         position,
         newRow,
-        // id,
         deleteRow,
-        addNewRow
+        addNewRow,
+        updateName,
+        // updateTeamName,
      } = props;
 
-    const [idSelected, setIdSelected] = useState(""); 
+    const [idSelected, setIdSelected] = useState("");
+    const [newMemberName, setNewMemberName] = useState("");
+    const [newTeamName, setNewTeamName] = useState("");
 
+    const handleChangeTeamName = (event) => {
+        const { value } = event.target;
+        setNewTeamName(value);
+    }
+
+    const handleChangeMemberName = (event) => {
+        const { value } = event.target;
+        setNewMemberName(value);
+    }
+
+    function handleSave(item) {
+        updateName(item.generateId, newTeamName, newMemberName);
+        console.log("newRow", newRow);
+        savedRow(newRow);
+    }
+
+    const savedRow = (newRow) => {
+        newRow.map((item)=>(
+            <tr key={item.generateId}>
+            <td className="text-center format-input-cell">
+            <b>{item.ordinalNumber}</b>
+            </td>
+            <td className="">{item.newTeamName}</td>
+            <td className="text-center">{item.position.toUpperCase()}</td>
+            <td className="text-center">{item.newMemberName}</td>
+            <td>
+            <center>
+            <button 
+            className="btn btn-info"
+            // onClick={handleAddMoreData}
+            >
+            Add more
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button 
+            className="btn btn-success" 
+            // onClick={handleSave}
+            >
+            Save
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button 
+            className="btn btn-danger">
+            Delete
+            </button>
+            </center>
+            </td>
+            <td className="text-center">
+            <span className="label label-primary">{item.status}</span>
+            </td>        
+        </tr>
+            ))
+    }
 
     // const actionsArray = [
     //     {
@@ -100,7 +154,7 @@ function CurrentRow(props){
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 
         className="btn btn-success"
-        onClick={handleSave}>
+        onClick={()=>handleSave(item)}>
         Save
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 
@@ -142,8 +196,11 @@ const mapDispatchToProps = (dispatch, props) => {
         },
         deleteRow: (id) => {
             dispatch(actions.deleteRow(id))
+        },
+        updateName: (id, newTeamName, newMemberName) => {
+            dispatch(actions.updateName(id, newTeamName,newMemberName))
         }
-      }
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CurrentRow);

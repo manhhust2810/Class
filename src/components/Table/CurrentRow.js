@@ -4,9 +4,9 @@ import * as actions from "./../../actions/index";
 
 function CurrentRow(props){
     const { 
-        status,
+        // status,
         handleSave,
-        isAddOnMoreData,
+        // isAddOnMoreData,
         newMemberName,
         handleChangeTeamName,
         handleChangeMemberName,
@@ -52,11 +52,11 @@ function CurrentRow(props){
 
     useEffect(() => {
         deleteRow(idSelected);
-    },[idSelected])
+    },[deleteRow, idSelected])
 
     return (
         <>{newRow.map((item)=>(
-        <tr key={item.genarateId}>
+        <tr key={item.generateId}>
         <td className="text-center format-input-cell">
         <b>{item.ordinalNumber}</b>
         </td>
@@ -69,8 +69,9 @@ function CurrentRow(props){
         />
         </td>
         <td>
-        <select className="form-control" 
-        value={position} 
+        <select 
+        className="form-control" 
+        defaultValue={position} 
         onChange={handleSelectOption}>
         <option value="user">USER</option>
         <option value="manager">MANAGER</option>
@@ -82,7 +83,7 @@ function CurrentRow(props){
         type="text" 
         className="border-input"
         onChange={handleChangeMemberName}
-        value={newMemberName}
+        defaultValue={newMemberName}
         />
         </td>
         <td>
@@ -99,7 +100,6 @@ function CurrentRow(props){
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 
         className="btn btn-success"
-        handleSave={handleSave} 
         onClick={handleSave}>
         Save
         </button>&nbsp;&nbsp;&nbsp;&nbsp;

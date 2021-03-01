@@ -33,7 +33,11 @@ return (
             <table className="table table-bordered table-hover">
                 <thead>
                 <tr>
-                {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
+                {columnTitles.map((columnTitle, index) => (<th 
+                className="text-center"
+                key={index}>
+                {columnTitle}
+                </th>))}
                 </tr>
                 </thead>
                 <tbody>

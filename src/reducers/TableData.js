@@ -33,7 +33,7 @@ const myReducer = (state = initialState, action) => {
                 }
             ];
         case types.DELETE_ROW:
-            console.log("id", action.id);
+            // console.log("id", action.id);
             return state.filter(item => item.generateId !== action.id);
         default:
             return state; 

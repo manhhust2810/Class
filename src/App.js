@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './App.scss';
 // import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
-import ChangeThem from './components/change-theme/ChangeThem';
+// import ChangeThem from './components/change-theme/ChangeThem';
 import Header from "./components/Display/Header";
 import Display from "./components/Display";
 import dataMembers from "./allDataMember.json";
@@ -38,7 +38,7 @@ class App extends Component {
       isSaveOnSuccess: false,
       isAddOnMoreData: false,
       numberOfRow: 0,
-      dataAPI: [],
+      // dataAPI: [],
       newRow: {},
       // data15: dataMembers
     };
@@ -162,10 +162,10 @@ class App extends Component {
       userTiltle,
       managerTiltle,
       edittingId,
-      dataAPI,
+      // dataAPI,
       value,
     } = this.state;
-    console.log("numberOfRow", this.state.numberOfRow);
+    // console.log("numberOfRow", this.state.numberOfRow);
     return (
       <Router>
         <div>

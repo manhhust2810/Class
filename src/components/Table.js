@@ -18,18 +18,26 @@ const {
     handleChangeTeamName,
     handleChangeMemberName,
     handleSelectOption } = props;
-const columnTitles = ["Ordinal number", "New team name", "Position", "New Member Name", "Action", "Status"]
+
+    const columnTitles = [
+        "Ordinal number", 
+        "New team name", 
+        "Position", 
+        "New Member Name", 
+        "Action", 
+        "Status"]
+
 return (
     <div className="row-mt-15 format-table">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <table className="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
+                {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
                 </tr>
                 </thead>
                 <tbody>
-                    <SampleRow />
+                <SampleRow />
                 </tbody>
                 <tfoot>
                 {(status === "Pending")
@@ -71,21 +79,28 @@ return (
                 </tfoot>
             </table>
             <span>{(status === "Pending")
-                ?
-                (<div className="alert alert-success">
-                    <strong>Saved New Member On Success Action!</strong>
-                </div>)
-                :
-                (status === "Error")
-                ?
-                (<div className="alert alert-danger">
-                    <strong>Saved New Member On Failure Action!</strong>
-                </div>) :
-                null}
+            ?
+            (<div className="alert alert-success">
+            <strong>Saved New Member On Success Action!</strong>
+            </div>)
+            :
+            (status === "Error")
+            ?
+            (<div className="alert alert-danger">
+            <strong>Saved New Member On Failure Action!</strong>
+            </div>) 
+            :
+            null}
             </span>
         </div>
     </div>)
 }
+
+const mapStateToProps = state => {
+    return {
+        newRow: state.TableData
+    }
+};
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -95,4 +110,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 };
 
-export default connect(null, mapDispatchToProps)(Table);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);

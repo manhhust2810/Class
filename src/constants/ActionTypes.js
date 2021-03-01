@@ -27,3 +27,5 @@ export const SEARCH_ANYTHING = "SEARCH_ANYTHING";
 export const CURRENT_ROW = "CURRENT_ROW";
 
 export const ADD_NEW_ROW = "ADD_NEW_ROW";
+
+export const DELETE_ROW = "DELETE_ROW";

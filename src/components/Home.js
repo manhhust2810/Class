@@ -4,9 +4,9 @@ class Home extends Component {
     render()
     {
         return(
-            <div>
-                Đây là trang chủ
-            </div>
+            <h1>
+                This is Home Page
+            </h1>
         );
     }
 }

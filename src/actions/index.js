@@ -50,6 +50,13 @@ export const searchAnything = (value) => {
 
 export const addNewRow = () => {
     return {
-        type: types.ADD_NEW_ROW
+        type: types.ADD_NEW_ROW,
+    }
+}
+
+export const deleteRow = (id) => {
+    return {
+        type: types.DELETE_ROW,
+        id: id
     }
 }

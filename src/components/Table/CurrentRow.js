@@ -1,13 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import * as actions from "./../../actions/index";
-import { v4 as uuidv4 } from 'uuid';
 
 function CurrentRow(props){
     const { 
         status,
         handleSave,
-        handleAddMoreData,
         isAddOnMoreData,
         newMemberName,
         handleChangeTeamName,
@@ -16,13 +14,13 @@ function CurrentRow(props){
         handleSelectOption,
         position,
         newRow,
+        // id,
+        deleteRow,
         addNewRow
      } = props;
 
-     const [isClickAdd, setIsClickAdd] = useState(isAddOnMoreData);
-     const [numberOfRow, setNumberOfRow] = useState(0);
-     const [newId, setNewId] = useState("");
-     setNewId(uuidv4());
+    const [idSelected, setIdSelected] = useState(""); 
+
 
     // const actionsArray = [
     //     {
@@ -42,21 +40,23 @@ function CurrentRow(props){
     //     }
     // ]
      
-    function handleAddData(){
-        setIsClickAdd(!isClickAdd);
-        setNumberOfRow(numberOfRow+1);
+    function handleAddData(id){
         addNewRow();
-        console.log("newRow", newRow);
+        // setIdSelected(id)
+        // console.log("Id", id);
     }
 
-    console.log("isClickAdd", isClickAdd);
-    console.log("isAddOnMoreData", isAddOnMoreData);
-    console.log(`Bạn đã thêm ${numberOfRow} hàng`, isClickAdd);
-    console.log("newRow", newRow)
+    const handleDeleteData = (item) => {
+        setIdSelected(item.generateId);
+    }
+
+    useEffect(() => {
+        deleteRow(idSelected);
+    },[idSelected])
 
     return (
         <>{newRow.map((item)=>(
-        <tr>
+        <tr key={item.genarateId}>
         <td className="text-center format-input-cell">
         <b>{item.ordinalNumber}</b>
         </td>
@@ -69,10 +69,12 @@ function CurrentRow(props){
         />
         </td>
         <td>
-        <select className="form-control" value={position} onChange={handleSelectOption}>
-            <option value="user">USER</option>
-            <option value="manager">MANAGER</option>
-            <option value="custormer">CUSTORMER</option>
+        <select className="form-control" 
+        value={position} 
+        onChange={handleSelectOption}>
+        <option value="user">USER</option>
+        <option value="manager">MANAGER</option>
+        <option value="custormer">CUSTORMER</option>
         </select>
         </td>
         <td>
@@ -92,8 +94,7 @@ function CurrentRow(props){
         </button>))} */}
         <button 
         className="btn btn-info"
-        onClick={handleAddData}
-        >
+        onClick={handleAddData}>
         Add more
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 
@@ -103,7 +104,9 @@ function CurrentRow(props){
         Save
         </button>&nbsp;&nbsp;&nbsp;&nbsp;
         <button 
-        className="btn btn-danger">
+        className="btn btn-danger"
+        onClick={()=>handleDeleteData(item)}
+        >
         Delete
         </button>
         </center>
@@ -134,11 +137,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onAddTask: (task) => {
-            dispatch(actions.addTask(task))
-        },
         addNewRow: () => {
             dispatch(actions.addNewRow())
+        },
+        deleteRow: (id) => {
+            dispatch(actions.deleteRow(id))
         }
       }
 };

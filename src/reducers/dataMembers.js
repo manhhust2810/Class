@@ -49,7 +49,7 @@ const myReducer = (state = initialState, action) => {
                 return item.name.includes(value);
             });
         default: 
-            return state 
+            return state; 
     }
 };
 

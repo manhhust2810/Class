@@ -20,13 +20,14 @@ function TopCard(props) {
   const style = {
     icon: {
       color: "green"
-    }
+    },
   }
 
   const [value, setValue] = useState(cardName);
 
   function handleClearTeam() {
-    // handleClearTeam && handleClearTeam(id);
+    // handleClearTeam && handleClearTeam(id)
+    console.log("id", id);
     deleteTeamById(id);
   }
 

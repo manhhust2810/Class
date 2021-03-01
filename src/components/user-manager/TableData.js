@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import TableDataRow from './TableDataRow';
-
 export default class TableData extends Component {
   render() {
     const { users } = this.props

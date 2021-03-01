@@ -14,7 +14,6 @@ function Display(props){
         handleEditTeamName,
         handleChangeName1,
      } = props;
-//my-card
     return (
         <div className = "grid-container">
         {dataMembers.map((post) =>

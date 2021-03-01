@@ -22,6 +22,8 @@ function Card(props) {
     handleClearTeam 
   } = props;
 
+  console.log("id", id)
+
   // function handleSearchName(value) {
   //   var item = ((data1.firstName.startsWith(value)) || (data1.lastName.startsWith(value)) ? (data1.firstName.includes(value)) || (data1.lastName.includes(value)) : null)
   //   return item;

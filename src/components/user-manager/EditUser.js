@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-
 export default class EditUser extends Component {
   constructor(props, context) {
     super(props, context);

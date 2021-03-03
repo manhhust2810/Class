@@ -4,11 +4,11 @@ import './App.scss';
 import { connect } from "react-redux";
 // import ChangeThem from './components/change-theme/ChangeThem';
 import Header from "./components/Display/Header";
-import Display from "./components/Display";
+import Display from "./views/Display";
 import dataMembers from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
-import TodoList from './components/TodoList';
-import Table from './components/Table';
+import TodoList from './views/TodoList';
+import Table from "./views/Table";
 import {
   BrowserRouter as Router,
   Route,
@@ -16,10 +16,9 @@ import {
   Switch
 }
   from "react-router-dom";
-import UserManager from "./components/UserManager";
-import Home from './components/Home';
+import UserManager from "./views/UserManager";
+import Home from "./views/Home";
 import "./App.css";
-// import demoRedux from "./redux/demoRedux";
 class App extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +39,6 @@ class App extends Component {
       numberOfRow: 0,
       // dataAPI: [],
       newRow: {},
-      // data15: dataMembers
     };
   }
 
@@ -168,50 +166,110 @@ class App extends Component {
     // console.log("numberOfRow", this.state.numberOfRow);
     return (
       <Router>
-        <div>
-          <nav className="navbar navbar-inverse">
-            <ul className="nav navbar-nav"></ul>
-            <li>
+          <nav id="menu" className="fixed-top">
+            <ul id="menu1">
+              <li>
               <NavLink
-                className="nav-link"
-                id="home-tab"
-                data-toggle="tab1"
-                to="/">Home
+                className="navlink"
+                // id="home-tab"
+                // data-toggle="tab1"
+                to="/">
+                Home
               </NavLink>
-            </li>
-            <li>
+              </li>
+              <li>
               <NavLink
-                className="nav-link"
-                id="display-tab"
-                data-toggle="tab2"
-                to="/display">Display
+                className="navlink"
+                // id="display-tab"
+                // data-toggle="tab2"
+                to="/display">
+                Display
               </NavLink>
-            </li>
-            <li>
+              </li>
+              <li><NavLink
+                className="navlink"
+                // id="todo-tab"
+                // data-toggle="tab3"
+                to="/todolist">
+                To do
+              </NavLink></li>
+              <li><NavLink
+                className="navlink"
+                // id="manage-tab"
+                // data-toggle="tab4"
+                to="/usermanager">
+                User Manager
+              </NavLink>
+              </li>
+              <li>
               <NavLink
-                className="nav-link"
-                id="todo-tab"
-                data-toggle="tab3"
-                to="/todolist">To do
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/table">
+                Table
               </NavLink>
-            </li>
-            <li>
+              </li>
+              <li>
               <NavLink
-                className="nav-link"
-                id="manage-tab"
-                data-toggle="tab4"
-                to="/usermanager">User Manager
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/demosaga">
+                Demo Saga
               </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="nav-link"
-                id="table-tab"
-                data-toggle="tab5"
-                to="/table">Table
-              </NavLink>
-            </li>
+              </li>
+            </ul>
           </nav>
+          {/* <nav>
+          <ul>
+            <li>
+              <NavLink
+                className="navlink"
+                // id="home-tab"
+                // data-toggle="tab1"
+                to="/">
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="navlink"
+                // id="display-tab"
+                // data-toggle="tab2"
+                to="/display">
+                Display
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="navlink"
+                // id="todo-tab"
+                // data-toggle="tab3"
+                to="/todolist">
+                To do
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="navlink"
+                // id="manage-tab"
+                // data-toggle="tab4"
+                to="/usermanager">
+                User Manager
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/table">
+                Table
+              </NavLink>
+            </li>
+          </ul>
+          </nav> */}
           <Switch>
             <Route path="/" exact>
               <Home />
@@ -252,9 +310,12 @@ class App extends Component {
                 handleChangeMemberName={this.handleChangeMemberName}     
               />
             </Route>
+            <Route path="/demosaga" exact>
+
+            </Route>
             {/* <Route component={NotFound} /> */}
           </Switch>
-        </div>
+      
       </Router>
       // <div>
       //   <div>{dataAPI.title}</div>

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from "classnames";
-import Search from './Search/Search';
+import Search from '../components/Search/Search';
 import style from './TodoList.module.css';
-import List from './List/List';
-import Message from './Message/Message';
-import Total from './Total/Total';
+import List from '../components/List/List';
+import Message from '../components/Message/Message';
+import Total from '../components/Total/Total';
 
 function TodoList(props) {
     const { hidden } = props;

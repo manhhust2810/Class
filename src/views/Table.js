@@ -1,7 +1,7 @@
-import SampleRow from "./Table/SampleRow";
-import HandleRow from "./Table/HandleRow";
-import CurrentRow from "./Table/CurrentRow";
-import NewRow from "./Table/NewRow";
+import SampleRow from "../components/Table/SampleRow";
+import HandleRow from "../components/Table/HandleRow";
+import CurrentRow from "../components/Table/CurrentRow";
+import NewRow from "../components/Table/NewRow";
 import { connect } from "react-redux";
 import * as action from "./../actions/index";
 
@@ -28,7 +28,7 @@ const {
         "Status"]
 
 return (
-    <div className="row-mt-15 format-table">
+    <div className="row-mt-15 format-table text">
         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <table className="table table-bordered table-hover">
                 <thead>

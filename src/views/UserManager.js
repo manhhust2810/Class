@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-// import './App.css';
-import Header from "./user-manager/Header";
-import TableData from "./user-manager/TableData";
-import Search from "./user-manager/Search";
-import AddUser from "./user-manager/AddUser";
-import EditUser from "./user-manager/EditUser";
+import Header from "../components/user-manager/Header";
+import TableData from "../components/user-manager/TableData";
+import Search from "../components/user-manager/Search";
+import AddUser from "../components/user-manager/AddUser";
+import EditUser from "../components/user-manager/EditUser";
 import Data from "../DataSample.json";
 
 class UserManager extends Component {

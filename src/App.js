@@ -7,7 +7,8 @@ import Header from "./components/Display/Header";
 import Display from "./views/Display";
 import dataMembers from "./allDataMember.json";
 import sampleMemberData from "./sampleData.json";
-import TodoList from './views/TodoList';
+import TodoList from "./views/TodoList";
+import Color from "./views/Color";
 import Table from "./views/Table";
 import {
   BrowserRouter as Router,
@@ -191,14 +192,14 @@ class App extends Component {
                 // id="todo-tab"
                 // data-toggle="tab3"
                 to="/todolist">
-                To do
+                List
               </NavLink></li>
               <li><NavLink
                 className="navlink"
                 // id="manage-tab"
                 // data-toggle="tab4"
                 to="/usermanager">
-                User Manager
+                Manage
               </NavLink>
               </li>
               <li>
@@ -217,6 +218,24 @@ class App extends Component {
                 // data-toggle="tab5"
                 to="/demosaga">
                 Demo Saga
+              </NavLink>
+              </li>
+              <li>
+              <NavLink
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/chart">
+                Chart
+              </NavLink>
+              </li>
+              <li>
+              <NavLink
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/color">
+                Color
               </NavLink>
               </li>
             </ul>
@@ -312,6 +331,12 @@ class App extends Component {
             </Route>
             <Route path="/demosaga" exact>
 
+            </Route>
+            <Route path="/chart" exact>
+
+            </Route>
+            <Route path="/color" exact>
+              <Color />
             </Route>
             {/* <Route component={NotFound} /> */}
           </Switch>

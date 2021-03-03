@@ -77,3 +77,9 @@ export const updateName = (id, newTeamName,newMemberName) => {
         newMemberName: newMemberName
     }
 }
+
+export * from './ColorsActions';
+
+export * from './GradientsActions';
+
+export * from './SettingsActions';

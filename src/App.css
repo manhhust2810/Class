@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,7 +35,7 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
 
 
 .format-table {
@@ -90,7 +90,7 @@ input:focus {
 }
 
 .my-button {
-  background-color: #8C1515;
+  background-color: #1F568B;
   width: 200px;
   margin-left: 60px;
   margin-top: 70px;
@@ -137,19 +137,18 @@ li .navlink {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-}
+/* } */
 
-li .navlink:hover:not(.active) {
-  color: white;
-  background-color: #db7093;
+/* li .navlink:hover:not(.active) {
+  /* color: white; */
+  /* background-color: #db7093;
   font-weight: bold;
 }
 
 .active {
-  background-color: #58257b;
-  color: white;
-  font-weight: bold;
-} */
+  background-color: yellow;
+  font-weight: bold; */
+/* }  */
 
 * {
   margin: 0;
@@ -163,12 +162,6 @@ body {
 }
 
 /*==Style cho menu===*/
-
-ul {
-  /* position: fixed; */
-}
-
-
 
 #menu ul {
   background: #1F568B;
@@ -189,7 +182,7 @@ ul {
   display: block;
 }
 #menu a:hover {
-  background: #F1F1F1;
+  background: yellow;
   color: #333;
 }
 

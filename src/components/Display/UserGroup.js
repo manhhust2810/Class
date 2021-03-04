@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import User from './User.js'
-import Icon from './Icon.js'
-// import './Draft.css'
-import './UserGroup.css'
+import User from './User.js';
+import Icon from './Icon.js';
+import './UserGroup.css';
 
 function UserGroup({ dataMembers, admin }) {
   return (

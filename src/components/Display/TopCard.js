@@ -2,7 +2,7 @@ import NameTeam from "./NameTeam.js";
 import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import { connect } from "react-redux";
-import './TopCard.css';
+import "./TopCard.css";
 import * as action from "./../../actions/index";
 
 function TopCard(props) {

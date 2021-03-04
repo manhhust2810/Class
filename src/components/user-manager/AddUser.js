@@ -44,7 +44,11 @@ export default class AddUser extends Component {
   render() {
     if (!this.state.showAddUser) {
       return (
-        <button className="btn btn-block btn-outline-info" onClick={() => this.showAddUser()}>Add user</button>
+        <button 
+          className="btn btn-block btn-outline-info" 
+          onClick={() => this.showAddUser()}>
+          Add user
+        </button>
       )
     } else {
       return (

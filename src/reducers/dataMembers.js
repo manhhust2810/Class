@@ -1,5 +1,6 @@
 import * as types from "../constants/ActionTypes";
 import dataMembers from "../allDataMember.json";
+import { v4 as uuidv4 } from "uuid";
 
 // var data = JSON.parse(localStorage.getItem("task"));
 
@@ -19,7 +20,7 @@ const myReducer = (state = initialState, action) => {
             return [
                 ...state,
                 {
-                    "id": "null",
+                    "id": uuidv4(),
                     "name": "",
                     "creator": "",
                     "memberIds": [

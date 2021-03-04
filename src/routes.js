@@ -1,7 +1,8 @@
 import { lazy } from 'react';
 import { PublicLayout } from './layouts';
 
-const ColorsContainer = lazy(() => import('./containers/ColorsContainer'));
+const ColorsContainer = lazy(() => 
+  import('./containers/ColorsContainer'));
 const GradientsContainer = lazy(() =>
   import('./containers/GradientsContainer')
 );

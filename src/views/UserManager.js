@@ -5,7 +5,6 @@ import Search from "../components/user-manager/Search";
 import AddUser from "../components/user-manager/AddUser";
 import EditUser from "../components/user-manager/EditUser";
 import Data from "../DataSample.json";
-
 class UserManager extends Component {
     constructor(props, context) {
         super(props, context);

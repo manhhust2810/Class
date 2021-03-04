@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import TableDataRow from './TableDataRow';
-export default class TableData extends Component {
+class TableData extends Component {
   render() {
     const { users } = this.props
     return (
@@ -8,7 +8,7 @@ export default class TableData extends Component {
         <table className="table table-striped table-hover">
           <thead>
             <tr>
-              <th scope="col">Stt</th>
+              <th scope="col">STT</th>
               <th scope="col">User Name</th>
               <th scope="col">Phone</th>
               <th scope="col">Role</th>
@@ -34,3 +34,5 @@ export default class TableData extends Component {
     )
   }
 }
+
+export default TableData;

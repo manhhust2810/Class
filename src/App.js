@@ -149,7 +149,7 @@ class App extends Component {
   }
 
   handleCreateNew = (newState) => {
-    console.log("newState", newState)
+    console.log("newState", newState);
     this.setState({
       data15: newState
     })

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 
 const propTypes = {
@@ -9,7 +9,10 @@ const propTypes = {
 
 const Button = ({ children, className = '', style, ...props }) => {
   return (
-    <button {...props} style={style} className={`button ${className}`}>
+    <button 
+      {...props} 
+      style={style} 
+      className={`button ${className}`}>
       {children}
     </button>
   );
@@ -17,4 +20,4 @@ const Button = ({ children, className = '', style, ...props }) => {
 
 Button.propTypes = propTypes;
 
-export default React.memo(Button);
+export default memo(Button);

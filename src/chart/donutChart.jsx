@@ -11,7 +11,6 @@ const margin = {
 
 const canvasHeight = 500
 const canvasWidth = 900
-
 const height = 360
 const width = 360
 const radius = Math.min(width, height) / 2;

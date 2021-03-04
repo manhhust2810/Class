@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react';
 import { Switch } from 'react-router-dom';
-import { PublicRoute } from './layouts';
-import routes from './routes';
-import Nav from './components/nav';
+import { PublicRoute } from '../layouts/index';
+import routes from '../routes';
+import Nav from '../components/nav';
 
 function Color() {
   const renderRoutes = useMemo(() => {

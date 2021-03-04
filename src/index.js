@@ -14,12 +14,12 @@ import store from "./store";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/scss/reset.scss";
 import "./assets/scss/components.scss";
-import { HashRouter } from 'react-router-dom';
-import configureStore from './store/configureStore';
+// import { HashRouter } from 'react-router-dom';
+// import configureStore from './store/configureStore';
 import { getLocalStorage } from './utils/localStorage';
 
 // const store = createStore(myReducer);
-const persisted = getLocalStorage();
+// const persisted = getLocalStorage();
 
 ReactDOM.render(
   // <React.StrictMode>
@@ -32,14 +32,14 @@ ReactDOM.render(
 
 serviceWorker.unregister();
 
-const Main = () => (
-  <Provider store={configureStore(persisted)}>
-    <HashRouter basename="/">
-      <App />
-    </HashRouter>
-  </Provider>
-);
+// const Main = () => (
+//   <Provider store={configureStore(persisted)}>
+//     <HashRouter basename="/">
+//       <App />
+//     </HashRouter>
+//   </Provider>
+// );
 
-ReactDOM.render(
-    <Main />, 
-  document.getElementById('root'));
+// ReactDOM.render(
+//     <Main />, 
+//   document.getElementById('root'));

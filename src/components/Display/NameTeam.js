@@ -1,13 +1,12 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import './NameTeam.css';
-// import './Draft.css';
+import PropTypes from "prop-types";
+import "./NameTeam.css";
 
 function NameTeam({cardName}){
     return (
-        <div className="nameTeam">
+        <span className="nameTeam">
             {cardName}
-        </div>
+        </span>
     )
 }
 

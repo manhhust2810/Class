@@ -4,13 +4,6 @@ import * as actions from "./../../actions/index";
 
 function CurrentRow(props){
     const { 
-        // status,
-        // handleSave,
-        // isAddOnMoreData,
-        // newMemberName,
-        // handleChangeTeamName,
-        // handleChangeMemberName,
-        // newTeamName,
         handleSelectOption,
         position,
         newRow,
@@ -107,6 +100,8 @@ function CurrentRow(props){
     useEffect(() => {
         deleteRow(idSelected);
     },[deleteRow, idSelected])
+
+    console.log("newRow", newRow);
 
     return (
         <>{newRow.map((item)=>(

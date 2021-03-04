@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const initialState = dataMembers ? dataMembers : [];
 
-const myReducer = (state = initialState, action) => {
+const thisReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.LIST_ALL_TEAM_MEMBERS:
             return state;
@@ -54,4 +54,4 @@ const myReducer = (state = initialState, action) => {
     }
 };
 
-export default myReducer;
+export default thisReducer;

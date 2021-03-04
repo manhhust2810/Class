@@ -13,7 +13,7 @@ const sample = [{
 
 const initialState = sample ? sample : [];
 
-const myReducer = (state = initialState, action) => {
+const thisReducer = (state = initialState, action) => {
     switch(action.type) {
         case types.CURRENT_ROW:
             return state;
@@ -60,4 +60,4 @@ const myReducer = (state = initialState, action) => {
     }
 };
 
-export default myReducer;
+export default thisReducer;

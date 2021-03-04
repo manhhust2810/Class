@@ -238,6 +238,15 @@ class App extends Component {
                 Color
               </NavLink>
               </li>
+              <li>
+              <NavLink
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/covid19">
+                Covid 19
+              </NavLink>
+              </li>
             </ul>
           </nav>
           {/* <nav>
@@ -337,6 +346,9 @@ class App extends Component {
             </Route>
             <Route path="/color" exact>
               <Color />
+            </Route>
+            <Route path="/covid19" exact>
+              
             </Route>
             {/* <Route component={NotFound} /> */}
           </Switch>

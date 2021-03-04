@@ -247,6 +247,15 @@ class App extends Component {
                 Covid 19
               </NavLink>
               </li>
+              <li>
+              <NavLink
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                to="/worldcup">
+                World Cup
+              </NavLink>
+              </li>
             </ul>
           </nav>
           {/* <nav>
@@ -350,6 +359,9 @@ class App extends Component {
             <Route path="/covid19" exact>
               
             </Route>
+            <Route path="/worldcup" exact>
+              
+              </Route>
             {/* <Route component={NotFound} /> */}
           </Switch>
       

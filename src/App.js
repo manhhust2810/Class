@@ -3,13 +3,17 @@ import './App.scss';
 // import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
 // import ChangeThem from './components/change-theme/ChangeThem';
+import sampleMemberData from "./sampleData.json";
+import dataMembers from "./allDataMember.json";
 import Header from "./components/Display/Header";
 import Display from "./views/Display";
-import dataMembers from "./allDataMember.json";
-import sampleMemberData from "./sampleData.json";
 import TodoList from "./views/TodoList";
 import Color from "./views/Color";
 import Table from "./views/Table";
+import Menu from "./views/Menu";
+import UserManager from "./views/UserManager";
+import Home from "./views/Home";
+import NotFound from "./views/NotFound";
 import {
   BrowserRouter as Router,
   Route,
@@ -18,30 +22,9 @@ import {
   Switch,
   useRouteMatch
 } from "react-router-dom";
-import UserManager from "./views/UserManager";
-import Home from "./views/Home";
+import routes from "./views/routes"
 import "./App.css";
 
-const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
-  return (
-    <Route path={to} 
-          exact = {activeOnlyWhenExact} 
-          children={(match) => {
-          const active = match ? `item-active` : "";
-          return (
-            <li>
-              <NavLink 
-                to={to} 
-                className="navlink"
-                activeClassName={`${active}`}
-                exact
-                >
-                {label}
-              </NavLink>
-            </li>
-          )}}/>
-  )
-};
 class App extends Component {
   constructor(props) {
     super(props);
@@ -189,178 +172,7 @@ class App extends Component {
     // console.log("numberOfRow", this.state.numberOfRow);
     return (
       <Router>
-          <nav id="menu" className="fixed-top">
-            <ul>
-              {/* <li>
-              <NavLink
-                className="navlink"
-                // id="home-tab"
-                // data-toggle="tab1"
-                activeClassName="item-active"
-                exact
-                to="/">
-                Home
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="display-tab"
-                // data-toggle="tab2"
-				        activeClassName="item-active"
-                to="/display">
-                Display
-              </NavLink>
-              </li>
-              <li><NavLink
-                className="navlink"
-                // id="todo-tab"
-                // data-toggle="tab3"
-                activeClassName="item-active"
-                to="/todolist">
-                List
-              </NavLink></li>
-              <li><NavLink
-                className="navlink"
-                // id="manage-tab"
-                // data-toggle="tab4"
-                activeClassName="item-active"
-                to="/usermanager">
-                Manage
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                activeClassName="item-active"
-                to="/table">
-                Table
-              </NavLink>
-              </li>
-            
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                activeClassName="item-active"
-                to="/chart">
-                Chart
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                activeClassName="item-active"
-                to="/color">
-                Color
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                activeClassName="item-active"
-                to="/covid19">
-                Covid 19
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                activeClassName="item-active"
-                to="/worldcup">
-                World Cup
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                activeClassName="item-active"
-                to="/blockchain">
-                Blockchain
-              </NavLink>
-              </li>
-              <li>
-              <input 
-                id="cell" 
-                placeholder="Search..."
-              />
-              </li> */}
-              <MenuLink label="Home" to="/" activeWhenOnlyExact={true} />
-              <MenuLink label="Display" to="/display" activeWhenOnlyExact={false} />
-              <MenuLink label="List" to="/list" activeWhenOnlyExact={false} />  
-              <MenuLink label="Manage" to="/manage" activeWhenOnlyExact={false} />  
-              <MenuLink label="Table" to="/table" activeWhenOnlyExact={false} />  
-              <MenuLink label="Chart" to="/chart" activeWhenOnlyExact={false} />  
-              <MenuLink label="Color" to="/color" activeWhenOnlyExact={false} />  
-              <MenuLink label="Covid 19" to="/covid19" activeWhenOnlyExact={false} />  
-              <MenuLink label="World cup" to="/worldcup" activeWhenOnlyExact={false} />  
-              <MenuLink label="Blockchain" to="/blockchain" activeWhenOnlyExact={false} />
-              <input 
-                id="cell" 
-                placeholder="Search..."
-              />
-            </ul>
-          </nav>
-          {/* <nav>
-          <ul>
-            <li>
-              <NavLink
-                className="navlink"
-                // id="home-tab"
-                // data-toggle="tab1"
-                to="/">
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="navlink"
-                // id="display-tab"
-                // data-toggle="tab2"
-                to="/display">
-                Display
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="navlink"
-                // id="todo-tab"
-                // data-toggle="tab3"
-                to="/todolist">
-                To do
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="navlink"
-                // id="manage-tab"
-                // data-toggle="tab4"
-                to="/usermanager">
-                User Manager
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
-                to="/table">
-                Table
-              </NavLink>
-            </li>
-          </ul>
-          </nav> */}
+          <Menu />
           <Switch>
             <Route path="/" exact>
               <Home />
@@ -372,6 +184,7 @@ class App extends Component {
                 handleCreateNew={this.handleCreateNew}
                 value={value}
               />
+              {/* {({ match }) => ( */}
               <Display
                 newName={this.state.defaultTeamName}
                 handleEditTeamName={this.handleEditTeamName}
@@ -379,7 +192,9 @@ class App extends Component {
                 userTiltle={userTiltle}
                 managerTiltle={managerTiltle}
                 edittingId={edittingId}
+                // match={match}
               />
+              {/* )} */}
             </Route>
             <Route path="/todolist" exact>
               <TodoList />
@@ -402,7 +217,7 @@ class App extends Component {
               />
             </Route>
           
-            <Route path="/chart" exact>
+            <Route path="/transcript" exact>
 
             </Route>
             <Route path="/color" exact>
@@ -417,7 +232,7 @@ class App extends Component {
             <Route path="/blockchain" exact>
               
             </Route>
-            {/* <Route component={NotFound} /> */}
+            <Route component={NotFound} />
           </Switch>
       
       </Router>

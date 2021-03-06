@@ -13,13 +13,35 @@ import Table from "./views/Table";
 import {
   BrowserRouter as Router,
   Route,
+  Link,
   NavLink,
-  Switch
-}
-  from "react-router-dom";
+  Switch,
+  useRouteMatch
+} from "react-router-dom";
 import UserManager from "./views/UserManager";
 import Home from "./views/Home";
 import "./App.css";
+
+const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
+  return (
+    <Route path={to} 
+          exact = {activeOnlyWhenExact} 
+          children={(match) => {
+          const active = match ? `item-active` : "";
+          return (
+            <li>
+              <NavLink 
+                to={to} 
+                className="navlink"
+                activeClassName={`${active}`}
+                exact
+                >
+                {label}
+              </NavLink>
+            </li>
+          )}}/>
+  )
+};
 class App extends Component {
   constructor(props) {
     super(props);
@@ -168,12 +190,14 @@ class App extends Component {
     return (
       <Router>
           <nav id="menu" className="fixed-top">
-            <ul id="menu1">
-              <li>
+            <ul>
+              {/* <li>
               <NavLink
                 className="navlink"
                 // id="home-tab"
                 // data-toggle="tab1"
+                activeClassName="item-active"
+                exact
                 to="/">
                 Home
               </NavLink>
@@ -183,6 +207,7 @@ class App extends Component {
                 className="navlink"
                 // id="display-tab"
                 // data-toggle="tab2"
+				        activeClassName="item-active"
                 to="/display">
                 Display
               </NavLink>
@@ -191,6 +216,7 @@ class App extends Component {
                 className="navlink"
                 // id="todo-tab"
                 // data-toggle="tab3"
+                activeClassName="item-active"
                 to="/todolist">
                 List
               </NavLink></li>
@@ -198,6 +224,7 @@ class App extends Component {
                 className="navlink"
                 // id="manage-tab"
                 // data-toggle="tab4"
+                activeClassName="item-active"
                 to="/usermanager">
                 Manage
               </NavLink>
@@ -207,24 +234,18 @@ class App extends Component {
                 className="navlink"
                 // id="table-tab"
                 // data-toggle="tab5"
+                activeClassName="item-active"
                 to="/table">
                 Table
               </NavLink>
               </li>
+            
               <li>
               <NavLink
                 className="navlink"
                 // id="table-tab"
                 // data-toggle="tab5"
-                to="/demosaga">
-                Demo Saga
-              </NavLink>
-              </li>
-              <li>
-              <NavLink
-                className="navlink"
-                // id="table-tab"
-                // data-toggle="tab5"
+                activeClassName="item-active"
                 to="/chart">
                 Chart
               </NavLink>
@@ -234,6 +255,7 @@ class App extends Component {
                 className="navlink"
                 // id="table-tab"
                 // data-toggle="tab5"
+                activeClassName="item-active"
                 to="/color">
                 Color
               </NavLink>
@@ -243,6 +265,7 @@ class App extends Component {
                 className="navlink"
                 // id="table-tab"
                 // data-toggle="tab5"
+                activeClassName="item-active"
                 to="/covid19">
                 Covid 19
               </NavLink>
@@ -252,10 +275,41 @@ class App extends Component {
                 className="navlink"
                 // id="table-tab"
                 // data-toggle="tab5"
+                activeClassName="item-active"
                 to="/worldcup">
                 World Cup
               </NavLink>
               </li>
+              <li>
+              <NavLink
+                className="navlink"
+                // id="table-tab"
+                // data-toggle="tab5"
+                activeClassName="item-active"
+                to="/blockchain">
+                Blockchain
+              </NavLink>
+              </li>
+              <li>
+              <input 
+                id="cell" 
+                placeholder="Search..."
+              />
+              </li> */}
+              <MenuLink label="Home" to="/" activeWhenOnlyExact={true} />
+              <MenuLink label="Display" to="/display" activeWhenOnlyExact={false} />
+              <MenuLink label="List" to="/list" activeWhenOnlyExact={false} />  
+              <MenuLink label="Manage" to="/manage" activeWhenOnlyExact={false} />  
+              <MenuLink label="Table" to="/table" activeWhenOnlyExact={false} />  
+              <MenuLink label="Chart" to="/chart" activeWhenOnlyExact={false} />  
+              <MenuLink label="Color" to="/color" activeWhenOnlyExact={false} />  
+              <MenuLink label="Covid 19" to="/covid19" activeWhenOnlyExact={false} />  
+              <MenuLink label="World cup" to="/worldcup" activeWhenOnlyExact={false} />  
+              <MenuLink label="Blockchain" to="/blockchain" activeWhenOnlyExact={false} />
+              <input 
+                id="cell" 
+                placeholder="Search..."
+              />
             </ul>
           </nav>
           {/* <nav>
@@ -347,9 +401,7 @@ class App extends Component {
                 handleChangeMemberName={this.handleChangeMemberName}     
               />
             </Route>
-            <Route path="/demosaga" exact>
-
-            </Route>
+          
             <Route path="/chart" exact>
 
             </Route>
@@ -361,7 +413,10 @@ class App extends Component {
             </Route>
             <Route path="/worldcup" exact>
               
-              </Route>
+            </Route>
+            <Route path="/blockchain" exact>
+              
+            </Route>
             {/* <Route component={NotFound} /> */}
           </Switch>
       

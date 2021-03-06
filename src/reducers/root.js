@@ -8,7 +8,7 @@ import TableData from "./TableData";
 import { TaskReducer } from "./TaskReducer";
 
 const rootReducer = combineReducers({ 
-    todoList, 
+    todoList,
     visibleTodoListFilter, 
     visibleTheme, 
     dataMembers, 

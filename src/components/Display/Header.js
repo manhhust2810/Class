@@ -5,43 +5,9 @@ import * as action from "./../../actions/index";
 function Header(props) {
     const { 
         createNewTeam,
-        searchAnything
+        searchAnything,
+        originData
     } = props;
-
-    // const [allDataTeam, setAllDataTeam] = useState(dataMembers);
-    // console.log("allDataTeam", allDataTeam);
-
-    // function handleCreateNewTeam(allDataTeam){
-    //     setAllDataTeam([
-    //         ...allDataTeam,
-    //         {
-    //           "id": "null",
-    //           "name": "",
-    //           "creator": "",
-    //           "memberIds": [
-    //           ],
-    //           "managerIds": [
-    //           ]
-    //         },
-    //     ])
-    // }
-
-    // console.log("allDataTeam", allDataTeam);
-
-    // function createNewTeam(){
-    //     handleCreateNewTeam(allDataTeam);
-    //     handleCreateNew(allDataTeam);
-    // }
-    
-    // useEffect(()=>{
-    //     handleCreateNew(allDataTeam);
-    // }, [allDataTeam])
-
-    // const createNewTeam = () => {
-    //     dispatch({
-    //         type: CREATE_NEW_TEAM
-    //     })
-    // }
 
     const [search, setSearch] = useState("");
     
@@ -71,11 +37,11 @@ function Header(props) {
     </div>)
 }
 
-// const mapStateToProps = state => {
-//     return {
-//         originData: state.dataMembers
-//     }
-//   };
+const mapStateToProps = state => {
+    return {
+        originData: state.dataMembers
+    }
+};
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
@@ -89,4 +55,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 };
   
-export default connect(null, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -4,6 +4,10 @@ import {
     Route,
     NavLink,
 } from "react-router-dom";
+import { 
+    BsFillBarChartFill,
+    BsFillPieChartFill  
+} from "react-icons/bs";
 
 const menus = [
     {
@@ -93,6 +97,7 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
                                     className="text-color-dropdown">
                                 Column Chart
                                 </a>
+                                <BsFillBarChartFill />
                             </li>
                             <li>
                                 <a 
@@ -100,6 +105,7 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
                                     className="text-color-dropdown">
                                 Pie Chart
                                 </a>
+                                <BsFillPieChartFill />
                             </li>
                         </ul>)
                         :

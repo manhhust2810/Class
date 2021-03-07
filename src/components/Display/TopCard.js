@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import "./TopCard.css";
 import * as action from "./../../actions/index";
-
+import { BsTrashFill } from "react-icons/bs";
+import { FaCheckCircle, FaPencilAlt } from "react-icons/fa";
 function TopCard(props) {
   const {
-    newName,
     handleEditTeamName,
-    isClickOnEditSymbol,
     cardName,
     id,
     isEditing,
@@ -21,23 +20,25 @@ function TopCard(props) {
     icon: {
       color: "green"
     },
+    type: {
+      borderBottom: "2px solid #337AB7",
+      marginLeft: "50px"
+    }
   }
 
   const [value, setValue] = useState(cardName);
 
   function handleClearTeam() {
     // handleClearTeam && handleClearTeam(id)
-    console.log("id", id);
     deleteTeamById(id);
   }
 
   useEffect(() => {
-    setValue("SETA")
+    setValue(cardName)
   }, [isEditing])
 
   function handleSaveName(event) {
     handleEditTeamName(id, event);
-    console.log("id", id);
     changeNameById(id, value);
   }
 
@@ -47,41 +48,40 @@ function TopCard(props) {
   }
 
   return (
-      <div className="topCardStyle"
-        isClickOnEditSymbol={isClickOnEditSymbol}>
+      <span className="topCardStyle">
         {(isEditing)
           ?
-          <>
+          <span>
             <input
               type="text"
-              newName={newName}
               onChange={handleChangeName}
+              style={style.type}
             />
-            <div
-              className="iconStyle fas fa-check-circle symbolStyle"
+            <FaCheckCircle 
+              className="iconStyle symbolStyle"
               style={style.icon}
               onClick={handleSaveName}
-            >
-            </div>
-          </>
+            />
+          </span>
           :
-          <>
+          <span>
             <NameTeam
               className="nameStyle"
               cardName={cardName}
             />
-            <div className="iconStyle">
-              <div className="fas fa-edit symbolStyle"
-                onClick={handleSaveName}>
-              </div>
-              <div className="fa fa-trash-o symbolStyle"
-                onClick={handleClearTeam}
-                >
-              </div>
-            </div>
-          </>
+            <span className="iconStyle">
+              <FaPencilAlt
+                className="symbolStyle"
+                onClick={handleSaveName} 
+              />
+              <BsTrashFill
+                className="symbolStyle" 
+                onClick={handleClearTeam} 
+              />
+            </span>
+          </span>
         }
-      </div>)
+      </span>)
 }
 
 TopCard.propTypes = {
@@ -90,11 +90,11 @@ TopCard.propTypes = {
   cardName: PropTypes.string
 };
 
-const mapStateToProps = state => {
-    return {
-      newTeamName: state.DataMembers.name
-    }
-  };
+// const mapStateToProps = state => {
+//     return {
+//       newTeamName: state.DataMembers.name
+//     }
+// };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
@@ -107,4 +107,4 @@ const mapDispatchToProps = (dispatch, props) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopCard);;
+export default connect(null, mapDispatchToProps)(TopCard);;

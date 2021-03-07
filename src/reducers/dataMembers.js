@@ -27,7 +27,7 @@ const thisReducer = (state = initialState, action) => {
                     ]
                 } 
             ];
-            return { 
+            return {
                 previousState: [...newListAfterCreate],
                 currentState: [...newListAfterCreate]
             }

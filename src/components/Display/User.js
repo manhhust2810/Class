@@ -4,7 +4,7 @@ import './User.css'
 const style2 = {
     p3: {
         fonStyle: "normal",
-        color: "rgb(95, 95, 99)",
+        color: "#8C1515",
         fontWeight: "bold",
     }
 }

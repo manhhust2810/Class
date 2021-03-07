@@ -180,7 +180,8 @@
 }
 .sample {
     font-size: 20 px; 
-    color:rgb(95, 95, 99); 
+    /* color:rgb(95, 95, 99); */
+    color: #8C1515; 
     font-weight: bold;
 }
 

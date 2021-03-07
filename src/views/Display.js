@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 function Display(props){
     const { 
-        dataMembers, 
+        DataMembers, 
         edittingId,
         handleClearTeam, 
         userTiltle, 
@@ -18,16 +18,16 @@ function Display(props){
     
     // console.log(match)
     // var url = match.url;
-    const newData = dataMembers.map((item, index) => {
+    const newData = DataMembers.map((item, index) => {
       const newKey = { slug: item.name }
       return {...item, ...newKey}
     })
     console.log("newData", newData);
-    console.log("dataMembers", dataMembers)
+    console.log("DataMembers", DataMembers)
 
     return (
         <div className = "grid-container">
-        {dataMembers.map((post, index) =>
+        {DataMembers.map((post, index) =>
           
           <Card
             isEditing={edittingId.includes(post.id)}
@@ -48,7 +48,7 @@ function Display(props){
 
 const mapStateToProps = state => {
   return {
-    dataMembers: state.dataMembers
+    DataMembers: state.DataMembers.currentState
   }
 };
 

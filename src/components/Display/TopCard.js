@@ -92,7 +92,7 @@ TopCard.propTypes = {
 
 const mapStateToProps = state => {
     return {
-      newTeamName: state.dataMembers.name
+      newTeamName: state.DataMembers.name
     }
   };
 

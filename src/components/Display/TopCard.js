@@ -29,7 +29,6 @@ function TopCard(props) {
   const [value, setValue] = useState(cardName);
 
   function handleClearTeam() {
-    // handleClearTeam && handleClearTeam(id)
     deleteTeamById(id);
   }
 

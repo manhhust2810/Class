@@ -5,8 +5,7 @@ import * as action from "./../../actions/index";
 function Header(props) {
     const { 
         createNewTeam,
-        searchAnything,
-        originData
+        searchAnything
     } = props;
 
     const [search, setSearch] = useState("");

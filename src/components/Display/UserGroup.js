@@ -3,20 +3,17 @@ import PropTypes from 'prop-types';
 import User from './User.js';
 import Icon from './Icon.js';
 import './UserGroup.css';
-
-function UserGroup({ dataMembers, admin }) {
+function UserGroup({ admin, postCurrent }) {
   return (
-    <div>
-      <User 
-        type={dataMembers.length} 
-        admin={admin}  
+    <span>
+      <User
+        elementNumber={postCurrent.length} 
+        admin={admin}
       />
-      <div
-        className="img3"
-      >
-        {(dataMembers.length <= 6) ?
+      <span className="img3">
+        {(postCurrent.length <= 6) ?
           <>
-            {dataMembers.map(post => (
+            {postCurrent.map((post) => (
               <Icon
                 key={post.id}
                 email={post.email}
@@ -28,7 +25,7 @@ function UserGroup({ dataMembers, admin }) {
           </>
           :
           <>
-            {dataMembers.map((post, index) => {
+            {postCurrent.map((post, index) => {
               if (index > 4) {
                 return null
               }
@@ -42,11 +39,13 @@ function UserGroup({ dataMembers, admin }) {
                 />
               )
             })}
-            <div className="number iconStyle">+{dataMembers.length - 5}</div>
+            <span className="number iconStyle">
+              {`+${postCurrent.length - 5}`}
+            </span>
           </>
         }
-      </div>
-    </div>
+      </span>
+    </span>
   )
 }
 
@@ -55,7 +54,6 @@ UserGroup.propTypes = {
   firstName: PropTypes.string,
   lastName: PropTypes.string,
   status: PropTypes.string.isRequired
-  // handleSearchName: PropTypes.func
 }
 
 export default UserGroup;

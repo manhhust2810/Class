@@ -1,19 +1,14 @@
 import React from "react";
 import Card from "../components/Display/Card.js";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 
 function Display(props){
     const { 
         DataMembers, 
         edittingId,
-        handleClearTeam, 
-        userTiltle, 
-        managerTiltle, 
-        newName,
-        handleEditTeamName,
-        handleChangeName1,
-     } = props;
+        handleEditTeamName
+    } = props;
     // var { match } = props;
     
     // console.log(match)
@@ -28,20 +23,14 @@ function Display(props){
     return (
         <div className = "grid-container">
         {DataMembers.map((post, index) =>
-          
           <Card
             isEditing={edittingId.includes(post.id)}
-            handleClearTeam={handleClearTeam}
-            newName={newName}
             handleEditTeamName={handleEditTeamName}
-            handleChangeName1={handleChangeName1}
             key={post.id}
-            userTiltle={userTiltle}
-            managerTiltle={managerTiltle}
             cardName={post.name}
+            postCurrent={post}
             {...post}
           />
-       
         )}
         </div>)
 }

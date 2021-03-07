@@ -4,7 +4,6 @@ import './App.scss';
 import { connect } from "react-redux";
 // import ChangeThem from './components/change-theme/ChangeThem';
 import sampleMemberData from "./sampleData.json";
-import dataMembers from "./allDataMember.json";
 import Header from "./components/Display/Header";
 import Display from "./views/Display";
 import TodoList from "./views/TodoList";
@@ -30,10 +29,6 @@ class App extends Component {
     super(props);
     this.state = {
       sampleMemberData: sampleMemberData,
-      userTiltle: "USERS",
-      managerTiltle: "MANAGERS",
-      data: dataMembers,
-      originData: dataMembers,
       ordinalNumber: "Auto",
       newTeamName: "",
       newMemberName: "",
@@ -43,7 +38,6 @@ class App extends Component {
       isSaveOnSuccess: false,
       isAddOnMoreData: false,
       numberOfRow: 0,
-      // dataAPI: [],
       newRow: {},
     };
   }
@@ -132,44 +126,8 @@ class App extends Component {
     });
   }
 
-  handleChangeName1 = (id, newName) => {
-    const { originData, edittingId } = this.state;
-    const newData = originData.map(item => {
-      if (item.id === id) {
-        return {
-          ...item,
-          name: newName
-        }
-      }
-      return item
-    })
-
-    const newEdittingId = edittingId.filter(item => item !== id)
-
-    this.setState({
-      edittingId: newEdittingId,
-      data: newData,
-      originData: newData,
-    })
-  }
-
-  handleCreateNew = (newState) => {
-    console.log("newState", newState);
-    this.setState({
-      data15: newState
-    })
-    console.log("data15", this.state.data15)
-  }
-
   render() {
-    const {
-      userTiltle,
-      managerTiltle,
-      edittingId,
-      // dataAPI,
-      value,
-    } = this.state;
-    // console.log("numberOfRow", this.state.numberOfRow);
+    const { edittingId } = this.state;
     return (
       <Router>
           <Menu />
@@ -178,19 +136,10 @@ class App extends Component {
               <Home />
             </Route>
             <Route path="/display" exact>
-              <Header
-                handleAddNewTeam={this.handleAddNewTeam}
-                handleChangeSearchBox={this.handleChangeSearchBox}
-                handleCreateNew={this.handleCreateNew}
-                value={value}
-              />
+              <Header />
               {/* {({ match }) => ( */}
               <Display
-                newName={this.state.defaultTeamName}
                 handleEditTeamName={this.handleEditTeamName}
-                handleChangeName1={this.handleChangeName1}
-                userTiltle={userTiltle}
-                managerTiltle={managerTiltle}
                 edittingId={edittingId}
                 // match={match}
               />
@@ -237,7 +186,6 @@ class App extends Component {
       
       </Router>
       // <div>
-      //   <div>{dataAPI.title}</div>
       //   <span>
       //   {/* <TodoList />  */}
       //   </span>
@@ -308,14 +256,6 @@ class App extends Component {
       //     </div>):
       //     null}  
       //     </span>         
-      //     <Display
-      //         newName = {this.state.defaultTeamName}
-      //         handleEditTeamName = {this.handleEditTeamName}
-      //         handleChangeName1 = {this.handleChangeName1}
-      //         userTiltle = {userTiltle}
-      //         managerTiltle = {managerTiltle}
-      //         edittingId = {edittingId}
-      //     />
       //     </div>         
       //   </div>      
       // </div>

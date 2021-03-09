@@ -31,13 +31,13 @@ const menus = [
         exact: false
     },
     {
-        name: "Table",
-        to: "/table",
+        name: "Transcript",
+        to: "/transcript",
         exact: false
     },
     {
-        name: "Transcript",
-        to: "/transcript",
+        name: "Statistical",
+        to: "/statistical",
         exact: false
     },
     {
@@ -79,9 +79,9 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
                         data-toggle="navlink"
                         >
                         {label}
-                        <span className={(label==="Transcript") ? "caret" : ""}>
+                        <span className={(label==="Statistical") ? "caret" : ""}>
                         </span>
-                        {(label==="Transcript")
+                        {(label==="Statistical")
                         ?
                         (<ul className="sub-menu">
                             <li>
@@ -95,17 +95,15 @@ const MenuLink = ({ label, to, activeOnlyWhenExact }) => {
                                 <a
                                     href="#"
                                     className="text-color-dropdown">
-                                Column Chart
+                                Column <BsFillBarChartFill />
                                 </a>
-                                <BsFillBarChartFill />
                             </li>
                             <li>
                                 <a 
                                     href="#"
                                     className="text-color-dropdown">
-                                Pie Chart
+                                Pie <BsFillPieChartFill />
                                 </a>
-                                <BsFillPieChartFill />
                             </li>
                         </ul>)
                         :

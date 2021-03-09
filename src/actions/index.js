@@ -61,20 +61,13 @@ export const deleteRow = (id) => {
     }
 }
 
-// export const updateTeamName = (id, value) => {
-//     return {
-//         type: types.UPDATE_TEAM_NAME,
-//         id: id,
-//         value: value,
-//     }
-// }
-
-export const updateName = (id, newTeamName,newMemberName) => {
+export const saveRow = (id, factor, process, examination) => {
     return {
-        type: types.UPDATE_NAME,
+        type: types.SAVE_ROW,
         id: id,
-        newTeamName: newTeamName,
-        newMemberName: newMemberName
+        factor: factor,
+        process: process,
+        examination: examination
     }
 }
 

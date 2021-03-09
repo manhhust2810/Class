@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../components/Display/Card.js";
 import { connect } from "react-redux";
 // import { NavLink } from "react-router-dom";
 
 function Display(props){
-    const { 
-        DataMembers, 
-        edittingId,
-        handleEditTeamName
-    } = props;
+    const { DataMembers } = props;
     // var { match } = props;
     
     // console.log(match)
@@ -17,12 +13,24 @@ function Display(props){
       const newKey = { slug: item.name }
       return {...item, ...newKey}
     })
-    console.log("newData", newData);
-    console.log("DataMembers", DataMembers)
+    // console.log("newData", newData);
+    // console.log("DataMembers", DataMembers)
+
+    const [edittingId, setEdittingId] = useState([]);
+    
+    const handleEditTeamName = (id) => {
+      console.log("id", id)
+      const newEdittingId = edittingId.includes(id)
+        ?
+        edittingId.filter(item => item !== id)
+        :
+        [...edittingId, id];
+      setEdittingId(newEdittingId);
+    }
 
     return (
         <div className = "grid-container">
-        {DataMembers.map((post, index) =>
+        {DataMembers.map((post) =>
           <Card
             isEditing={edittingId.includes(post.id)}
             handleEditTeamName={handleEditTeamName}

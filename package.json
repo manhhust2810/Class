@@ -79,6 +79,7 @@
     "reselect": "^4.0.0",
     "simple-react-video-thumbnail": "0.0.7",
     "sortablejs": "^1.6.1",
+    "styled-components": "^5.2.1",
     "sweetalert-react": "^0.4.11",
     "uuid": "^8.3.2",
     "video.js": "^7.6.0",

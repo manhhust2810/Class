@@ -1,7 +1,7 @@
 import Display from "./Display";
 import TodoList from "./TodoList";
 import Color from "./Color";
-import Table from "./Table";
+import TranscriptCalculate from "./TranscriptCalculate";
 // import Menu from "./views/Menu";
 import UserManager from "./UserManager";
 import Home from "./Home";
@@ -29,9 +29,9 @@ const routes = [
         main: () => <UserManager />
     },
     {
-        path: "/table",
+        path: "/transcript",
         exact: false,
-        main: () => <Table />
+        main: () => <TranscriptCalculate />
     },
     {
         path: "/transcript",

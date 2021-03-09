@@ -9,7 +9,7 @@ function Card(props) {
     handleEditTeamName,
     cardName,
     id,
-    postCurrent 
+    postCurrent, 
   } = props;
 
   const admin = [
@@ -23,7 +23,6 @@ function Card(props) {
     }
   ];
 
-//training
   return (
     <span className="grid-item">
       <TopCard

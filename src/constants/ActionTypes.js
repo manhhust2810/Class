@@ -30,7 +30,7 @@ export const ADD_NEW_ROW = "ADD_NEW_ROW";
 
 export const DELETE_ROW = "DELETE_ROW";
 
-export const UPDATE_NAME = "UPDATE_NAME";
+export const SAVE_ROW = "SAVE_ROW";
 
 //colors
 export const GENERATE_COLOR_REQUEST = 'GENERATE_COLOR_REQUEST';

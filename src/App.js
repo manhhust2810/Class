@@ -3,12 +3,11 @@ import './App.scss';
 // import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
 // import ChangeThem from './components/change-theme/ChangeThem';
-import sampleMemberData from "./sampleData.json";
 import Header from "./components/Display/Header";
 import Display from "./views/Display";
 import TodoList from "./views/TodoList";
 import Color from "./views/Color";
-import Table from "./views/Table";
+import TranscriptCalculate from "./views/TranscriptCalculate";
 import Menu from "./views/Menu";
 import UserManager from "./views/UserManager";
 import Home from "./views/Home";
@@ -28,13 +27,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sampleMemberData: sampleMemberData,
       ordinalNumber: "Auto",
       newTeamName: "",
       newMemberName: "",
       status: "",
       position: "user",
-      edittingId: [],
       isSaveOnSuccess: false,
       isAddOnMoreData: false,
       numberOfRow: 0,
@@ -107,18 +104,6 @@ class App extends Component {
     })
   }
 
-  handleEditTeamName = (id) => {
-    const { edittingId } = this.state;
-    const newEdittingId = edittingId.includes(id)
-      ?
-      edittingId.filter(item => item !== id)
-      :
-      [...edittingId, id]
-    this.setState({
-      edittingId: newEdittingId
-    })
-  }
-
   handleSelectOption = (event) => {
     const { value } = event.target;
     this.setState({
@@ -139,8 +124,6 @@ class App extends Component {
               <Header />
               {/* {({ match }) => ( */}
               <Display
-                handleEditTeamName={this.handleEditTeamName}
-                edittingId={edittingId}
                 // match={match}
               />
               {/* )} */}
@@ -151,22 +134,11 @@ class App extends Component {
             <Route path="/usermanager" exact>
               <UserManager />
             </Route>
-            <Route path="/table" exact>
-              <Table
-                status={this.state.status}
-                position={this.state.position}
-                isAddOnMoreData={this.state.isAddOnMoreData}
-                handleSave={this.handleSave}
-                handleAddMoreData={this.handleAddMoreData}
-                ordinalNumber={this.state.ordinalNumber}
-                newMemberName={this.state.newMemberName}
-                newTeamName={this.state.newTeamName}
-                handleChangeTeamName={this.handleChangeTeamName}
-                handleChangeMemberName={this.handleChangeMemberName}     
-              />
+            <Route path="/transcript" exact>
+              <TranscriptCalculate />
             </Route>
           
-            <Route path="/transcript" exact>
+            <Route path="/statistical" exact>
 
             </Route>
             <Route path="/color" exact>
@@ -186,9 +158,6 @@ class App extends Component {
       
       </Router>
       // <div>
-      //   <span>
-      //   {/* <TodoList />  */}
-      //   </span>
       //   <div className={"App " + this.props.visibleTheme}>
       //   <ChangeThem />
       //   {/* <TodoContainer /> */}

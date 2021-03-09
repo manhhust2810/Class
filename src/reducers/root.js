@@ -4,7 +4,7 @@ import visibleTodoListFilter from "./visibleTodoFilter.reducer";
 import visibleTheme from "./visibleTheme.reducer";
 import DataMembers from "./DataMembers";
 import sampleMembers from "./sampleMembers";
-import TableData from "./TableData";
+import TranscriptReducer from "./TranscriptReducer";
 import { TaskReducer } from "./TaskReducer";
 
 const rootReducer = combineReducers({ 
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     visibleTheme, 
     DataMembers, 
     sampleMembers,
-    TableData, 
+    TranscriptReducer, 
     TaskReducer 
 });
 export default rootReducer;

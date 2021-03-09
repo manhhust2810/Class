@@ -18,8 +18,7 @@ function Header(props) {
     }
 
     useEffect(() => { 
-        searchAnything(search);
-        console.log("search", search);       
+        searchAnything(search);   
     }, [searchAnything, search])
 
     return (

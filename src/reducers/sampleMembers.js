@@ -1,7 +1,7 @@
 import * as types from "../constants/ActionTypes";
-import sampleMembers from "../sampleData.json";
+import CourseList from "../courseList.json";
 
-var initialState = sampleMembers ? sampleMembers : [];
+var initialState = CourseList ? CourseList : [];
 
 var myReducer = (state = initialState, action) => {
     switch(action.type){

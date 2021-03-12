@@ -44,15 +44,24 @@ function RaceChart() {
   }, [scale, data])
 
   return (
-    <div>
-      <div ref={svgRef} style={{
-        marginLeft: 10,
-        marginTop: 10,
-        display: 'flex',
-        flexDirection: 'column'
-      }}></div>
-      <button onClick={() => setScale(scale + 1)}>change scale</button>
+    <span>
+      <div className="flex-container">
+        <div 
+          ref={svgRef} 
+          style={{
+          marginLeft: 10,
+          marginTop: 10,
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+          className="flex-item"
+        >
+      </div>
     </div>
+      <button onClick={() => setScale(scale + 1)}>
+        change scale
+      </button>
+    </span>
   );
 }
 

@@ -80,7 +80,7 @@ function LineChart() {
   }, [data]);
 
   return (
-    <div>
+    <div className="flex-container">
       <div
         ref={svgRef}
         style={{
@@ -89,6 +89,7 @@ function LineChart() {
           display: "flex",
           flexDirection: "column",
         }}
+        className="flex-item"
       ></div>
     </div>
   );

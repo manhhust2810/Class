@@ -12,6 +12,7 @@ import Menu from "./views/Menu";
 import UserManager from "./views/UserManager";
 import Home from "./views/Home";
 import NotFound from "./views/NotFound";
+import Statistical from "./views/Statistical";
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
   BrowserRouter as Router,
@@ -135,7 +136,7 @@ class App extends Component {
             </Route>
           
             <Route path="/statistical" exact>
-
+              <Statistical />
             </Route>
             <Route path="/color" exact>
               <Color />

@@ -49,11 +49,11 @@ function DonutChart() {
     g.append('text')
       .attr('y', canvasHeight / 3)
       .attr('x', canvasWidth / 2)
-      .text('ac,a sdjkasf')
+      .text('Grade A')
     g.append('text')
       .attr('y', canvasHeight / 3 + 20)
       .attr('x', canvasWidth / 2)
-      .text('ac,a sdjkasf')
+      .text('Grade B')
   }
 
   useEffect(() => {
@@ -113,7 +113,7 @@ function DonutChart() {
     <div>
       <div ref={svgRef} style={{
         marginLeft: 10,
-        marginTop: 10,
+        marginTop: 60,
       }}></div>
       <div>
         <button id="compute" onClick={() => changeSelect('compute')}>Computer brand</button>

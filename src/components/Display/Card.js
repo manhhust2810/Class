@@ -42,7 +42,7 @@ function Card(props) {
     </span>);
   });
 
-  return (<SortableItem 
+  return (<SortableItem
             index={props.index}
             isEditing={isEditing}
             id={id}
@@ -53,10 +53,35 @@ function Card(props) {
           />);
 }
 
+export default Card;
 Card.propTypes = {
   isEditing: PropTypes.bool,
   id: PropTypes.string,
-  cardName: PropTypes.string
+  name: PropTypes.string,
+  handleEditTeamName: PropTypes.func,
+  admin: PropTypes.arrayOf(
+    PropTypes.shape({
+      mission: PropTypes.oneOf(["USERS", "MANAGERS"]),
+      idTask: PropTypes.oneOf(["memberIds", "managerIds"])
+    }),
+  ),
+  post: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    creator: PropTypes.string,
+    memberIds: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      email: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      status: PropTypes.string
+    })),
+    managerIds: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      email: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      status: PropTypes.string
+    }))
+  }),
 };
-
-export default Card;

@@ -5,7 +5,7 @@ import { arrayMove } from 'react-sortable-hoc';
 // import { NavLink } from "react-router-dom";
 import { SortableContainer } from 'react-sortable-hoc';
 import * as action from '../actions/index';
-import styled from 'styled-components';
+import PropTypes from 'prop-types';
 // import Gallery from "react-photo-gallery";
 // import arrayMove from "array-move";
 
@@ -67,7 +67,6 @@ function Display(props){
         distance={1}
       />
     );
-
 }
 
 const mapStateToProps = state => {
@@ -96,3 +95,50 @@ export default connect(mapStateToProps, mapDispatchToProps)(Display);
   {...post}
 />
 </NavLink> */}
+
+Display.propTypes = {
+  DataMembers: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      creator: PropTypes.string,
+      memberIds: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        email: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        status: PropTypes.string
+      })),
+      managerIds: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.string,
+        email: PropTypes.string,
+        firstName: PropTypes.string,
+        lastName: PropTypes.string,
+        status: PropTypes.string
+      }))
+    }),
+  ),
+  isEditing: PropTypes.bool,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  handleEditTeamName: PropTypes.func,
+  post: PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+    creator: PropTypes.string,
+    memberIds: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      email: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      status: PropTypes.string
+    })),
+    managerIds: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      email: PropTypes.string,
+      firstName: PropTypes.string,
+      lastName: PropTypes.string,
+      status: PropTypes.string
+    }))
+  }),
+};

@@ -81,19 +81,14 @@ function TopCard(props) {
 TopCard.propTypes = {
   isEditing: PropTypes.bool,
   id: PropTypes.string,
-  cardName: PropTypes.string
+  handleEditTeamName: PropTypes.func,
+  name: PropTypes.string
 };
 
 const Input = styled.input`
   border-bottom: 2px solid #337AB7;
   margin-left: 50px;
 `;
-
-// const mapStateToProps = state => {
-//     return {
-//       newTeamName: state.DataMembers.name
-//     }
-// };
 
 const mapDispatchToProps = (dispatch, props) => {
   return {

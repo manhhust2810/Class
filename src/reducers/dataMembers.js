@@ -1,5 +1,5 @@
 import * as types from "../constants/ActionTypes";
-import DataMembers from "../allDataMember.json";
+import DataMembers from "../DetailList.json";
 import { v4 as uuidv4 } from "uuid";
 
 // var data = JSON.parse(localStorage.getItem("task"));

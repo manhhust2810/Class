@@ -5,7 +5,6 @@ function RaceChart() {
   const svgRef = useRef()
   const [scale, setScale] = useState(1)
   const [data, setData] = useState([3, 3, 5, 10, 12, 100])
-
   const canvasHeight = 400
   const canvasWidth = 900
 
@@ -15,7 +14,7 @@ function RaceChart() {
       .append('rect')
       .attr('width', 40)
       .attr('height', (dataPoint) => dataPoint * scale)
-      .attr('fill', 'red')
+      .attr('fill', '#8C1515')
       .attr('x', (dataPoint, iteration) => iteration * 45)
       .attr('y', (dataPoint) => canvasHeight - dataPoint * scale)
 

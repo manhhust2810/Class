@@ -4,7 +4,6 @@ import { select, scaleLinear, max, scaleBand, axisLeft, axisBottom } from "d3";
 
 function BasicChart() {
   const svgRef = useRef();
-
   const [data, setData] = useState([
     {
       stock: "stock1",
@@ -84,7 +83,7 @@ function BasicChart() {
         .append("rect")
         .data(data)
         .join("rect")
-        .attr("fill", "steelblue")
+        .attr("fill", "#1F568B")
         .attr("y", (d) => yScale(d.stock))
         .attr("height", yScale.bandwidth());
 

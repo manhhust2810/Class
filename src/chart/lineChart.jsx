@@ -53,7 +53,7 @@ function LineChart() {
       .attr("fill", "none")
       .transition()
       .duration(500)
-      .attr("stroke", "steelblue")
+      .attr("stroke", "#1F568B")
       .attr("stroke-width", 1.5)
       .attr(
         "d",

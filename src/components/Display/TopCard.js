@@ -6,6 +6,7 @@ import "./TopCard.css";
 import * as action from "./../../actions/index";
 import { BsTrashFill } from "react-icons/bs";
 import { FaCheckCircle, FaPencilAlt } from "react-icons/fa";
+import styled from 'styled-components';
 
 function TopCard(props) {
   const {
@@ -17,33 +18,21 @@ function TopCard(props) {
     changeNameById
   } = props;
 
-  const style = {
-    icon: {
+  const iconStyle = {
       color: "green"
-    },
-    type: {
-      borderBottom: "2px solid #337AB7",
-      marginLeft: "50px"
     }
-  }
-
-  console.log("props", props)
 
   const [value, setValue] = useState(name);
 
   function handleClearTeam() {
     deleteTeamById(id);
-    console.log("Click thêm một lần nè");
   }
-
-  console.log("isEditing", isEditing);
 
   useEffect(() => {
     setValue(name)
   }, [isEditing])
 
   function handleSaveName(event) {
-    console.log("id", id);
     handleEditTeamName(id, event);
     changeNameById(id, value);
   }
@@ -58,14 +47,13 @@ function TopCard(props) {
         {(isEditing)
           ?
           <span>
-            <input
+            <Input
               type="text"
               onChange={handleChangeName}
-              style={style.type}
             />
             <FaCheckCircle 
               className="iconStyle symbolStyle"
-              style={style.icon}
+              style={iconStyle}
               onClick={handleSaveName}
             />
           </span>
@@ -95,6 +83,11 @@ TopCard.propTypes = {
   id: PropTypes.string,
   cardName: PropTypes.string
 };
+
+const Input = styled.input`
+  border-bottom: 2px solid #337AB7;
+  margin-left: 50px;
+`;
 
 // const mapStateToProps = state => {
 //     return {

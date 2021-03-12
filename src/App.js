@@ -24,7 +24,6 @@ import {
 import routes from "./views/routes"
 import "./App.css";
 import { arrayMove } from 'react-sortable-hoc';
-import List from './list';
 
 class App extends Component {
   constructor(props) {
@@ -70,13 +69,6 @@ class App extends Component {
     })
   }
 
-  onSortEnd({oldIndex, newIndex}) {
-    this.setState({
-      items: arrayMove(this.state.items, oldIndex, newIndex),
-    });
-  }
-
-
   handleAddMoreData = () => {
     this.setState({
       ...this.state.isAddOnMoreData,
@@ -114,7 +106,7 @@ class App extends Component {
   }
 
   render() {
-    const { edittingId } = this.state;
+   
     return (
       <Router>
           <Menu />
@@ -155,7 +147,6 @@ class App extends Component {
               
             </Route>
             <Route path="/blockchain" exact>
-            <List items={this.state.items} onSortEnd={this.onSortEnd.bind(this)} />
             </Route>
             <Route component={NotFound} />
           </Switch>

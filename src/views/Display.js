@@ -5,6 +5,7 @@ import { arrayMove } from 'react-sortable-hoc';
 // import { NavLink } from "react-router-dom";
 import { SortableContainer } from 'react-sortable-hoc';
 import * as action from '../actions/index';
+import styled from 'styled-components';
 // import Gallery from "react-photo-gallery";
 // import arrayMove from "array-move";
 
@@ -18,8 +19,6 @@ function Display(props){
     //   const newKey = { slug: item.name }
     //   return {...item, ...newKey}
     // })
-    
-    console.log("DataMembers", DataMembers)
 
     const [edittingId, setEdittingId] = useState([]);
     

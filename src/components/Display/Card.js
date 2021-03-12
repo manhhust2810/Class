@@ -23,12 +23,6 @@ function Card(props) {
     }
   ];
 
-  console.log("isEditing", isEditing);
-
-  function handle(id) {
-    console.log("id", id)
-  }
-
   const SortableItem = SortableElement(({admin, isEditing, post, id, handleEditTeamName, name}) => {
   return (
     <span className="grid-item">

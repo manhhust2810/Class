@@ -12,6 +12,7 @@ import Menu from "./views/Menu";
 import UserManager from "./views/UserManager";
 import Home from "./views/Home";
 import NotFound from "./views/NotFound";
+// import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {
   BrowserRouter as Router,
   Route,
@@ -22,20 +23,14 @@ import {
 } from "react-router-dom";
 import routes from "./views/routes"
 import "./App.css";
+import { arrayMove } from 'react-sortable-hoc';
+import List from './list';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ordinalNumber: "Auto",
-      newTeamName: "",
-      newMemberName: "",
-      status: "",
-      position: "user",
-      isSaveOnSuccess: false,
-      isAddOnMoreData: false,
-      numberOfRow: 0,
-      newRow: {},
+      items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']
     };
   }
 
@@ -74,6 +69,13 @@ class App extends Component {
       status: checkStatus(),
     })
   }
+
+  onSortEnd({oldIndex, newIndex}) {
+    this.setState({
+      items: arrayMove(this.state.items, oldIndex, newIndex),
+    });
+  }
+
 
   handleAddMoreData = () => {
     this.setState({
@@ -123,10 +125,12 @@ class App extends Component {
             <Route path="/display" exact>
               <Header />
               {/* {({ match }) => ( */}
+           
               <Display
                 // match={match}
               />
               {/* )} */}
+            
             </Route>
             <Route path="/todolist" exact>
               <TodoList />
@@ -151,7 +155,7 @@ class App extends Component {
               
             </Route>
             <Route path="/blockchain" exact>
-              
+            <List items={this.state.items} onSortEnd={this.onSortEnd.bind(this)} />
             </Route>
             <Route component={NotFound} />
           </Switch>

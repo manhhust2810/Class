@@ -6,6 +6,10 @@ function UpdateView(props) {
     status,
     factor,
     process,
+    courseTitle,
+    courseId,
+    semester,
+    credits,
     examination,
     point,
     grade
@@ -15,11 +19,11 @@ function UpdateView(props) {
   return (
     <tr>
       <td className="text-center format-input-cell">
-        <b></b>
+        {semester}
       </td>
-      <td className=""></td>
-      <td className="text-center"></td>
-      <td className="text-center"></td>
+      <td className="">{courseId}</td>
+      <td className="" size="2" maxlength="2">{courseTitle}</td>
+      <td className="text-center">{credits}</td>
       <td className="text-center">{process}</td>
       <td className="text-center">{examination}</td>
       <td className="text-center">{factor}</td>
@@ -42,7 +46,7 @@ function UpdateView(props) {
           <button className="btn btn-danger">Delete</button>
         </center>
       </td>
-      <td className="text-center">{point}</td>
+      <td className="text-center" maxlength="3">{point}</td>
       <td className="text-center">{grade}</td>
       <td className="text-center">
         <span className="label label-primary">{status}</span>

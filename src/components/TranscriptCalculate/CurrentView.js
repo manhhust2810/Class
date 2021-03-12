@@ -1,17 +1,83 @@
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as action from './../../actions/index';
 
 function CurrentView(props) {
-  const { 
-    status, 
-    addNewRow, 
-    deleteRow, 
+  const {
+    status,
+    deleteRow,
     generateId,
     examination,
-    factor,
     process,
-    saveRow 
+    saveRowById,
+    semeter,
+    courseId,
+    courseTitle,
+    credits,
+    factor
   } = props;
+
+  const [newSemester, setNewSemester] = useState(semeter);
+  const [newCourseId, setNewCourseId] = useState(courseId);
+  const [newCourseTitle, setNewCourseTitle] = useState(courseTitle);
+  const [newCredits, setNewCredits] = useState(credits);
+  const [newProcess, setNewProcess] = useState(process);
+  const [newExamination, setNewExamination] = useState(examination);
+  const [newFactor, setNewFactor] = useState(factor);
+
+  const handleChangeSemester = e => {
+    const { value } = e.target;
+    setNewSemester(value);
+  };
+
+  const handleChangeCourseId = e => {
+    const { value } = e.target;
+    setNewCourseId(value);
+  };
+
+  const handleChangeCourseTitle = e => {
+    const { value } = e.target;
+    setNewCourseTitle(value);
+  };
+
+  const handleChangeCredits = e => {
+    const { value } = e.target;
+    setNewCredits(value);
+  };
+
+  const handleChangeProcess = e => {
+    const { value } = e.target;
+    setNewProcess(value);
+  };
+
+  const handleChangeExamination = e => {
+    const { value } = e.target;
+    setNewExamination(value);
+  };
+
+  const handleChangeFactor = e => {
+    const { value } = e.target;
+    setNewFactor(value);
+  };
+
+  const newCourse = [
+    generateId,
+    newSemester,
+    newCourseId,
+    newCourseTitle,
+    newCredits,
+    newProcess,
+    newExamination,
+    newFactor
+  ];
+
+  function saveData() {
+    saveRowById(...newCourse);
+  }
+
+  // useEffect(() => {
+  //   saveRow(generateId, newFactor, newProcess, newExamination)
+  // }, [newFactor, newProcess, newExamination])
 
   return (
     <tr>
@@ -21,7 +87,7 @@ function CurrentView(props) {
           className="border-input"
           size="5"
           maxlength="5"
-          // onChange={handleChangeTeamName}
+          onChange={handleChangeSemester}
         />
       </td>
       <td className="format-input-cell">
@@ -30,15 +96,16 @@ function CurrentView(props) {
           className="border-input"
           size="7"
           maxlength="7"
-          // onChange={handleChangeTeamName}
+          onChange={handleChangeCourseId}
         />
       </td>
       <td className="format-input-cell">
         <input
           type="text"
           className="border-input"
-          size="48"
-          // onChange={handleChangeTeamName}
+          size="46"
+          maxlength="46"
+          onChange={handleChangeCourseTitle}
         />
       </td>
       <td className="format-input-cell">
@@ -47,7 +114,7 @@ function CurrentView(props) {
           className="border-input"
           size="2"
           maxlength="2"
-          // onChange={handleChangeTeamName}
+          onChange={handleChangeCredits}
         />
       </td>
       <td className="format-input-cell">
@@ -56,17 +123,16 @@ function CurrentView(props) {
           className="border-input"
           size="3"
           maxlength="3"
-          // onChange={handleChangeTeamName}
+          onChange={handleChangeProcess}
         />
       </td>
-
       <td>
         <input
           type="text"
           className="border-input"
           size="3"
           maxlength="3"
-          // onChange={handleChangeMemberName}
+          onChange={handleChangeExamination}
         />
         {/* <select 
         className="form-control" 
@@ -84,7 +150,7 @@ function CurrentView(props) {
           className="border-input"
           size="3"
           maxlength="3"
-          // onChange={handleChangeMemberName}
+          onChange={handleChangeFactor}
         />
       </td>
       <td>
@@ -95,10 +161,7 @@ function CurrentView(props) {
         >{item.name}
         </button>))} */}
           &nbsp;&nbsp;&nbsp;&nbsp;
-          <button
-            className="btn btn-success"
-            onClick={()=>saveRow(generateId, factor, process, examination)}
-          >
+          <button className="btn btn-success" onClick={saveData}>
             Save
           </button>
           &nbsp;&nbsp;&nbsp;&nbsp;
@@ -141,8 +204,28 @@ const mapDispatchToProps = (dispatch, props) => {
     deleteRow: id => {
       dispatch(action.deleteRow(id));
     },
-    saveRow: (id, factor, process, examination) => {
-      dispatch(action.saveRow(id, factor, process, examination));
+    saveRowById: (
+      id,
+      semester,
+      courseId,
+      courseTitle,
+      credits,
+      process,
+      examination,
+      factor
+    ) => {
+      dispatch(
+        action.saveRow(
+          id,
+          semester,
+          courseId,
+          courseTitle,
+          credits,
+          process,
+          examination,
+          factor
+        )
+      );
     }
   };
 };

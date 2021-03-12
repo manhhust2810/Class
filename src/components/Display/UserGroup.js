@@ -3,44 +3,44 @@ import PropTypes from 'prop-types';
 import User from './User.js';
 import Icon from './Icon.js';
 import './UserGroup.css';
-function UserGroup({ admin, postCurrent }) {
+function UserGroup({ admin, post }) {
   return (
     <span>
       <User
-        elementNumber={postCurrent.length} 
+        elementNumber={post.length} 
         admin={admin}
       />
       <span className="img3">
-        {(postCurrent.length <= 6) ?
+        {(post.length <= 6) ?
           <>
-            {postCurrent.map((post) => (
+            {post.map((item) => (
               <Icon
-                key={post.id}
-                email={post.email}
-                firstName={post.firstName}
-                lastName={post.lastName}
-                status={post.status}
+                key={item.id}
+                email={item.email}
+                firstName={item.firstName}
+                lastName={item.lastName}
+                status={item.status}
               />
             ))}
           </>
           :
           <>
-            {postCurrent.map((post, index) => {
+            {post.map((item, index) => {
               if (index > 4) {
                 return null
               }
               return (
                 <Icon
-                  key={post.id}
-                  email={post.email}
-                  firstName={post.firstName}
-                  lastName={post.lastName}
-                  status={post.status}
+                  key={item.id}
+                  email={item.email}
+                  firstName={item.firstName}
+                  lastName={item.lastName}
+                  status={item.status}
                 />
               )
             })}
             <span className="number iconStyle">
-              {`+${postCurrent.length - 5}`}
+              {`+${post.length - 5}`}
             </span>
           </>
         }

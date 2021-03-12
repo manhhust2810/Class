@@ -18,18 +18,33 @@ const newRow = [{
 
 const initialState = {
     handleState: [],
-    currentState: newRow ? newRow : []
+    currentState: newRow ? newRow : [],
 }
-    
+
+function roundToOne(process, examination, factor, precision) {
+    const average = process*factor+examination*(1-factor);
+    const multiplier = Math.pow(10, precision || 0);
+    return Math.round(average * multiplier) / multiplier;
+}
 
 const TranscriptReducer = (state = initialState, action) => {
-    const { process, factor, examination, grade, generateId } = action;
+    const { 
+        process, 
+        factor, 
+        examination, 
+        grade,
+        semester,
+        courseId,
+        courseTitle,
+        credits,
+        generateId
+     } = action;
     switch(action.type) {
         case types.CURRENT_ROW:
             return {...state};
         case types.ADD_NEW_ROW:
             return {
-                ...state.handleState,
+                ...state,
                 currentState:  [
                     ...state.currentState,
                     {
@@ -50,33 +65,37 @@ const TranscriptReducer = (state = initialState, action) => {
             };
         case types.DELETE_ROW:
             return {
-                ...state.handleState,
+                handleState: state.handleState.filter(item => item.generateId !== action.id),
                 currentState: state.currentState.filter(item => item.generateId !== action.id)
             }
         case types.SAVE_ROW:
-            console.log("generateId",generateId)
-            const newPoint = { point: `${process*factor+examination*(1-factor)}` };
-            const newGrade = { grade: grade };
-            const newProcess = { process: process };
-            const newExamination = { examination: examination };
-            const newFactor = { factor: factor };
-            const status = { status: "Pending" };
+            console.log("generateId", generateId);
+            const newList = {
+                generateId: generateId,
+                semester: semester,
+                courseId: courseId,
+                courseTitle: courseTitle,
+                credits: credits,
+                point: roundToOne(process, examination, factor, 1),
+                grade: grade,
+                process: process,
+                examination: examination,
+                factor: factor,
+                status: "Pending"
+            }
+            // const handleStateAfterSave = state.currentState.map((item)=>{
+            //     if(item.generateId === action.id){
+            //         return {
+            //             ...item,
+            //             ...newList
+            //         }
+            //     }
+            //     return {};
+            // });
+            const currentStateAfterSave = state.currentState.filter(item=>item.generateId !== action.id);
             return {
-                handleState: state.currentState.map((item)=>{
-                    if(item.generateId === action.id){
-                        return {
-                            ...item, 
-                            ...newPoint, 
-                            ...newGrade, 
-                            ...status,
-                            ...newProcess,
-                            ...newExamination,
-                            ...newFactor
-                        }
-                    }
-                    return item;
-                }),
-                ...state.currentState
+                currentState: [...currentStateAfterSave],
+                handleState: [...state.handleState, newList]
             }
         default:
             return {...state}; 

@@ -35,12 +35,6 @@ function Header(props) {
     </div>)
 }
 
-const mapStateToProps = state => {
-    return {
-        originData: state.dataMembers
-    }
-};
-
 const mapDispatchToProps = (dispatch, props) => {
     return {
         createNewTeam: task => {
@@ -53,4 +47,4 @@ const mapDispatchToProps = (dispatch, props) => {
     }
 };
   
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);

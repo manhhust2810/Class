@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 import PropTypes from 'prop-types';
 import TopCard from "./TopCard.js";
 import UserGroup from "./UserGroup.js";
-
+import { SortableElement } from 'react-sortable-hoc';
 function Card(props) {
   const { 
     isEditing,
     handleEditTeamName,
-    cardName,
+    name,
     id,
-    postCurrent, 
+    post
   } = props;
 
   const admin = [
@@ -23,22 +23,40 @@ function Card(props) {
     }
   ];
 
+  console.log("isEditing", isEditing);
+
+  function handle(id) {
+    console.log("id", id)
+  }
+
+  const SortableItem = SortableElement(({admin, isEditing, post, id, handleEditTeamName, name}) => {
   return (
     <span className="grid-item">
       <TopCard
         isEditing={isEditing}
         id={id}
         handleEditTeamName={handleEditTeamName}
-        cardName={cardName}
+        name={name}
       />
       {admin.map((item, index) => (
         <UserGroup
           key={index}
           admin={item.mission}
-          postCurrent={postCurrent.[`${item.idTask}`]}
+          post={post.[`${item.idTask}`]}
         />
       ))}
-    </span>)
+    </span>);
+  });
+
+  return (<SortableItem 
+            index={props.index}
+            isEditing={isEditing}
+            id={id}
+            handleEditTeamName={handleEditTeamName}
+            name={name}
+            post={post}
+            admin={admin}  
+          />);
 }
 
 Card.propTypes = {

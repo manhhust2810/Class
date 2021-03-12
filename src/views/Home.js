@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 class Home extends Component {
-    render()
-    {
+    handle = () => {
+        console.log("log");
+    }
+
+    render() {
         return(
-            <h1 className="text">
+            <h1 
+                className="text"
+                onClick={this.handle}
+                >
                 This is Home Page
             </h1>
         );

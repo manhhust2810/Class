@@ -1,25 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "../components/Display/Card.js";
 import { connect } from "react-redux";
+import { arrayMove } from 'react-sortable-hoc';
 // import { NavLink } from "react-router-dom";
+import { SortableContainer } from 'react-sortable-hoc';
+import * as action from '../actions/index';
+// import Gallery from "react-photo-gallery";
+// import arrayMove from "array-move";
 
 function Display(props){
-    const { DataMembers } = props;
-    // var { match } = props;
-    
+    const { DataMembers, updateList } = props;
+    const [lists, setLists] = useState(DataMembers);
+    // const { match } = props;
     // console.log(match)
     // var url = match.url;
-    const newData = DataMembers.map((item, index) => {
-      const newKey = { slug: item.name }
-      return {...item, ...newKey}
-    })
-    // console.log("newData", newData);
-    // console.log("DataMembers", DataMembers)
+    // const newData = DataMembers.map((item, index) => {
+    //   const newKey = { slug: item.name }
+    //   return {...item, ...newKey}
+    // })
+    
+    console.log("DataMembers", DataMembers)
 
     const [edittingId, setEdittingId] = useState([]);
     
     const handleEditTeamName = (id) => {
-      console.log("id", id)
       const newEdittingId = edittingId.includes(id)
         ?
         edittingId.filter(item => item !== id)
@@ -28,19 +32,43 @@ function Display(props){
       setEdittingId(newEdittingId);
     }
 
+    const onSortEnd = ({ oldIndex, newIndex }) => {
+      setLists(arrayMove(DataMembers, oldIndex, newIndex));
+      updateList(lists);
+    }
+
+    useEffect(() => {
+      updateList(lists)
+    }, [lists]);
+
+    const SortableList = SortableContainer(({ DataMembers }) => {
     return (
         <div className = "grid-container">
-        {DataMembers.map((post) =>
+        {DataMembers.map((post, index) =>
           <Card
+            key={post.id}
             isEditing={edittingId.includes(post.id)}
             handleEditTeamName={handleEditTeamName}
-            key={post.id}
-            cardName={post.name}
-            postCurrent={post}
+            index={index}
+            post={post}
+            id={post.id}
             {...post}
           />
         )}
         </div>)
+    });
+
+    return (
+      <SortableList
+        DataMembers={DataMembers}
+        onSortEnd={onSortEnd}
+        axis="xy"
+        transitionDuration="0"
+        helperClass="SortableHelper"
+        distance={1}
+      />
+    );
+
 }
 
 const mapStateToProps = state => {
@@ -49,7 +77,15 @@ const mapStateToProps = state => {
   }
 };
 
-export default connect(mapStateToProps, null)(Display);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+     updateList: newList => {
+      dispatch(action.updateList(newList));
+     }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Display);
 
 {/* <NavLink to={`${url}/${post.slug}`}>
 <Card
@@ -57,11 +93,7 @@ export default connect(mapStateToProps, null)(Display);
   handleClearTeam={handleClearTeam}
   newName={newName}
   handleEditTeamName={handleEditTeamName}
-  handleChangeName1={handleChangeName1}
   key={post.id}
-  userTiltle={userTiltle}
-  managerTiltle={managerTiltle}
-  cardName={post.name}
   {...post}
 />
 </NavLink> */}

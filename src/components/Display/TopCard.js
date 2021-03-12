@@ -1,19 +1,20 @@
 import NameTeam from "./NameTeam.js";
 import React, { useEffect, useState } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import "./TopCard.css";
 import * as action from "./../../actions/index";
 import { BsTrashFill } from "react-icons/bs";
 import { FaCheckCircle, FaPencilAlt } from "react-icons/fa";
+
 function TopCard(props) {
   const {
     handleEditTeamName,
-    cardName,
+    name,
     id,
     isEditing,
     deleteTeamById,
-    changeNameById,
+    changeNameById
   } = props;
 
   const style = {
@@ -26,24 +27,30 @@ function TopCard(props) {
     }
   }
 
-  const [value, setValue] = useState(cardName);
+  console.log("props", props)
+
+  const [value, setValue] = useState(name);
 
   function handleClearTeam() {
     deleteTeamById(id);
+    console.log("Click thêm một lần nè");
   }
 
+  console.log("isEditing", isEditing);
+
   useEffect(() => {
-    setValue(cardName)
+    setValue(name)
   }, [isEditing])
 
   function handleSaveName(event) {
+    console.log("id", id);
     handleEditTeamName(id, event);
     changeNameById(id, value);
   }
 
-  function handleChangeName(e) {
-    const { value: newName } = e.target;
-    setValue(newName)
+  function handleChangeName(event) {
+    const { value: newName } = event.target;
+    setValue(newName);
   }
 
   return (
@@ -66,7 +73,7 @@ function TopCard(props) {
           <span>
             <NameTeam
               className="nameStyle"
-              cardName={cardName}
+              name={name}
             />
             <span className="iconStyle">
               <FaPencilAlt

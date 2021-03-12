@@ -96,7 +96,6 @@ function TranscriptCalculate(props) {
           {handleState&&handleState.map(item => (
               <UpdateView 
                 key={item.generateId}
-                generateId={item.generateId}
                 {...item}
               />
           ))}       
@@ -105,7 +104,6 @@ function TranscriptCalculate(props) {
           {currentState&&currentState.map(item => (
               <CurrentView 
                 key={item.generateId}
-                generateId={item.generateId}
                 {...item} 
               />
           ))}

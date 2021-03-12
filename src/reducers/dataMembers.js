@@ -10,7 +10,7 @@ const initialState = {
 }
 
 const thisReducer = (state = initialState, action) => {
-    const { type, value, id } = action;
+    const { type, value, id, newList } = action;
     switch(type) {
         case types.LIST_ALL_TEAM_MEMBERS:
             return {...state};
@@ -62,6 +62,11 @@ const thisReducer = (state = initialState, action) => {
                 ...state,
                 currentState:  [...newListAfterSearching]
             };
+        case types.UPDATE_LIST:
+            return {
+                previousState: [...newList],
+                currentState: [...newList]
+            }
         default:
             return {...state};
     }

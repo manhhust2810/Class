@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     todoList,
     visibleTodoListFilter, 
     visibleTheme, 
-    DataMembers, 
+    DataMembers,
     sampleMembers,
     TranscriptReducer, 
     TaskReducer 

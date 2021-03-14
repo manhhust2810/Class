@@ -1,15 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./NameTeam.css";
+import styled from 'styled-components';
 
 function NameTeam({name}){
     return (
-        <span className="nameTeam">
-            {name}
-        </span>
+        <Span>{name}</Span>
     )
 }
 
+const Span = styled.span`
+  font-style: normal;
+  font-weight: bold;
+  color: red;
+  margin-left: 50px;
+`;
 NameTeam.propTypes = {
     name: PropTypes.string
 };

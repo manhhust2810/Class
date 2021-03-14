@@ -2,7 +2,7 @@
   "name": "cool",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://manhhust2810.github.io/my-app/",
+  "homepage": "https://manhhust2810.github.io/",
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
     "@glidejs/glide": "^3.3.0",

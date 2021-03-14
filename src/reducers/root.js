@@ -1,4 +1,7 @@
 import { combineReducers } from "redux";
+import ColorsReducer from './ColorsReducer';
+import GradientsReducer from './GradientsReducer';
+import SettingsReducer from './SettingsReducer';
 import todoList from "./todoList.reducer";
 import visibleTodoListFilter from "./visibleTodoFilter.reducer";
 import visibleTheme from "./visibleTheme.reducer";
@@ -7,7 +10,10 @@ import sampleMembers from "./sampleMembers";
 import TranscriptReducer from "./TranscriptReducer";
 import { TaskReducer } from "./TaskReducer";
 
-const rootReducer = combineReducers({ 
+const rootReducer = combineReducers({
+    colors: ColorsReducer,
+    gradients: GradientsReducer,
+    settings: SettingsReducer,
     todoList,
     visibleTodoListFilter, 
     visibleTheme, 

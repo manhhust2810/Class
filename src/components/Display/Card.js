@@ -36,7 +36,7 @@ function Card(props) {
         <UserGroup
           key={index}
           admin={item.mission}
-          post={post.[`${item.idTask}`]}
+          post={post.[item.idTask]}
         />
       ))}
     </span>);

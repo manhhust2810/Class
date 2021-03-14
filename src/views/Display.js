@@ -38,7 +38,7 @@ function Display(props){
 
     useEffect(() => {
       updateList(lists)
-    }, [lists]);
+    }, [updateList, lists]);
 
     const SortableList = SortableContainer(({ DataMembers }) => {
     return (

@@ -58,7 +58,7 @@ function RaceChart() {
       </div>
     </div>
       <button onClick={() => setScale(scale + 1)}>
-        change scale
+        Change scale
       </button>
     </span>
   );

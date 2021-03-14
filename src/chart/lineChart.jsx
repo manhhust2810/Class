@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   select,
   scaleLinear,
@@ -6,8 +6,8 @@ import {
   axisLeft,
   max,
   axisBottom,
-  line,
-  extent,
+  line
+  // extent,
 } from "d3";
 import { data } from "./data/dataLineChart";
 

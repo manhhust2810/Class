@@ -27,6 +27,40 @@ function roundToOne(process, examination, factor, precision) {
     return Math.round(average * multiplier) / multiplier;
 }
 
+const listOfCourse = [{
+    courseId: "1a",
+    grade: 4,
+    credits: 3
+},
+{
+    courseId: "2s",
+    grade: 2.5,
+    credits: 2
+},
+{
+    courseId: "3f",
+    grade: 1.5,
+    credits: 4
+},
+{
+    courseId: "4j",
+    grade: 2,
+    credits: 2
+},
+{
+    courseId: "5q",
+    grade: 3,
+    credits: 3
+}
+];
+
+
+const GPA = listOfCourse.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.credits*currentValue.grade;
+}, 0);
+
+// console.log("GPA", GPA);
+
 const TranscriptReducer = (state = initialState, action) => {
     const { 
         process, 

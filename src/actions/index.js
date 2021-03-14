@@ -15,43 +15,43 @@ export const listAllTeamMembers = () => {
 export const addTask = task => {
   return {
     type: types.ADD_TASK,
-    task: task
+    task
   };
 };
 
 export const createNewTeam = task => {
   return {
     type: types.CREATE_NEW_TEAM,
-    task: task
+    task
   };
 };
 
 export const deleteTeamById = id => {
   return {
     type: types.DELETE_TEAM_BY_ID,
-    id: id
+    id
   };
 };
 
 export const changeNameById = (id, value) => {
   return {
     type: types.CHANGE_NAME_BY_ID,
-    id: id,
-    value: value
+    id,
+    value
   };
 };
 
 export const searchAnything = value => {
   return {
     type: types.SEARCH_ANYTHING,
-    value: value
+    value
   };
 };
 
 export const updateList = newList => {
   return {
     type: types.UPDATE_LIST,
-    newList: newList
+    newList
   };
 };
 
@@ -64,7 +64,7 @@ export const addNewRow = () => {
 export const deleteRow = id => {
   return {
     type: types.DELETE_ROW,
-    id: id
+    id
   };
 };
 

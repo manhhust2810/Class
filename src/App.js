@@ -17,22 +17,18 @@ import Statistical from "./views/Statistical";
 import {
   BrowserRouter as Router,
   Route,
-  Link,
-  NavLink,
+  // Link,
+  // NavLink,
   Switch,
-  useRouteMatch
+  // useRouteMatch
 } from "react-router-dom";
-import routes from "./views/routes"
+// import routes from "./views/routes";
 import "./App.css";
-import { arrayMove } from 'react-sortable-hoc';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5']
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   async componentDidMount() {
     try {
@@ -70,44 +66,7 @@ class App extends Component {
     })
   }
 
-  handleAddMoreData = () => {
-    this.setState({
-      ...this.state.isAddOnMoreData,
-      isAddOnMoreData: true,
-      numberOfRow: this.state.numberOfRow + 1,
-      newRow: {
-        ordinalNumber: "Auto",
-        newTeamName: "",
-        position: "user",
-        newMemberName: "",
-        status: ""
-      }
-    })
-  }
-
-  handleChangeTeamName = (event) => {
-    const { value } = event.target;
-    this.setState({
-      newTeamName: value
-    })
-  }
-
-  handleChangeMemberName = (event) => {
-    const { value } = event.target;
-    this.setState({
-      newMemberName: value
-    })
-  }
-
-  handleSelectOption = (event) => {
-    const { value } = event.target;
-    this.setState({
-      position: value
-    });
-  }
-
   render() {
-   
     return (
       <Router>
           <Menu />
@@ -160,54 +119,6 @@ class App extends Component {
       //   </div>
       //   <div className="row-mt-15 format-table">
       //     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      //     <table className="table table-bordered table-hover">
-      //     <thead>
-      //       <tr>
-      //         {columnTitles.map((columnTitle) => (<th className="text-center">{columnTitle}</th>))}
-      //       </tr>
-      //     </thead>
-      //     <tbody>
-      //     <SampleRow />
-      //     </tbody>    
-      //     <tfoot>
-      //     {(status==="Pending")
-      //     ?
-      //     (<HandleRow 
-      //     status={status} 
-      //     handleSave={this.handleSave}
-      //     handleAddMoreData={this.handleAddMoreData}
-      //     ordinalNumber={this.state.ordinalNumber}
-      //     newMemberName={this.state.newMemberName}
-      //     newTeamName={this.state.newTeamName}
-      //     position={position}    
-      //     />)
-      //     :
-      //     (<CurrentRow
-      //     isAddOnMoreData={this.state.isAddOnMoreData}
-      //     status={status} 
-      //     handleSave={this.handleSave}
-      //     handleAddMoreData={this.handleAddMoreData}
-      //     ordinalNumber={this.state.ordinalNumber}
-      //     newMemberName={this.state.newMemberName}
-      //     newTeamName={this.state.newTeamName}
-      //     handleChangeTeamName={this.handleChangeTeamName}
-      //     handleChangeMemberName={this.handleChangeMemberName}
-      //     position={position} 
-      //     handleSelectOption={this.handleSelectOption} 
-      //     />)}
-      //     <>{(this.state.isAddOnMoreData)&&
-      //     (<NewRow 
-      //     status={status} 
-      //     handleSave={this.handleSave}
-      //     handleAddMoreData={this.handleAddMoreData}
-      //     ordinalNumber={this.state.ordinalNumber}
-      //     handleChangeTeamName={this.handleChangeTeamName}
-      //     handleChangeMemberName={this.handleChangeMemberName}
-      //     newMemberName={this.state.newMemberName}
-      //     newTeamName={this.state.newTeamName}    
-      //     />)}</>
-      //     </tfoot>         
-      //       </table> 
       //       <span>{(status==="Pending")
       //     ?
       //     (<div className="alert alert-success">
@@ -230,8 +141,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    visibleTheme: state.visibleTheme,
-    newRow: state.sampleMembers
+    visibleTheme: state.visibleTheme
   }
 }
 

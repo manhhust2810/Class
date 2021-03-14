@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import dataMembers from "./dataMembers";
+import DataMembers from "./DataMembers";
 import sampleMembers from "./sampleMembers";
 import ColorsReducer from './ColorsReducer';
 import GradientsReducer from './GradientsReducer';
@@ -9,6 +9,6 @@ export default combineReducers({
     colors: ColorsReducer,
     gradients: GradientsReducer,
     settings: SettingsReducer,
-    dataMembers : dataMembers,
+    DataMembers : DataMembers,
     sampleMembers : sampleMembers
 });

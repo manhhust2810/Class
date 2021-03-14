@@ -1,15 +1,15 @@
 import * as types from "../constants/ActionTypes";
-import DataMembers from "../DetailList.json";
+import DetailList from "../DetailList.json";
 import { v4 as uuidv4 } from "uuid";
 
 // var data = JSON.parse(localStorage.getItem("task"));
 
 const initialState = { 
-    previousState: DataMembers ? DataMembers : [],
-    currentState: DataMembers ? DataMembers : []
+    previousState: DetailList ? DetailList : [],
+    currentState: DetailList ? DetailList : []
 }
 
-const thisReducer = (state = initialState, action) => {
+const DataMembers = (state = initialState, action) => {
     const { type, value, id, newList } = action;
     switch(type) {
         case types.LIST_ALL_TEAM_MEMBERS:
@@ -72,4 +72,4 @@ const thisReducer = (state = initialState, action) => {
     }
 };
 
-export default thisReducer;
+export default DataMembers;

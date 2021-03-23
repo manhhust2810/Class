@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import TopCard from "./TopCard.js";
 import UserGroup from "./UserGroup.js";
-import { SortableElement } from 'react-sortable-hoc';
+import { SortableElement } from "react-sortable-hoc";
+
 function Card(props) {
   const { 
     isEditing,

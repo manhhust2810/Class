@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import './App.scss';
+// import './App.scss';
 // import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
 // import ChangeThem from './components/change-theme/ChangeThem';
@@ -14,6 +14,8 @@ import Home from "./views/Home";
 import NotFound from "./views/NotFound";
 import Statistical from "./views/Statistical";
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import BaiTapQuanLyNguoiDung from './components/BaiTapQuanLyNguoiDung';
+
 import {
   BrowserRouter as Router,
   Route,
@@ -50,21 +52,6 @@ class App extends Component {
   //     });
   //   }
   // }
-
-  handleSave = () => {
-    console.log(this.state)
-    const checkStatus = () => {
-      if (this.state.newMemberName !== "" && this.state.newTeamName !== "") {
-        return "Pending"
-      }
-      return "Error"
-    }
-    this.setState({
-      isSaveOnSuccess: !this.state.isSaveOnSuccess,
-      ordinalNumber: (this.state.status === "Pending") ? "1" : "",
-      status: checkStatus(),
-    })
-  }
 
   render() {
     return (
@@ -107,6 +94,7 @@ class App extends Component {
               
             </Route>
             <Route path="/blockchain" exact>
+            <BaiTapQuanLyNguoiDung />
             </Route>
             <Route component={NotFound} />
           </Switch>
@@ -117,8 +105,6 @@ class App extends Component {
       //   <ChangeThem />
       //   {/* <TodoContainer /> */}
       //   </div>
-      //   <div className="row-mt-15 format-table">
-      //     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       //       <span>{(status==="Pending")
       //     ?
       //     (<div className="alert alert-success">

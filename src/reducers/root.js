@@ -9,6 +9,7 @@ import DataMembers from "./DataMembers";
 import sampleMembers from "./sampleMembers";
 import TranscriptReducer from "./TranscriptReducer";
 import { TaskReducer } from "./TaskReducer";
+import { TaiKhoanReducer } from './TaiKhoanReducer';
 
 const rootReducer = combineReducers({
     colors: ColorsReducer,
@@ -20,6 +21,8 @@ const rootReducer = combineReducers({
     DataMembers,
     sampleMembers,
     TranscriptReducer, 
-    TaskReducer 
+    TaskReducer,
+    TaiKhoanReducer
 });
+
 export default rootReducer;

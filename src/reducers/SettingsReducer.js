@@ -1,4 +1,7 @@
-import { TOGGLE_PREFIX, TOGGLE_FALLBACK } from '../constants/ActionTypes';
+import { 
+  TOGGLE_PREFIX, 
+  TOGGLE_FALLBACK 
+} from '../constants/ActionTypes';
 
 const initialState = {
   prefix: false,

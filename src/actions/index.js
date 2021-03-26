@@ -68,6 +68,13 @@ export const deleteRow = id => {
   };
 };
 
+export const editRow = id => {
+  return {
+    type: types.EDIT_THIS_COURSE,
+    id
+  };
+};
+
 export const saveRow = (
   id,
   semester,
@@ -88,6 +95,47 @@ export const saveRow = (
     process,
     examination,
     factor
+  };
+};
+
+export const cancelThisUpdate = () => {
+  return {
+    type: types.CANCEL_THIS_UPDATE,
+  };
+};
+
+export const addNewCourse = () => {
+  return {
+    type: types.ADD_NEW_COURSE,
+  };
+};
+
+export const handleOrigin = (newErrors, newInfo) => {
+  return {
+    type: types.HANDLE_ORIGIN,
+    errors: newErrors,
+    info: newInfo
+  };
+};
+
+export const deleteThisCourse = (courseId) => {
+  return {
+    type: types.DELETE_THIS_COURSE,
+    courseId
+  };
+};
+
+export const editThisCourse = (item) => {
+  return {
+    type: types.EDIT_THIS_COURSE,
+    item: item
+  };
+};
+
+export const updateThisCourse = (item) => {
+  return {
+    type: types.UPDATE_THIS_COURSE,
+    item: item
   };
 };
 

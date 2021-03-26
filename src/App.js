@@ -14,8 +14,6 @@ import Home from "./views/Home";
 import NotFound from "./views/NotFound";
 import Statistical from "./views/Statistical";
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import BaiTapQuanLyNguoiDung from './components/BaiTapQuanLyNguoiDung';
-
 import {
   BrowserRouter as Router,
   Route,
@@ -26,7 +24,6 @@ import {
 } from "react-router-dom";
 // import routes from "./views/routes";
 import "./App.css";
-
 class App extends Component {
   // constructor(props) {
   //   super(props);
@@ -94,7 +91,7 @@ class App extends Component {
               
             </Route>
             <Route path="/blockchain" exact>
-            <BaiTapQuanLyNguoiDung />
+            <TranscriptCalculate />
             </Route>
             <Route component={NotFound} />
           </Switch>

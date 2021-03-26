@@ -14,7 +14,8 @@ function CurrentView(props) {
     courseId,
     courseTitle,
     credits,
-    factor
+    factor,
+    handleState
   } = props;
 
   const [newSemester, setNewSemester] = useState(semeter);
@@ -88,6 +89,7 @@ function CurrentView(props) {
           size="5"
           maxlength="5"
           onChange={handleChangeSemester}
+          value={123}
         />
       </td>
       <td className="format-input-cell">
@@ -160,11 +162,13 @@ function CurrentView(props) {
         onClick={item.handleEvent}
         >{item.name}
         </button>))} */}
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <button className="btn btn-success" onClick={saveData}>
+          {/* &nbsp;&nbsp;&nbsp;&nbsp; */}
+          <button 
+            className="btn btn-success" 
+            onClick={saveData}>
             Save
           </button>
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;&nbsp;
           <button
             className="btn btn-danger"
             onClick={() => deleteRow(generateId)}
@@ -193,7 +197,10 @@ function CurrentView(props) {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    handleState: state.TranscriptReducer.handleState,
+    currentState: state.TranscriptReducer.currentState
+  };
 };
 
 const mapDispatchToProps = (dispatch, props) => {

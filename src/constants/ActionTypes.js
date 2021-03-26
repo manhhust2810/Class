@@ -26,6 +26,8 @@ export const SEARCH_ANYTHING = "SEARCH_ANYTHING";
 
 export const UPDATE_LIST = "UPDATE_LIST";
 
+//transcript
+
 export const CURRENT_ROW = "CURRENT_ROW";
 
 export const ADD_NEW_ROW = "ADD_NEW_ROW";
@@ -33,6 +35,18 @@ export const ADD_NEW_ROW = "ADD_NEW_ROW";
 export const DELETE_ROW = "DELETE_ROW";
 
 export const SAVE_ROW = "SAVE_ROW";
+
+export const EDIT_THIS_COURSE = "EDIT_THIS_COURSE";
+
+export const CANCEL_THIS_UPDATE = "CANCEL_THIS_UPDATE";
+
+export const ADD_NEW_COURSE = "ADD_NEW_COURSE";
+
+export const DELETE_THIS_COURSE = "DELETE_THIS_COURSE";
+
+export const UPDATE_THIS_COURSE = "UPDATE_THIS_COURSE";
+
+export const HANDLE_ORIGIN = "HANDLE_ORIGIN";
 
 //colors
 export const GENERATE_COLOR_REQUEST = 'GENERATE_COLOR_REQUEST';

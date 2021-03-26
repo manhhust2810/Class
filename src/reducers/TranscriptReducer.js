@@ -19,6 +19,7 @@ const newRow = [{
 const initialState = {
     handleState: [],
     currentState: newRow ? newRow : [],
+    isEditting: false
 }
 
 function roundToOne(process, examination, factor, precision) {
@@ -97,8 +98,14 @@ const TranscriptReducer = (state = initialState, action) => {
                     }
                 ]
             };
+        case types.EDIT_THIS_COURSE:
+            return { 
+                ...state,
+                isEditting: true
+             }
         case types.DELETE_ROW:
             return {
+                ...state,
                 handleState: state.handleState.filter(item => item.generateId !== action.id),
                 currentState: state.currentState.filter(item => item.generateId !== action.id)
             }
@@ -117,17 +124,9 @@ const TranscriptReducer = (state = initialState, action) => {
                 factor: factor,
                 status: "Pending"
             }
-            // const handleStateAfterSave = state.currentState.map((item)=>{
-            //     if(item.generateId === action.id){
-            //         return {
-            //             ...item,
-            //             ...newList
-            //         }
-            //     }
-            //     return {};
-            // });
             const currentStateAfterSave = state.currentState.filter(item=>item.generateId !== action.id);
             return {
+                ...state,
                 currentState: [...currentStateAfterSave],
                 handleState: [...state.handleState, newList]
             }

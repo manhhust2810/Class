@@ -5,19 +5,19 @@ import * as action from '../../actions/index';
 class EntryForm extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      alertCourseId: "",
-      alertCredits: "",
-      alertProcess: "",
-      alertExamination: "",
-      alertCourseTitle: ""
-    }
+    this.state = {
+      alertCourseId: '',
+      alertCredits: '',
+      alertProcess: '',
+      alertExamination: '',
+      alertCourseTitle: ''
+    };
   }
 
   handleChangeInput = event => {
     let { value, name } = event.target;
 
-    let typeInput = event.target.getAttribute("typeinput");
+    let typeInput = event.target.getAttribute('typeinput');
 
     const newInfo = { ...this.props.infoTaiKhoan };
 
@@ -25,165 +25,118 @@ class EntryForm extends Component {
 
     const newErrors = { ...this.props.errorsTaiKhoan };
 
-    newErrors[name] = value.trim() === '' ? `${name} không được bỏ trống!` : '';
+    console.log('value', value);
 
-    // switch (typeInput) {
-    //   case 'credits':
-    //     const regexCredits = /^\d$|^1[0-2]$/;
-    //     if (!regexCredits.test(value)) {
-    //       newErrors[name] = `${name} không đúng định dạng!`;
-    //     } else {
-    //       newErrors[name] = `${name} được chấp nhận!`;
-    //     }
-    //     break;
-    
-    //   case 'process':
-    //     const regexProcess = /^\d\.[1-9]$|^\d$|^10$/;
-    //     if (!regexProcess.test(value)) {
-    //       newErrors[name] = `${name} không đúng định dạng!`;
-    //     } else {
-    //       newErrors[name] = `${name} được chấp nhận!`;
-    //     }
-    //     break;
-    
-    //   case 'examination':
-    //     const regexExamination = /^\d\.[1-9]$|^\d$|^10$/;
-    //     if (!regexExamination.test(value)) {
-    //       newErrors[name] = `${name} không đúng định dạng!`;
-    //     } else {
-    //       newErrors[name] = `${name} được chấp nhận!`;
-    //     }
-    //     break;
-    
-    //   case 'courseid':
-    //     const regexCourseId = /^[A-Z]{2,3}[0-9]{4}$/;
-    //     if (!regexCourseId.test(value)) {
-    //       newErrors[name] = `${name} không đúng định dạng!`;
-    //     } else {
-    //       newErrors[name] = `${name} được chấp nhận!`;
-    //     }
-    //     break;
-    // }
+    // newErrors[name] =
+    //   value.toString().trim() === "" ? `${name} không được bỏ trống!` : '';
 
-    if (typeInput === 'coursetitle') {
-      newErrors[name] = `The ${name} entered is accepted!`;
-      this.setState({
-        alertCourseTitle: "text-success"
-      })
- 
-    }
-    
-    if (typeInput === 'credits') {
-      const regexCredits = /^\d$|^1[0-2]$/;
-      if (!regexCredits.test(value)) {
-        newErrors[name] = `The ${name} entered is incorrect format!`;
-        this.setState({
-          alertCredits: "text-danger"
-        })
-      }
-      else {
-        newErrors[name] = `The ${name} entered is accepted!`;
-        this.setState({
-          alertCredits: "text-success"
-        })
-      }
-    }
-    
-    if (typeInput === 'process') {
-      const regexProcess = /^\d\.[1-9]$|^\d$|^10$/;
-      if (!regexProcess.test(value)) {
-        newErrors[name] = `The ${name} entered is incorrect format!`;
-        this.setState({
-          alertProcess: "text-danger"
-        })
-      }
-      else {
-        newErrors[name] = `The ${name} entered is accepted!`;
-        this.setState({
-          alertProcess: "text-success"
-        })
-      }
-    }
-    
-    if (typeInput === 'examination') {
-      const regexExamination = /^\d\.[1-9]$|^\d$|^10$/;
-      if (!regexExamination.test(value)) {
-        newErrors[name] = `The ${name} entered is incorrect format!`;
-        this.setState({
-          alertExamination: "text-danger"
-        })
-      }
-      else {
-        newErrors[name] = `The ${name} entered is accepted!`;
-        this.setState({
-          alertExamination: "text-success"
-        })
-      }
-    }
-    
-    if (typeInput === 'courseid') {
-      const regexCourseId = /^[A-Z]{2,3}[0-9]{4}$/;
-      if (!regexCourseId.test(value)) {
-        newErrors[name] = `The ${name} entered is incorrect format!`;
-        this.setState({
-          alertCourseId: "text-danger"
-        })
-      }
-      else {
-        newErrors[name] = `The ${name} entered is accepted!`;
-        this.setState({
-          alertCourseId: "text-success"
-        })
-      }
-    }
+    switch (typeInput) {
+      case 'credits':
+        const regexCredits = /^\d$|^1[0-2]$/;
+        if (!regexCredits.test(value)) {
+          if (value.toString().trim() === '') {
+            newErrors[name] = `*This ${name} field is required!`;
+            this.setState({
+              alertCredits: 'text-info'
+            });
+          } else {
+            newErrors[name] = `The ${name} entered is incorrect format!`;
+            this.setState({
+              alertCredits: 'text-danger'
+            });
+          }
+        } else {
+          newErrors[name] = `The ${name} entered is accepted!`;
+          this.setState({
+            alertCredits: 'text-success'
+          });
+        }
+        break;
 
-    if (typeInput === 'credits') {
-      const regexCredits = /^\d$|^1[0-2]$/;
-      if (!regexCredits.test(value)) {
+      case 'process':
+        const regexProcess = /^\d\.[1-9]$|^\d$|^10$/;
+        if (!regexProcess.test(value)) {
+          if (value.toString().trim() === '') {
+            newErrors[name] = `*This ${name} field is required!`;
+            this.setState({
+              alertProcess: 'text-info'
+            });
+          } else {
+            newErrors[name] = `The ${name} entered is incorrect format!`;
+            this.setState({
+              alertProcess: 'text-danger'
+            });
+          }
+        } else {
+          newErrors[name] = `The ${name} entered is accepted!`;
+          this.setState({
+            alertProcess: 'text-success'
+          });
+        }
+        break;
+
+      case 'examination':
+        const regexExamination = /^\d\.[1-9]$|^\d$|^10$/;
+        if (!regexExamination.test(value)) {
+          if (value.toString().trim() === '') {
+            newErrors[name] = `*This ${name} field is required!`;
+            this.setState({
+              alertExamination: 'text-info'
+            });
+          } else {
+            newErrors[name] = `The ${name} entered is incorrect format!`;
+            this.setState({
+              alertExamination: 'text-danger'
+            });
+          }
+        } else {
+          newErrors[name] = `The ${name} entered is accepted!`;
+          this.setState({
+            alertExamination: 'text-success'
+          });
+        }
+        break;
+
+      case 'courseid':
+        const regexCourseId = /^[A-Z]{2,3}[0-9]{4}$/;
+        if (!regexCourseId.test(value)) {
+          if (value.toString().trim() === '') {
+            newErrors[name] = `*This ${name} field is required!`;
+            this.setState({
+              alertCourseId: 'text-info'
+            });
+          } else {
+            newErrors[name] = `The ${name} entered is incorrect format!`;
+            this.setState({
+              alertCourseId: 'text-danger'
+            });
+          }
+        } else {
+          newErrors[name] = `The ${name} entered is accepted!`;
+          this.setState({
+            alertCourseId: 'text-success'
+          });
+        }
+        break;
+
+      case 'coursetitle':
+        if (value.toString().trim() === '') {
+          newErrors[name] = `*This ${name} field is required!`;
+          this.setState({
+            alertCourseTitle: 'text-info'
+          });
+        } else {
+          newErrors[name] = `The ${name} entered is accepted!`;
+          this.setState({
+            alertCourseTitle: 'text-success'
+          });
+        }
+        break;
+
+      default:
         newErrors[name] = `The ${name} entered is incorrect format!`;
-        this.setState({
-          alertColor: "text-danger"
-        })
-      }
-      else {
-        newErrors[name] = `The ${name} entered is accepted!`;
-        this.setState({
-          alertColor: "text-success"
-        })
-      } 
+        break;
     }
-
-    if (typeInput === 'process') {
-      const regexProcess = /^\d\.[1-9]$|^\d$|^10$/;
-      if (!regexProcess.test(value)) {
-        newErrors[name] = `The ${name} entered is incorrect format!`;
-        this.setState({
-          alertColor: "text-danger"
-        })
-      }
-      else {
-        newErrors[name] = `The ${name} entered is accepted!`;
-        this.setState({
-          alertColor: "text-success"
-        })
-      } 
-    }
-
-    // if (typeInput === 'examination') {
-    //   const regexExamination = /^\d\.[1-9]$|^\d$|^10$/;
-    //   if (!regexExamination.test(value)) {
-    //     newErrors[name] = `${name} không đúng định dạng!`;
-    //   }
-     
-    // }
-
-    // if (typeInput === 'courseid') {
-    //   const regexCourseId = /^[A-Z]{2,3}[0-9]{4}$/;
-    //   if (!regexCourseId.test(value)) {
-    //     newErrors[name] = `${name} không đúng định dạng!`;
-    //   }
-    
-    // }
 
     this.props.handleOrigin(newErrors, newInfo);
   };
@@ -192,8 +145,8 @@ class EntryForm extends Component {
     event.preventDefault(); // Chặn sự kiện submit
 
     let valid = true;
-    console.log("kt1", this.props.infoTaiKhoan)
-    console.log("kt2", this.props.errorsTaiKhoan)
+    // console.log('kt1', this.props.infoTaiKhoan);
+    // console.log('kt2', this.props.errorsTaiKhoan);
 
     for (const key in this.props.infoTaiKhoan) {
       if (this.props.infoTaiKhoan[key].toString().trim() === '') {
@@ -201,33 +154,30 @@ class EntryForm extends Component {
       }
     }
 
-    console.log("valid", valid)
+    console.log('valid', valid);
 
     for (const key in this.props.errorsTaiKhoan) {
-      if (this.props.errorsTaiKhoan[key].toString().includes("incorrect")) {
+      if (this.props.errorsTaiKhoan[key].toString().includes('incorrect')) {
         valid = false;
       }
     }
 
-    console.log("valid", valid)
+    console.log('valid', valid);
 
     if (!valid) {
       alert('Dữ liệu không hợp lệ!');
       return false;
-    }
-    else 
-      return true;
+    } else return true;
   };
 
   handleSave = (event, courseId) => {
-    const flag = this.handleSubmit(event);
-    if(flag) {
+    let flag = this.handleSubmit(event);
+    if (flag) {
       this.props.addNewCourse();
       this.props.saveCourseOnSuccess(courseId);
       this.props.updateCourseOnFailure();
       this.props.deleteCourseOnFailure();
     }
-    
   };
 
   handleUpdate = courseId => {
@@ -242,7 +192,7 @@ class EntryForm extends Component {
     }
 
     for (const key in this.props.errorsTaiKhoan) {
-      if (this.props.errorsTaiKhoan[key].toString().includes("incorrect")) {
+      if (this.props.errorsTaiKhoan[key].toString().includes('incorrect')) {
         valid = false;
       }
     }
@@ -250,16 +200,19 @@ class EntryForm extends Component {
     if (!valid) {
       alert('Dữ liệu không hợp lệ!');
       return;
+    } else {
+      for (const key in this.props.errorsTaiKhoan) {
+        this.props.errorsTaiKhoan[key] = '';
+      }
+      console.log('log ra', this.props.errorsTaiKhoan);
+      this.props.updateThisCourse();
+      this.props.updateCourseOnSuccess(courseId);
+      this.props.deleteCourseOnFailure();
+      this.props.saveCourseOnFailure();
     }
-
-    this.props.updateThisCourse();
-    this.props.updateCourseOnSuccess(courseId);
-    this.props.deleteCourseOnFailure();
-    this.props.saveCourseOnFailure();
   };
 
   render() {
-    console.log('delete', this.props.updateAction);
     const {
       courseId,
       courseTitle,
@@ -279,7 +232,7 @@ class EntryForm extends Component {
             <form onSubmit={event => this.handleSave(event, courseId)}>
               <div className="row">
                 <div className="col-6">
-                  <p className="p-0 m-0 pb-1">courseId</p>
+                  <p className="p-0 m-0 pb-1">Course Id</p>
                   <input
                     type="text"
                     typeinput="courseid"
@@ -294,7 +247,7 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pb-1">courseTitle</p>
+                  <p className="p-0 m-0 pb-1">Course Title</p>
                   <input
                     type="text"
                     typeinput="coursetitle"
@@ -308,7 +261,7 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">credits</p>
+                  <p className="p-0 m-0 pt-3 pb-1">Credits</p>
                   <input
                     type="text"
                     className="form-control"
@@ -322,7 +275,7 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">factor</p>
+                  <p className="p-0 m-0 pt-3 pb-1">Factor</p>
                   <select
                     className="form-control"
                     name="factor"
@@ -337,7 +290,7 @@ class EntryForm extends Component {
                   </select>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">process</p>
+                  <p className="p-0 m-0 pt-3 pb-1">Process</p>
                   <input
                     type="text"
                     className="form-control"
@@ -351,7 +304,7 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">examination</p>
+                  <p className="p-0 m-0 pt-3 pb-1">Examination</p>
                   <input
                     type="text"
                     className="form-control"

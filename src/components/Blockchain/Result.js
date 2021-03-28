@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../actions/index';
-import classNames from "classnames";
 
 class Result extends Component {
   constructor(props) {
@@ -53,44 +52,39 @@ class Result extends Component {
   contentAlert = () => {
     switch (true) {
       case this.props.saveAction:
-        return "Save";
+        return 'Save';
       case this.props.deleteAction:
-        return "Delete";
+        return 'Delete';
       case this.props.updateAction:
-        return "Update";
+        return 'Update';
       default:
-        return
+        return;
     }
   };
 
-  hiddenAlert = () => {
-    setTimeout(() => { return "hidden"}, 5000)
-  }
-
   displayAlert = () => {
     return (
-      <span className={`alert alert-success foo ${()=>this.hiddenAlert()}`}>
+      <span className="alert alert-success foo">
         <strong>
           {this.contentAlert()} {this.props.courseChange} On Success!
         </strong>
-      </span>)
-  }
+      </span>
+    );
+  };
 
   render() {
-    const { saveAction, deleteAction, updateAction } = this.props;
-
     const columnTitles = [
-      "STT", 
-      "Semester", 
-      "Course Title", 
-      "Course Id",
-      "Credits",
-      "Process",
-      "Examination",
-      "Factor",
-      "Action",
-      "Point",
-      "Grade"
+      'STT',
+      'Semester',
+      'Course Title',
+      'Course Id',
+      'Credits',
+      'Process',
+      'Examination',
+      'Factor',
+      'Action',
+      'Point',
+      'Grade'
     ];
 
     return (
@@ -109,7 +103,7 @@ class Result extends Component {
         <div className="card-body p-0 m-0">
           <table className="table table-bordered table-hover">
             <thead>
-              <tr style={{backgroundColor: "#8C1515", color: "#FFFFFF"}}>
+              <tr style={{ backgroundColor: '#8C1515', color: '#FFFFFF' }}>
                 {columnTitles.map((columnTitle, index) => (
                   <th className="text-center" key={index}>
                     {columnTitle}
@@ -119,13 +113,7 @@ class Result extends Component {
             </thead>
             <tbody>{this.displayResult()}</tbody>
           </table>
-          <span>
-            {(saveAction || deleteAction || updateAction)
-            ?
-            this.displayAlert()
-            : 
-            ""}
-          </span>
+          <span>{this.props.takeAction ? this.displayAlert() : ''}</span>
         </div>
       </div>
     );

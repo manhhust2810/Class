@@ -34,7 +34,7 @@ function TodoList(props) {
 
     return (
         <span>
-            <button
+            {/* <button
                 className="my-button"
                 onClick={processOpenList}>
                 DISPLAY TO DO
@@ -43,9 +43,13 @@ function TodoList(props) {
                 className="my-button"
                 onClick={processCloseList}>
                 CLOSE LIST
-            </button>
-            <span className={classNames({ hidden: appear})}>
-            <span className={classNames({ hidden: hidden })}>
+            </button> */}
+            <span 
+            // className={classNames({ hidden: appear})}
+            >
+            <span 
+            // className={classNames({ hidden: hidden })}
+            >
                 <div className={style.containerTodo}>
                     {message.active === true ? <Message /> : ''}
                     <Total />

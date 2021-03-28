@@ -11,7 +11,9 @@ export default function Message() {
     return (
         <div className={style.containerMessage} style={bg}>
             {message.type === 'danger' ? <i className="fa fa-exclamation-circle"></i> : <i className="fa fa-check-circle"></i>} {message.content}
-            <div className={style.closeMessage} onClick={() => {
+            <div 
+            className={style.closeMessage} 
+            onClick={() => {
                 dispatch({
                     type: 'CLOSE_MESSAGE'
                 });

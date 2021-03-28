@@ -1,22 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../actions/index';
+import classNames from "classnames";
 
 class Result extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      saveAction: false,
-      updateAction: false,
-      deleteAction: false
-    };
   }
 
-    deleteCourse = courseId => {
+  deleteList = courseId => {
     this.props.deleteThisCourse(courseId);
-    this.setState({
-      deleteAction: true
-    })
+    this.props.deleteCourseOnSuccess(courseId);
+    this.props.updateCourseOnFailure();
+    this.props.saveCourseOnFailure();
   };
 
   displayResult = () => {
@@ -40,46 +36,83 @@ class Result extends Component {
             </button>
             <button
               className="btn btn-danger"
-              onClick={() => this.deleteCourse(item.courseId)}
+              onClick={() => this.deleteList(item.courseId)}
             >
               Delete
             </button>
           </td>
           <td className="text-center">
-              {item.process * (1-item.factor) + item.examination * item.factor}
-        </td>
-        <td className="text-center">{item.grade}</td>
+            {item.process * (1 - item.factor) + item.examination * item.factor}
+          </td>
+          <td className="text-center">{item.grade}</td>
         </tr>
       );
     });
   };
 
-  render() {
-    const columnTitles = Object.keys(this.props.courseList[0]);
-    columnTitles.shift();
-    
+  contentAlert = () => {
+    switch (true) {
+      case this.props.saveAction:
+        return "Save";
+      case this.props.deleteAction:
+        return "Delete";
+      case this.props.updateAction:
+        return "Update";
+      default:
+        return
+    }
+  };
+
+  hiddenAlert = () => {
+    setTimeout(() => { return "hidden"}, 5000)
+  }
+
+  displayAlert = () => {
     return (
-      <div 
-      className="card mt-3"
-      // className="row-mt-15 format-table text"
+      <span className={`alert alert-success foo ${()=>this.hiddenAlert()}`}>
+        <strong>
+          {this.contentAlert()} {this.props.courseChange} On Success!
+        </strong>
+      </span>)
+  }
+
+  render() {
+    const { saveAction, deleteAction, updateAction } = this.props;
+
+    const columnTitles = [
+      "STT", 
+      "Semester", 
+      "Course Title", 
+      "Course Id",
+      "Credits",
+      "Process",
+      "Examination",
+      "Factor",
+      "Action",
+      "Point",
+      "Grade"
+    ];
+
+    return (
+      <div
+        className="card mt-3"
+        // className="row-mt-15 format-table text"
       >
-        <div 
-        className="card-header bg-light"
-        // className="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+        <div
+          className="card-header bg-light"
+          // className="col-xs-12 col-sm-12 col-md-12 col-lg-12"
         >
           <b>
             <h5 className="m-0 p-0">Result</h5>
           </b>
         </div>
-        <div 
-        className="card-body p-0 m-0"
-        >
+        <div className="card-body p-0 m-0">
           <table className="table table-bordered table-hover">
             <thead>
-              <tr>
+              <tr style={{backgroundColor: "#8C1515", color: "#FFFFFF"}}>
                 {columnTitles.map((columnTitle, index) => (
                   <th className="text-center" key={index}>
-                    {columnTitle.charAt(0).toUpperCase() + columnTitle.slice(1)}
+                    {columnTitle}
                   </th>
                 ))}
               </tr>
@@ -87,16 +120,12 @@ class Result extends Component {
             <tbody>{this.displayResult()}</tbody>
           </table>
           <span>
-          {this.state.deleteAction === true
-          ? 
-          (
-            <div className="alert alert-success">
-              <strong>Delete This Course On Success Action!</strong>
-            </div>
-          ) 
-          :
-          ""}
-        </span>
+            {(saveAction || deleteAction || updateAction)
+            ?
+            this.displayAlert()
+            : 
+            ""}
+          </span>
         </div>
       </div>
     );
@@ -110,10 +139,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch, props) => {
   return {
-    deleteThisCourse: (courseId) => {
+    deleteThisCourse: courseId => {
       dispatch(action.deleteThisCourse(courseId));
     },
-    editThisCourse: (item) => {
+    editThisCourse: item => {
       dispatch(action.editThisCourse(item));
     }
   };

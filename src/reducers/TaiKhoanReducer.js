@@ -54,84 +54,104 @@ const initialState = {
 
 export const TranscriptReducer = (state = initialState, action) => {
   switch (action.type) {
-    case types.HANDLE_ORIGIN: {
-      state.errors = action.errors;
-      state.info = action.info;
-      return { ...state };
-    }
-    case types.ADD_NEW_COURSE: {
-      const taiKhoanCreate = { ...state.info };
-      const taiKhoanUpdate = [...state.courseList, taiKhoanCreate];
-      return { ...state, courseList: taiKhoanUpdate };
-    }
-    case types.EDIT_THIS_COURSE: {
-      state.info = action.item;
-      state.errors = {
-        courseId: '',
-        courseTitle: '',
-        credits: '',
-        process: '',
-        examination: ''
+    case types.HANDLE_ORIGIN: 
+      return { 
+        ...state,
+        errors: action.errors,
+        info: action.info
       };
-      state.isReg = false;
-      return { ...state };
-    }
-    case types.UPDATE_THIS_COURSE: {
-      const taiKhoanUpdate = [...state.courseList];
-      let findTaiKhoan = taiKhoanUpdate.find(
-        acc => acc.courseId === state.info.courseId
+    
+    case types.ADD_NEW_COURSE: 
+      return { 
+        ...state,
+        info: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: '',
+          factor: 0.7
+        },
+        errors: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: ''
+        },
+        courseList: [...state.courseList, { ...state.info }] 
+      };
+    
+    case types.EDIT_THIS_COURSE: 
+      return { 
+        ...state,
+        info: action.item,
+        errors: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: ''
+        },
+        isReg: false
+      };
+    
+    case types.UPDATE_THIS_COURSE: 
+      const cloneCourseList1st = [...state.courseList];
+      let findCourse = cloneCourseList1st.find(
+        post => post.courseId === state.info.courseId
       );
-
-      if (findTaiKhoan) {
-        findTaiKhoan.courseTitle = state.info.courseTitle;
-        findTaiKhoan.credits = state.info.credits;
-        findTaiKhoan.factor = state.info.factor;
-        findTaiKhoan.process = state.info.process;
-        findTaiKhoan.examination = state.info.examination;
+      if (findCourse) {
+        findCourse.courseTitle = state.info.courseTitle;
+        findCourse.credits = state.info.credits;
+        findCourse.factor = state.info.factor;
+        findCourse.process = state.info.process;
+        findCourse.examination = state.info.examination;
       }
-
-      state.courseList = taiKhoanUpdate;
-      state.info = {
-        courseId: '',
-        courseTitle: '',
-        credits: '',
-        factor: 0.7,
-        process: '',
-        examination: ''
+      return { 
+        ...state,
+        isReg: true,
+        courseList: cloneCourseList1st,
+        info: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          factor: 0.7,
+          process: '',
+          examination: ''
+        }
       };
-      state.isReg = true;
-
-      return { ...state };
-    }
-    case types.CANCEL_THIS_UPDATE: {
-      state.info = {
-        courseId: '',
-        courseTitle: '',
-        credits: '',
-        process: '',
-        examination: '',
-        factor: 0.7
+    
+    case types.CANCEL_THIS_UPDATE:
+      return { 
+        ...state,
+        info: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: '',
+          factor: 0.7
+        },
+        errors: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: ''
+        },
+        isReg: true
       };
-      state.errors = {
-        courseId: '',
-        courseTitle: '',
-        credits: '',
-        process: '',
-        examination: ''
+    
+    case types.DELETE_THIS_COURSE: 
+      const cloneCourseList2nd = [...state.courseList];
+      return {
+        ...state,
+        courseList: cloneCourseList2nd.filter(
+          acc => acc.courseId !== action.courseId
+        )
       };
-      state.isReg = true;
+    default:
       return { ...state };
-    }
-    case types.DELETE_THIS_COURSE: {
-      const taiKhoanUpdate = [...state.courseList];
-      let listTaiKhoanDaXoa = taiKhoanUpdate.filter(
-        acc => acc.courseId !== action.courseId
-      );
-      state.courseList = listTaiKhoanDaXoa;
-      return { ...state };
-    }
-    default: {
-      return { ...state };
-    }
   }
 };

@@ -14,41 +14,6 @@ class Result extends Component {
     this.props.saveCourseOnFailure();
   };
 
-  displayResult = () => {
-    return this.props.courseList.map((item, index) => {
-      return (
-        <tr key={index}>
-          <td className="text-center">{index + 1}</td>
-          <td className="text-center">{item.semester}</td>
-          <td>{item.courseTitle}</td>
-          <td className="text-center">{item.courseId}</td>
-          <td className="text-center">{item.credits}</td>
-          <td className="text-center">{item.process}</td>
-          <td className="text-center">{item.examination}</td>
-          <td className="text-center">{item.factor}</td>
-          <td className="text-center">
-            <button
-              className="btn btn-primary mr-2"
-              onClick={() => this.props.editThisCourse(item)}
-            >
-              Edit
-            </button>
-            <button
-              className="btn btn-danger"
-              onClick={() => this.deleteList(item.courseId)}
-            >
-              Delete
-            </button>
-          </td>
-          <td className="text-center">
-            {item.process * (1 - item.factor) + item.examination * item.factor}
-          </td>
-          <td className="text-center">{item.grade}</td>
-        </tr>
-      );
-    });
-  };
-
   contentAlert = () => {
     switch (true) {
       case this.props.saveAction:
@@ -111,7 +76,50 @@ class Result extends Component {
                 ))}
               </tr>
             </thead>
-            <tbody>{this.displayResult()}</tbody>
+            <tbody>
+              {this.props.courseList.length !== 0 ? (
+                this.props.courseList.map((item, index) => (
+                  <tr key={index}>
+                    <td className="text-center">{index + 1}</td>
+                    <td className="text-center">{item.semester}</td>
+                    <td>{item.courseTitle}</td>
+                    <td className="text-center">{item.courseId}</td>
+                    <td className="text-center">{item.credits}</td>
+                    <td className="text-center">{item.process}</td>
+                    <td className="text-center">{item.examination}</td>
+                    <td className="text-center">{item.factor}</td>
+                    <td className="text-center">
+                      <button
+                        className="btn btn-primary mr-2"
+                        onClick={() => this.props.editThisCourse(item)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => this.deleteList(item.courseId)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                    <td className="text-center">
+                      {item.process * (1 - item.factor) +
+                        item.examination * item.factor}
+                    </td>
+                    <td className="text-center">{item.grade}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td 
+                  colspan="11" 
+                  className="text-center"
+                  style={{color: "#8C1515"}}>
+                    <strong>Data not found</strong>
+                  </td>
+                </tr>
+              )}
+            </tbody>
           </table>
           <span>{this.props.takeAction ? this.displayAlert() : ''}</span>
         </div>

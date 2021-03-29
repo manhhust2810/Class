@@ -25,11 +25,6 @@ class EntryForm extends Component {
 
     const newErrors = { ...this.props.errorsTaiKhoan };
 
-    console.log('value', value);
-
-    // newErrors[name] =
-    //   value.toString().trim() === "" ? `${name} không được bỏ trống!` : '';
-
     switch (typeInput) {
       case 'credits':
         const regexCredits = /^\d$|^1[0-2]$/;
@@ -162,7 +157,7 @@ class EntryForm extends Component {
       }
     }
 
-    console.log('valid', valid);
+    // console.log('valid', valid);
 
     if (!valid) {
       alert('Dữ liệu không hợp lệ!');
@@ -183,7 +178,7 @@ class EntryForm extends Component {
   handleUpdate = courseId => {
     let valid = true;
 
-    console.log('infoTaiKhoan', this.props.infoTaiKhoan);
+    // console.log('infoTaiKhoan', this.props.infoTaiKhoan);
 
     for (const key in this.props.infoTaiKhoan) {
       if (this.props.infoTaiKhoan[key].toString().trim() === '') {
@@ -202,9 +197,9 @@ class EntryForm extends Component {
       return;
     } else {
       for (const key in this.props.errorsTaiKhoan) {
-        this.props.errorsTaiKhoan[key] = '';
+        this.props.errorsTaiKhoan[key] = "";
       }
-      console.log('log ra', this.props.errorsTaiKhoan);
+      // console.log('log ra', this.props.errorsTaiKhoan);
       this.props.updateThisCourse();
       this.props.updateCourseOnSuccess(courseId);
       this.props.deleteCourseOnFailure();
@@ -238,6 +233,8 @@ class EntryForm extends Component {
                     typeinput="courseid"
                     className="form-control"
                     name="courseId"
+                    size="7"
+                    maxlength="7"
                     value={courseId}
                     onChange={this.handleChangeInput}
                     disabled={!this.props.isReg}
@@ -251,6 +248,8 @@ class EntryForm extends Component {
                   <input
                     type="text"
                     typeinput="coursetitle"
+                    size="50"
+                    maxlength="50"
                     className="form-control"
                     name="courseTitle"
                     value={courseTitle}
@@ -264,6 +263,8 @@ class EntryForm extends Component {
                   <p className="p-0 m-0 pt-3 pb-1">Credits</p>
                   <input
                     type="text"
+                    size="2"
+                    maxlength="2"
                     className="form-control"
                     name="credits"
                     typeinput="credits"
@@ -295,6 +296,8 @@ class EntryForm extends Component {
                     type="text"
                     className="form-control"
                     name="process"
+                    size="3"
+                    maxlength="3"
                     typeinput="process"
                     value={process}
                     onChange={this.handleChangeInput}
@@ -309,6 +312,8 @@ class EntryForm extends Component {
                     type="text"
                     className="form-control"
                     name="examination"
+                    size="3"
+                    maxlength="3"
                     typeinput="examination"
                     value={examination}
                     onChange={this.handleChangeInput}
@@ -330,7 +335,6 @@ class EntryForm extends Component {
                     Save
                   </button>
                   <button
-                    type="button"
                     className={
                       !this.props.isReg
                         ? 'btn mr-2 btn-primary'

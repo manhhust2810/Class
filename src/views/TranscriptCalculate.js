@@ -8,7 +8,7 @@ class TranscriptCalculate extends Component {
       saveAction: false,
       updateAction: false,
       deleteAction: false,
-      courseChange: '',
+      courseChange: "",
       takeAction: false
     };
   }
@@ -23,7 +23,7 @@ class TranscriptCalculate extends Component {
       this.setState({
         takeAction: false
       });
-    }, 3000);
+    }, 6000);
   };
 
   saveCourseOnFailure = () => {
@@ -42,7 +42,7 @@ class TranscriptCalculate extends Component {
       this.setState({
         takeAction: false
       });
-    }, 3000);
+    }, 6000);
   };
 
   updateCourseOnFailure = () => {
@@ -61,7 +61,7 @@ class TranscriptCalculate extends Component {
       this.setState({
         takeAction: false
       });
-    }, 3000);
+    }, 6000);
   };
 
   deleteCourseOnFailure = () => {

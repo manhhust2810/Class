@@ -1,139 +1,189 @@
 import * as types from "../constants/ActionTypes";
 import { v4 as uuidv4 } from "uuid";
 
-const newRow = [{
-    generateId: uuidv4(),
-    semester: "",
-    courseId: "",
-    courseTitle: "",
-    credits: "",
-    process: "",
-    examination: "",
-    factor: "",
-    action: "",
-    point: "",
-    grade: "",
-    status: "",
-}];
-
 const initialState = {
-    handleState: [],
-    currentState: newRow ? newRow : [],
-    isEditting: false
-}
-
-function roundToOne(process, examination, factor, precision) {
-    const average = process*factor+examination*(1-factor);
-    const multiplier = Math.pow(10, precision || 0);
-    return Math.round(average * multiplier) / multiplier;
-}
-
-const listOfCourse = [{
-    courseId: "1a",
-    grade: 4,
-    credits: 3
-},
-{
-    courseId: "2s",
-    grade: 2.5,
-    credits: 2
-},
-{
-    courseId: "3f",
-    grade: 1.5,
-    credits: 4
-},
-{
-    courseId: "4j",
-    grade: 2,
-    credits: 2
-},
-{
-    courseId: "5q",
-    grade: 3,
-    credits: 3
-}
-];
-
-
-const GPA = listOfCourse.reduce((accumulator, currentValue) => {
-    return accumulator + currentValue.credits*currentValue.grade;
-}, 0);
-
-// console.log("GPA", GPA);
-
-const TranscriptReducer = (state = initialState, action) => {
-    const { 
-        process, 
-        factor, 
-        examination, 
-        grade,
-        semester,
-        courseId,
-        courseTitle,
-        credits,
-        generateId
-     } = action;
-    switch(action.type) {
-        case types.CURRENT_ROW:
-            return {...state};
-        case types.ADD_NEW_ROW:
-            return {
-                ...state,
-                currentState:  [
-                    ...state.currentState,
-                    {
-                        generateId: uuidv4(),
-                        semester: "",
-                        courseId: "",
-                        courseTitle: "",
-                        credits: "",
-                        process: "",
-                        examination: "",
-                        factor: "",
-                        action: "",
-                        point: "",
-                        grade: "",
-                        status: "",
-                    }
-                ]
-            };
-        case types.EDIT_THIS_COURSE:
-            return { 
-                ...state,
-                isEditting: true
-             }
-        case types.DELETE_ROW:
-            return {
-                ...state,
-                handleState: state.handleState.filter(item => item.generateId !== action.id),
-                currentState: state.currentState.filter(item => item.generateId !== action.id)
-            }
-        case types.SAVE_ROW:
-            console.log("generateId", generateId);
-            const newList = {
-                generateId: generateId,
-                semester: semester,
-                courseId: courseId,
-                courseTitle: courseTitle,
-                credits: credits,
-                point: roundToOne(process, examination, factor, 1),
-                grade: grade,
-                process: process,
-                examination: examination,
-                factor: factor,
-                status: "Pending"
-            }
-            const currentStateAfterSave = state.currentState.filter(item=>item.generateId !== action.id);
-            return {
-                ...state,
-                currentState: [...currentStateAfterSave],
-                handleState: [...state.handleState, newList]
-            }
-        default:
-            return {...state}; 
+  courseList: [
+    {
+      generateId: uuidv4(),
+      STT: 1,
+      semester: 20171,
+      courseTitle: 'General Chemistry',
+      courseId: 'CH1010',
+      credits: 3,
+      process: 8.5,
+      examination: 9,
+      factor: 0.5,
+      action: 'Default',
+      point: function(){
+        return this.process*(1-this.factor)+this.examination*this.factor},
+      grade: "A"
+    },
+    {
+      generateId: uuidv4(),
+      STT: 2,
+      semester: 20191,
+      courseTitle: 'Graduation Project',
+      courseId: 'PH5100',
+      credits: 9,
+      process: 9.3,
+      examination: 8.3,
+      factor: 0.5,
+      action: 'Default',
+      point: function(){
+        return this.process*(1-this.factor)+this.examination*this.factor},
+      grade: "A"
+    },
+    {
+      generateId: uuidv4(),
+      STT: 3,
+      semester: 20172,
+      courseTitle: 'Light Measurement',
+      courseId: 'PH4650',
+      credits: 3,
+      process: 9,
+      examination: 8,
+      factor: 0.7,
+      action: 'Default',
+      point: function(){
+        return this.process*(1-this.factor)+this.examination*this.factor},
+      grade: "B+"
+    },
+    {
+      generateId: uuidv4(),
+      STT: 2,
+      semester: 20182,
+      courseTitle: 'Laser Physics',
+      courseId: 'PH4660',
+      credits: 2,
+      process: 4.5,
+      examination: 6.5,
+      factor: 0.7,
+      action: 'Default',
+      point: function(){
+        return this.process*(1-this.factor)+this.examination*this.factor},
+      grade: "C"
     }
+  ],
+  errors: {
+    courseId: '',
+    courseTitle: '',
+    credits: '',
+    process: '',
+    examination: ''
+  },
+  info: {
+    courseId: '',
+    courseTitle: '',
+    credits: '',
+    process: '',
+    examination: '',
+    factor: 0.7
+  },
+  isReg: true
 };
 
+const TranscriptReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.HANDLE_ORIGIN: 
+      return { 
+        ...state,
+        errors: action.errors,
+        info: action.info
+      };
+    
+    case types.ADD_NEW_COURSE: 
+      return { 
+        ...state,
+        info: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: '',
+          factor: 0.7
+        },
+        errors: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: ''
+        },
+        courseList: [...state.courseList, { ...state.info }] 
+      };
+    
+    case types.EDIT_THIS_COURSE: 
+      return { 
+        ...state,
+        info: action.item,
+        errors: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: ''
+        },
+        isReg: false
+      };
+    
+    case types.UPDATE_THIS_COURSE: 
+      const cloneCourseList1st = [...state.courseList];
+      let findCourse = cloneCourseList1st.find(
+        post => post.courseId === state.info.courseId
+      );
+      if (findCourse) {
+        findCourse.courseTitle = state.info.courseTitle;
+        findCourse.credits = state.info.credits;
+        findCourse.factor = state.info.factor;
+        findCourse.process = state.info.process;
+        findCourse.examination = state.info.examination;
+      }
+      return { 
+        ...state,
+        isReg: true,
+        courseList: cloneCourseList1st,
+        info: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          factor: 0.7,
+          process: '',
+          examination: ''
+        }
+      };
+    
+    case types.CANCEL_THIS_UPDATE:
+      return { 
+        ...state,
+        info: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: '',
+          factor: 0.7
+        },
+        errors: {
+          courseId: '',
+          courseTitle: '',
+          credits: '',
+          process: '',
+          examination: ''
+        },
+        isReg: true
+      };
+    
+    case types.DELETE_THIS_COURSE: 
+      const cloneCourseList2nd = [...state.courseList];
+      return {
+        ...state,
+        courseList: cloneCourseList2nd.filter(
+          item => item.courseId !== action.courseId
+        )
+      };
+    default:
+      return { ...state };
+  }
+};
 
 export default TranscriptReducer;

@@ -7,9 +7,8 @@ import visibleTodoListFilter from "./visibleTodoFilter.reducer";
 import visibleTheme from "./visibleTheme.reducer";
 import DataMembers from "./DataMembers";
 import sampleMembers from "./sampleMembers";
-// import TranscriptReducer from "./TranscriptReducer";
+import TranscriptReducer from "./TranscriptReducer";
 import { TaskReducer } from "./TaskReducer";
-import { TranscriptReducer } from './TaiKhoanReducer';
 
 const rootReducer = combineReducers({
     colors: ColorsReducer,

@@ -149,7 +149,7 @@ class EntryForm extends Component {
       }
     }
 
-    console.log('valid', valid);
+    // console.log('valid', valid);
 
     for (const key in this.props.errorsTaiKhoan) {
       if (this.props.errorsTaiKhoan[key].toString().includes('incorrect')) {
@@ -227,9 +227,12 @@ class EntryForm extends Component {
             <form onSubmit={event => this.handleSave(event, courseId)}>
               <div className="row">
                 <div className="col-6">
-                  <p className="p-0 m-0 pb-1">Course Id</p>
+                  <label 
+                  className="p-0 m-0 pb-1"
+                  for="courseId">Course Id</label>
                   <input
                     type="text"
+                    id="courseId"
                     typeinput="courseid"
                     className="form-control"
                     name="courseId"
@@ -244,10 +247,13 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pb-1">Course Title</p>
+                  <label 
+                  className="p-0 m-0 pb-1"
+                  for="courseTitle">Course Title</label>
                   <input
                     type="text"
                     typeinput="coursetitle"
+                    id="courseTitle"
                     size="50"
                     maxlength="50"
                     className="form-control"
@@ -260,7 +266,9 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">Credits</p>
+                  <label 
+                  className="p-0 m-0 pt-3 pb-1"
+                  for="credits">Credits</label>
                   <input
                     type="text"
                     size="2"
@@ -268,6 +276,7 @@ class EntryForm extends Component {
                     className="form-control"
                     name="credits"
                     typeinput="credits"
+                    id="credits"
                     value={credits}
                     onChange={this.handleChangeInput}
                   />
@@ -276,11 +285,15 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">Factor</p>
+                  <label 
+                  className="p-0 m-0 pt-3 pb-1"
+                  for="factor"
+                  >Factor</label>
                   <select
                     className="form-control"
                     name="factor"
                     value={factor}
+                    id="factor"
                     onChange={this.handleChangeInput}
                   >
                     <option>{this.props.infoTaiKhoan.factor}</option>
@@ -291,12 +304,17 @@ class EntryForm extends Component {
                   </select>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">Process</p>
+                  <label 
+                  className="p-0 m-0 pt-3 pb-1"
+                  for="process"
+                  >Process
+                  </label>
                   <input
                     type="text"
                     className="form-control"
                     name="process"
                     size="3"
+                    id="process"
                     maxlength="3"
                     typeinput="process"
                     value={process}
@@ -307,11 +325,14 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-6">
-                  <p className="p-0 m-0 pt-3 pb-1">Examination</p>
+                  <label 
+                  className="p-0 m-0 pt-3 pb-1"
+                  for="examination">Examination</label>
                   <input
                     type="text"
                     className="form-control"
                     name="examination"
+                    id="examination"
                     size="3"
                     maxlength="3"
                     typeinput="examination"

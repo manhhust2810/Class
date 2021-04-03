@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
-import EntryForm from '../components/Blockchain/EntryForm';
-import Result from '../components/Blockchain/Result';
+import EntryForm from '../components/TranscriptCalculate/EntryForm';
+import Result from '../components/TranscriptCalculate/Result';
+import { 
+  FaSortNumericDown, 
+  FaSortAlphaDown,
+  FaSort,
+  FaSortDown,
+  FaSortUp,
+  BsExclamationTriangleFill
+} from "react-icons/fa";
 class TranscriptCalculate extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +17,8 @@ class TranscriptCalculate extends Component {
       updateAction: false,
       deleteAction: false,
       courseChange: "",
-      takeAction: false
+      takeAction: false,
+      currentSort: "default"
     };
   }
 
@@ -76,26 +85,58 @@ class TranscriptCalculate extends Component {
     });
   };
 
+  onSortChange = () => {
+		const { currentSort } = this.state;
+		let nextSort;
+    switch(currentSort) {
+      case "down":
+        nextSort = 'up';
+        // return (<FaSortDown />)
+        break;
+      case "up":
+        nextSort = 'default';
+        // return (<FaSortUp />)
+        break;
+      case "default":
+        nextSort = 'down';
+        // return (<FaSort />)
+        break;
+    };
+
+		this.setState({
+			currentSort: nextSort
+		});
+	};
+
   render() {
-    const { deleteAction, saveAction, updateAction } = this.state;
+    const { 
+      deleteAction, 
+      saveAction, 
+      updateAction,
+      takeAction,
+      currentSort,
+      courseChange
+    } = this.state;
     return (
       <div className="container">
-        <EntryForm
+        {/* <EntryForm
           deleteCourseOnFailure={this.deleteCourseOnFailure}
           updateCourseOnSuccess={this.updateCourseOnSuccess}
           updateCourseOnFailure={this.updateCourseOnFailure}
           saveCourseOnSuccess={this.saveCourseOnSuccess}
           saveCourseOnFailure={this.saveCourseOnFailure}
-        />
+        /> */}
         <Result
           deleteAction={deleteAction}
           updateAction={updateAction}
           saveAction={saveAction}
-          courseChange={this.state.courseChange}
+          courseChange={courseChange}
           deleteCourseOnSuccess={this.deleteCourseOnSuccess}
           updateCourseOnFailure={this.updateCourseOnFailure}
           saveCourseOnFailure={this.saveCourseOnFailure}
-          takeAction={this.state.takeAction}
+          takeAction={takeAction}
+          currentSort={currentSort}
+          onSortChange={this.onSortChange}
         />
       </div>
     );

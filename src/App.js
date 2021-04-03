@@ -101,20 +101,7 @@ class App extends Component {
       //   <div className={"App " + this.props.visibleTheme}>
       //   <ChangeThem />
       //   {/* <TodoContainer /> */}
-      //   </div>
-      //       <span>{(status==="Pending")
-      //     ?
-      //     (<div className="alert alert-success">
-      //         <strong>Saved New Member On Success Action!</strong>
-      //     </div>)
-      //     :
-      //     (status==="Error")
-      //     ?
-      //     (<div className="alert alert-danger">
-      //         <strong>Saved New Member On Failure Action!</strong>
-      //     </div>):
-      //     null}  
-      //     </span>         
+      //   </div>       
       //     </div>         
       //   </div>      
       // </div>

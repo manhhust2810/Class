@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
-import { AiFillWarning } from "react-icons/ai";
 
-class NotFound extends Component {
-  render() {
-    return (
+function NotFound() {
+  return (
+    <div>
       <div
         className="container mt-2"
-        // style={{
-        //   boxShadow:
-        //     '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
-        // }}
+        style={{
+          boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+        }}
       >
-        <h1 className="text text-danger display-4"><AiFillWarning />Warning: 404 - No page was found!</h1>
-        <hr />
+        <h4>
+          <span className="text-danger display-4"> 404 </span> Page Not Found{" "}
+          <hr />
+        </h4>
         <p>Sorry!!! The Page You Request Is Not Available.</p>
         <p className="small text-secondary pb-3">
           It might have been removed; had its name changed; or is temporarily
@@ -22,8 +23,8 @@ class NotFound extends Component {
           navigate to a specific Page.
         </p>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 export default NotFound;

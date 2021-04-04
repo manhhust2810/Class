@@ -13,13 +13,13 @@ import FormInputEdit from "./todo/FormInputEdit";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/layouts/Footer";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap";
-import "popper.js/dist/popper";
+// import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/js/bootstrap";
+// import "popper.js/dist/popper";
 import "jquery/dist/jquery";
 
-import "../src/fontawesome/css/all.min.css";
-import "../src/animate.css";
+// import "./fontawesome/css/all.min.css";
+// import "./animate.css";
 
 class App extends React.Component {
   render() {

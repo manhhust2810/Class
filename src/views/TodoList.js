@@ -6,6 +6,8 @@ import style from './TodoList.module.css';
 import List from '../components/List/List';
 import Message from '../components/Message/Message';
 import Total from '../components/Total/Total';
+import Footer from "./Footer";
+import styled from 'styled-components';
 
 function TodoList(props) {
     const { hidden } = props;
@@ -58,8 +60,22 @@ function TodoList(props) {
                 </div>
             </span>
             </span>
+            <FooterStyle>
+          <Footer />
+        </FooterStyle>
         </span>
     )
 }
+
+const FooterStyle = styled.div`
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 60px;
+   background: #1F568B;
+   text-align: center;
+   padding: 10px;
+   color: white;
+`;
 
 export default TodoList;

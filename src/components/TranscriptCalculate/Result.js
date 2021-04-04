@@ -37,7 +37,8 @@ class Result extends Component {
 
   displayAlert = () => {
     return (
-      <span className="alert alert-success foo">
+      <span className="alert alert-success foo"
+      >
         <strong>
           {this.contentAlert()} {this.props.courseChange} On Success!
         </strong>

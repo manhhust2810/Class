@@ -13,8 +13,7 @@ function Footer() {
       style={{
         color: "white",
         textAlign: "center",
-        marginTop: "18px",
-        background: "blue",
+        background: "#1F568B",
         padding: "18px"
       }}
     >

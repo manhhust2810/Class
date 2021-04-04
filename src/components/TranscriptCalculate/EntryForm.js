@@ -344,7 +344,7 @@ class EntryForm extends Component {
                   </p>
                 </div>
                 <div className="col-12 mt-3">
-                  <button
+                  {(this.props.isReg)?<button
                     className={
                       this.props.isReg
                         ? 'btn mr-2 btn-success'
@@ -354,8 +354,8 @@ class EntryForm extends Component {
                     onClick={this.saveCourse}
                   >
                     Save
-                  </button>
-                  <button
+                  </button>:<></>}
+                  {(!this.props.isReg)?<button
                     className={
                       !this.props.isReg
                         ? 'btn mr-2 btn-primary'
@@ -365,7 +365,7 @@ class EntryForm extends Component {
                     onClick={() => this.handleUpdate(courseId)}
                   >
                     Update
-                  </button>
+                  </button>:<></>}
                   {!this.props.isReg ? (
                     <button
                       className="btn mr-2 btn-danger"

@@ -3,7 +3,6 @@ import React, { Component } from "react";
 // import TodoContainer from './components/todo-container/TodoContainer';
 import { connect } from "react-redux";
 // import ChangeThem from './components/change-theme/ChangeThem';
-import Header from "./components/Display/Header";
 import Display from "./views/Display";
 import TodoList from "./views/TodoList";
 import Color from "./views/Color";
@@ -24,22 +23,20 @@ import {
 } from "react-router-dom";
 // import routes from "./views/routes";
 import "./App.css";
-class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
+import App1 from "./task-manager/src/App1";
 
-  async componentDidMount() {
-    try {
-      const data = await fetch('https://jsonplaceholder.typicode.com/todos')
-      const data2 = await data.json()
-      this.setState({
-        dataAPI: data2
-      })
-    } catch (err) {
-      console.log('loi', err);
-    }
-  }
+class App extends Component {
+  // async componentDidMount() {
+  //   try {
+  //     const data = await fetch('https://jsonplaceholder.typicode.com/todos')
+  //     const data2 = await data.json()
+  //     this.setState({
+  //       dataAPI: data2
+  //     })
+  //   } catch (err) {
+  //     console.log('loi', err);
+  //   }
+  // }
 
   // componentWillMount(){
   //   if(localStorage&&localStorage.getItem("task")){
@@ -59,7 +56,6 @@ class App extends Component {
               <Home />
             </Route>
             <Route path="/display" exact>
-              <Header />
               {/* {({ match }) => ( */}
            
               <Display
@@ -68,34 +64,20 @@ class App extends Component {
               {/* )} */}
             
             </Route>
-            <Route path="/todolist" exact>
-              <TodoList />
-            </Route>
-            <Route path="/usermanager" exact>
-              <UserManager />
-            </Route>
-            <Route path="/transcript" exact>
-              <TranscriptCalculate />
-            </Route>
-          
-            <Route path="/statistical" exact>
-              <Statistical />
-            </Route>
-            <Route path="/color" exact>
-              <Color />
-            </Route>
+            <Route path="/todolist" exact component={TodoList} />
+            <Route path="/usermanager" exact component={UserManager} />   
+            <Route path="/transcript" exact component={TranscriptCalculate} />
+            <Route path="/statistical" exact component={Statistical} />
+            <Route path="/color" exact component={Color} />
             <Route path="/covid19" exact>
               
             </Route>
             <Route path="/worldcup" exact>
-              
+              <App1 />
             </Route>
-            <Route path="/blockchain" exact>
-            <TranscriptCalculate />
-            </Route>
+            <Route path="/blockchain" exact component={TranscriptCalculate} />
             <Route component={NotFound} />
           </Switch>
-      
       </Router>
       // <div>
       //   <div className={"App " + this.props.visibleTheme}>

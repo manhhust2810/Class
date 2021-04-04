@@ -17,7 +17,7 @@ input:focus {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 60px 60px;
-  background-color: #1F568B;
+  background-color: #1f568b;
   margin-left: 60px;
   margin-right: 60px;
   margin-top: 30px;
@@ -54,7 +54,7 @@ input:focus {
 }
 
 .my-button {
-  background-color: #1F568B;
+  background-color: #1f568b;
   width: 200px;
   margin-left: 60px;
   margin-top: 70px;
@@ -97,7 +97,7 @@ body {
 /*==Style cho menu===*/
 
 #menu ul {
-  background: #1F568B;
+  background: #1f568b;
   list-style-type: none;
   text-align: center;
 }
@@ -145,7 +145,7 @@ body {
   margin-top: 7px;
   height: 36px;
   line-height: 36px;
-  color: white
+  color: white;
 }
 
 #cell {
@@ -161,11 +161,11 @@ body {
 
 .item-active {
   background-color: yellow;
-	color: #8C1515;
+  color: #8c1515;
 }
 
 .text-color-dropdown {
-  color: white
+  color: white;
 }
 
 .SortableHelper {
@@ -176,18 +176,18 @@ body {
 
 .flex-container {
   height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flex-item {
-	width: 900px;
-	height: 400px;
+  width: 900px;
+  height: 400px;
 }
 
 .table-format {
-  margin-top: 60px
+  margin-top: 60px;
 }
 
 .foo {
@@ -204,6 +204,7 @@ body {
   background-color: #5cb85c;
   color: #fff;
   animation: inMess 1s 1;
+  margin-top: 10px;
   /* animation-duration: 4s; */
   /* transition-delay: 5s; */
 }
@@ -227,6 +228,5 @@ body {
 }
 
 .iconPosition {
-  margin-right: 90px
+  margin-right: 90px;
 }
-

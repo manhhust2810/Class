@@ -15,7 +15,9 @@ function TopCard(props) {
     id,
     isEditing,
     deleteTeamById,
-    changeNameById
+    changeNameById,
+    // DataMembers,
+    // setStyleOfCopyRight
   } = props;
 
   const iconStyle = {
@@ -90,6 +92,12 @@ const Input = styled.input`
   margin-left: 50px;
 `;
 
+const mapStateToProps = state => {
+  return {
+    DataMembers: state.DataMembers.currentState
+  };
+};
+
 const mapDispatchToProps = (dispatch, props) => {
   return {
       deleteTeamById: (id) => {
@@ -101,4 +109,4 @@ const mapDispatchToProps = (dispatch, props) => {
   }
 };
 
-export default connect(null, mapDispatchToProps)(TopCard);;
+export default connect(mapStateToProps, mapDispatchToProps)(TopCard);;

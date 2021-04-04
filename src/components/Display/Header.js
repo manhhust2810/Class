@@ -5,16 +5,21 @@ import * as action from "./../../actions/index";
 function Header(props) {
     const { 
         createNewTeam,
-        searchAnything
+        searchAnything,
+        setStyleOfCopyRight
     } = props;
 
     const [search, setSearch] = useState("");
     
-
     function handleSearchBox(event){
         const { value } = event.target;
         setSearch(value);
         searchAnything(search);
+    }
+
+    function handleCreateNewTeam(){
+        createNewTeam();
+        // setStyleOfCopyRight();
     }
 
     useEffect(() => { 
@@ -22,17 +27,19 @@ function Header(props) {
     }, [searchAnything, search])
 
     return (
-    <div>
+    <span>
         <button
             className = "my-button"
-            onClick = {createNewTeam}>
+            onClick = {handleCreateNewTeam}>
         CREATE NEW TEAM
         </button>
         <input
             className = "my-searchbox"
+            type="text"
             onChange = {handleSearchBox}
+            placeholder="Enter Search Word ..."
         />
-    </div>)
+    </span>)
 }
 
 const mapDispatchToProps = (dispatch, props) => {

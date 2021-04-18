@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as action from '../../actions/index';
+import { BiMinus, BiSquare } from 'react-icons/bi';
 
 class EntryForm extends Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class EntryForm extends Component {
       alertCredits: '',
       alertProcess: '',
       alertExamination: '',
-      alertCourseTitle: ''
+      alertCourseTitle: '',
+      alertSemester: '',
+      // minimize: true
     };
   }
 
@@ -128,6 +131,28 @@ class EntryForm extends Component {
         }
         break;
 
+      case 'semester':
+        const regexSemeter = /^2\d{3}[1-3]$/;
+        if (!regexSemeter.test(value)) {
+          if (value.toString().trim() === '') {
+            newErrors[name] = `*This ${name} field is required!`;
+            this.setState({
+              alertSemester: 'text-info'
+            });
+          } else {
+            newErrors[name] = `The ${name} entered is incorrect format!`;
+            this.setState({
+              alertSemester: 'text-danger'
+            });
+          }
+        } else {
+          newErrors[name] = `The ${name} entered is accepted!`;
+          this.setState({
+            alertSemester: 'text-success'
+          });
+        }
+        break;
+
       default:
         newErrors[name] = `The ${name} entered is incorrect format!`;
         break;
@@ -197,7 +222,7 @@ class EntryForm extends Component {
       return;
     } else {
       for (const key in this.props.errorsTaiKhoan) {
-        this.props.errorsTaiKhoan[key] = "";
+        this.props.errorsTaiKhoan[key] = '';
       }
       // console.log('log ra', this.props.errorsTaiKhoan);
       this.props.updateThisCourse();
@@ -207,6 +232,16 @@ class EntryForm extends Component {
     }
   };
 
+  // handleZoomIn = () => {
+  //   if (this.state.minimize)
+  //   this.setState({ minimize: false });
+  // };
+
+  // handleZoomOut = () => {
+  //   if (!this.state.minimize)
+  //   this.setState({ minimize: true });
+  // };
+
   render() {
     const {
       courseId,
@@ -214,172 +249,232 @@ class EntryForm extends Component {
       credits,
       factor,
       process,
-      examination
+      examination,
+      semester
     } = this.props.infoTaiKhoan;
+    const { handleZoomIn, handleZoomOut } = this.props;
 
     return (
       <div className="table-format">
         <div className="card mt-4">
           <div className="card-header bg-light">
-            <h5 className="m-0 p-0">Entry Form</h5>
+            {/* <h5 className="m-0 p-0"></h5> */}
+            <span>Entry Form</span>
+            {((this.props.minimize))?
+            (<BiSquare
+              style={{
+                marginLeft: '960px',
+                color: "#1f568b" }}
+              onClick={handleZoomIn}
+            />)
+            :
+            (<BiMinus
+              style={{
+                marginLeft: '960px',
+                color: "#1f568b" }}
+              onClick={handleZoomOut}
+            />)
+            }
           </div>
-          <div className="card-body">
-            <form onSubmit={event => this.handleSave(event, courseId)}>
-              <div className="row">
-                <div className="col-6">
-                  <label 
-                  className="p-0 m-0 pb-1"
-                  for="courseId">Course Id</label>
-                  <input
-                    type="text"
-                    id="courseId"
-                    typeinput="courseid"
-                    className="form-control"
-                    name="courseId"
-                    size="7"
-                    maxlength="7"
-                    value={courseId}
-                    onChange={this.handleChangeInput}
-                    disabled={!this.props.isReg}
-                  />
-                  <p className={this.state.alertCourseId}>
-                    {this.props.errorsTaiKhoan.courseId}
-                  </p>
-                </div>
-                <div className="col-6">
-                  <label 
-                  className="p-0 m-0 pb-1"
-                  for="courseTitle">Course Title</label>
-                  <input
-                    type="text"
-                    typeinput="coursetitle"
-                    id="courseTitle"
-                    size="50"
-                    maxlength="50"
-                    className="form-control"
-                    name="courseTitle"
-                    value={courseTitle}
-                    onChange={this.handleChangeInput}
-                  />
-                  <p className={this.state.alertCourseTitle}>
-                    {this.props.errorsTaiKhoan.courseTitle}
-                  </p>
-                </div>
-                <div className="col-6">
-                  <label 
-                  className="p-0 m-0 pt-3 pb-1"
-                  for="credits">Credits</label>
-                  <input
-                    type="text"
-                    size="2"
-                    maxlength="2"
-                    className="form-control"
-                    name="credits"
-                    typeinput="credits"
-                    id="credits"
-                    value={credits}
-                    onChange={this.handleChangeInput}
-                  />
-                  <p className={this.state.alertCredits}>
-                    {this.props.errorsTaiKhoan.credits}
-                  </p>
-                </div>
-                <div className="col-6">
-                  <label 
-                  className="p-0 m-0 pt-3 pb-1"
-                  for="factor"
-                  >Factor</label>
-                  <select
-                    className="form-control"
-                    name="factor"
-                    value={factor}
-                    id="factor"
-                    onChange={this.handleChangeInput}
-                  >
-                    <option>{this.props.infoTaiKhoan.factor}</option>
-                    <option>0.5</option>
-                    <option>0.6</option>
-                    <option>0.7</option>
-                    <option>0.8</option>
-                  </select>
-                </div>
-                <div className="col-6">
-                  <label 
-                  className="p-0 m-0 pt-3 pb-1"
-                  for="process"
-                  >Process
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="process"
-                    size="3"
-                    id="process"
-                    maxlength="3"
-                    typeinput="process"
-                    value={process}
-                    onChange={this.handleChangeInput}
-                  />
-                  <p className={this.state.alertProcess}>
-                    {this.props.errorsTaiKhoan.process}
-                  </p>
-                </div>
-                <div className="col-6">
-                  <label 
-                  className="p-0 m-0 pt-3 pb-1"
-                  for="examination">Examination</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="examination"
-                    id="examination"
-                    size="3"
-                    maxlength="3"
-                    typeinput="examination"
-                    value={examination}
-                    onChange={this.handleChangeInput}
-                  />
-                  <p className={this.state.alertExamination}>
-                    {this.props.errorsTaiKhoan.examination}
-                  </p>
-                </div>
-                <div className="col-12 mt-3">
-                  {(this.props.isReg)?<button
-                    className={
-                      this.props.isReg
-                        ? 'btn mr-2 btn-success'
-                        : 'btn mr-2 btn-light'
-                    }
-                    disabled={!this.props.isReg}
-                    onClick={this.saveCourse}
-                  >
-                    Save
-                  </button>:<></>}
-                  {(!this.props.isReg)?<button
-                    className={
-                      !this.props.isReg
-                        ? 'btn mr-2 btn-primary'
-                        : 'btn mr-2 btn-light'
-                    }
-                    disabled={this.props.isReg}
-                    onClick={() => this.handleUpdate(courseId)}
-                  >
-                    Update
-                  </button>:<></>}
-                  {!this.props.isReg ? (
-                    <button
-                      className="btn mr-2 btn-danger"
-                      onClick={this.props.cancelThisUpdate}
+          {(this.props.minimize) ? (
+            <div className="card-body text-center">
+              Zoom in or out to drop the form
+            </div> 
+          ) : (
+            <div className="card-body">
+              <form onSubmit={event => this.handleSave(event, courseId)}>
+                <div className="row">
+                  <div className="col-3">
+                    <label className="p-0 m-0 pb-1" for="courseId">
+                      Course Id
+                    </label>
+                    <input
+                      type="text"
+                      id="courseId"
+                      typeinput="courseid"
+                      className="form-control"
+                      name="courseId"
+                      size="7"
+                      maxlength="7"
+                      value={courseId}
+                      onChange={this.handleChangeInput}
+                      disabled={!this.props.isReg}
+                    />
+                    <p className={this.state.alertCourseId}>
+                      {this.props.errorsTaiKhoan.courseId}
+                    </p>
+                  </div>
+                  <div className="col-6">
+                    <label className="p-0 m-0 pb-1" for="courseTitle">
+                      Course Title
+                    </label>
+                    <input
+                      type="text"
+                      typeinput="coursetitle"
+                      id="courseTitle"
+                      size="50"
+                      maxlength="50"
+                      className="form-control"
+                      name="courseTitle"
+                      value={courseTitle}
+                      onChange={this.handleChangeInput}
+                    />
+                    <p className={this.state.alertCourseTitle}>
+                      {this.props.errorsTaiKhoan.courseTitle}
+                    </p>
+                  </div>
+                  <div className="col-3">
+                    <label
+                      className="p-0 m-0 pb-1"
+                      // pt-3
+                      for="credits"
                     >
-                      Cancel
-                    </button>
-                  ) : (
-                    ''
-                  )}
+                      Credits
+                    </label>
+                    <input
+                      type="text"
+                      size="2"
+                      maxlength="2"
+                      className="form-control"
+                      name="credits"
+                      typeinput="credits"
+                      id="credits"
+                      value={credits}
+                      onChange={this.handleChangeInput}
+                    />
+                    <p className={this.state.alertCredits}>
+                      {this.props.errorsTaiKhoan.credits}
+                    </p>
+                  </div>
+                  <div className="col-3">
+                    <label className="p-0 m-0 pt-3 pb-1" for="factor">
+                      Factor
+                    </label>
+                    <select
+                      className="form-control"
+                      name="factor"
+                      value={factor}
+                      id="factor"
+                      onChange={this.handleChangeInput}
+                    >
+                      <option>{this.props.infoTaiKhoan.factor}</option>
+                      <option>0.5</option>
+                      <option>0.6</option>
+                      <option>0.7</option>
+                      <option>0.8</option>
+                    </select>
+                  </div>
+                  <div className="col-3">
+                    <label className="p-0 m-0 pt-3 pb-1" for="process">
+                      Process
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="process"
+                      size="3"
+                      id="process"
+                      maxlength="3"
+                      typeinput="process"
+                      value={process}
+                      onChange={this.handleChangeInput}
+                    />
+                    <p className={this.state.alertProcess}>
+                      {this.props.errorsTaiKhoan.process}
+                    </p>
+                  </div>
+                  <div className="col-3">
+                    <label
+                      className="p-0 m-0 pt-3 pb-1"
+                      // pt-3
+                      for="examination"
+                    >
+                      Examination
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="examination"
+                      id="examination"
+                      size="3"
+                      maxlength="3"
+                      typeinput="examination"
+                      value={examination}
+                      onChange={this.handleChangeInput}
+                    />
+                    <p className={this.state.alertExamination}>
+                      {this.props.errorsTaiKhoan.examination}
+                    </p>
+                  </div>
+                  <div className="col-3">
+                    <label
+                      className="p-0 m-0 pt-3 pb-1"
+                      // pt-3
+                      for="semester"
+                    >
+                      Semester
+                    </label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="semester"
+                      id="semester"
+                      size="5"
+                      maxlength="5"
+                      typeinput="semester"
+                      value={semester}
+                      onChange={this.handleChangeInput}
+                    />
+                    <p className={this.state.alertSemester}>
+                      {this.props.errorsTaiKhoan.semester}
+                    </p>
+                  </div>
+                  <div className="col-12 mt-3">
+                    {this.props.isReg ? (
+                      <button
+                        className={
+                          this.props.isReg
+                            ? 'btn mr-2 btn-success'
+                            : 'btn mr-2 btn-light'
+                        }
+                        disabled={!this.props.isReg}
+                        onClick={this.saveCourse}
+                      >
+                        Save
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+                    {!this.props.isReg ? (
+                      <button
+                        className={
+                          !this.props.isReg
+                            ? 'btn mr-2 btn-primary'
+                            : 'btn mr-2 btn-light'
+                        }
+                        disabled={this.props.isReg}
+                        onClick={() => this.handleUpdate(courseId)}
+                      >
+                        Update
+                      </button>
+                    ) : (
+                      <></>
+                    )}
+                    {!this.props.isReg ? (
+                      <button
+                        className="btn mr-2 btn-danger"
+                        onClick={this.props.cancelThisUpdate}
+                      >
+                        Cancel
+                      </button>
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </div>
-              </div>
-            </form>
-          </div>
+              </form>
+            </div>
+          )}
         </div>
       </div>
     );

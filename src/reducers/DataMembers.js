@@ -52,11 +52,16 @@ const DataMembers = (state = initialState, action) => {
         case types.SEARCH_ANYTHING:
             const newListAfterSearching = state.previousState.filter(item => {
                 const { memberIds, managerIds } = item;
-                const matchUserId = [...memberIds, ...managerIds].filter(({ firstName = "", lastName = "" }) => firstName.includes(value) || lastName.includes(value))
+                // const matchUserId = [...memberIds, ...managerIds].filter(({ firstName = "", lastName = "" }) => firstName.includes(value) || lastName.includes(value))
+                // if (matchUserId.length > 0) {
+                //     return true;
+                // }
+                // return item.name.includes(value);
+                const matchUserId = [...memberIds, ...managerIds].filter(({ firstName = "", lastName = "" }) => new RegExp(value, "i").test(firstName) || new RegExp(value, "i").test(lastName))
                 if (matchUserId.length > 0) {
                     return true;
                 }
-                return item.name.includes(value);
+                return new RegExp(value, "i").test(item.name);
             });
             return {
                 ...state,

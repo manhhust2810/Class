@@ -19,11 +19,12 @@ function Footer() {
       //   position: "relative"
       // }}
     >
-      &copy; Copyright <span className="text-warning">{year}</span> by&nbsp;
+      <h6>&copy; All rights reserved <span className="text-warning">{year}</span> by&nbsp;
       <a href="https://github.com/manhhust/" className="text-light">
         manhhust
       </a>. Please reference the Terms of Use and the Supplemental Terms for specific information related to your state.<br/>
       Your use of this website constitutes acceptance of the Terms of Use, Supplemental Terms, Privacy Policy and Cookie Policy. Do Not Sell My Personal Information
+      </h6>
     </footer>
   );
 }

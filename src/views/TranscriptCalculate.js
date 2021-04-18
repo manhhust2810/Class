@@ -22,13 +22,14 @@ class TranscriptCalculate extends Component {
       courseChange: "",
       takeAction: false,
       currentSort: 'default',
-      copyright: false
+      copyright: false,
+      minimize: true
     };
   }
 
-  // componentDidUpdate(previousProps, previousState){
-  // //  console.log("previousProps", previousProps)
-  // //  console.log("previousState", previousState)
+  componentDidUpdate(previousProps, previousState){
+   console.log("previousProps", previousProps)
+   console.log("previousState", previousState)
   // if (previousProps.courseList.length <= 3) {
   //   this.setState({
   //     copyright: true
@@ -36,7 +37,7 @@ class TranscriptCalculate extends Component {
   // }
   // else return;
   // return
-  // }
+  }
 
   saveCourseOnSuccess = courseId => {
     this.setState({
@@ -49,7 +50,7 @@ class TranscriptCalculate extends Component {
         takeAction: false
       });
     }, 6000);
-    if(this.props.courseList.length <= 3) {
+    if(this.props.courseList.length <= 2) {
       this.setState({
         copyright: true
       })
@@ -134,6 +135,16 @@ class TranscriptCalculate extends Component {
     });
   };
 
+  handleZoomIn = () => {
+    if (this.state.minimize)
+    this.setState({ minimize: false });
+  };
+
+  handleZoomOut = () => {
+    if (!this.state.minimize)
+    this.setState({ minimize: true });
+  };
+
   render() {
     const {
       deleteAction,
@@ -153,6 +164,9 @@ class TranscriptCalculate extends Component {
             updateCourseOnFailure={this.updateCourseOnFailure}
             saveCourseOnSuccess={this.saveCourseOnSuccess}
             saveCourseOnFailure={this.saveCourseOnFailure}
+            minimize={this.state.minimize}
+            handleZoomIn={this.handleZoomIn}
+            handleZoomOut={this.handleZoomOut}
           />
           <Result
             deleteAction={deleteAction}
@@ -165,9 +179,12 @@ class TranscriptCalculate extends Component {
             takeAction={takeAction}
             currentSort={currentSort}
             onSortChange={this.onSortChange}
+            minimize={this.state.minimize}
           />
         </div>
-        <FooterStyle copyright={copyright}>
+        <FooterStyle 
+          copyright={copyright}
+          minimize={this.state.minimize}>
           <Footer />
         </FooterStyle>
       </div>
@@ -182,16 +199,8 @@ const FooterStyle = styled.div`
   text-align: center;
   padding: 10px;
   color: white;
-  ${props =>
-    props.copyright
-      ? css`
-          bottom: 0px;
-          position: absolute;
-        `
-      : css`
-          margin-top: 60px;
-          position: relative;
-        `};
+  bottom: 0px;
+  position: fixed;
 `;
 
 const mapStateToProps = state => ({

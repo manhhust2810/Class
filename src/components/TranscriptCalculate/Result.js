@@ -57,7 +57,7 @@ class Result extends Component {
       case "Exam":
       case "Point":
       case "Factor":
-        return <FaSort 
+        return <FaSort
         className=""
         onClick={this.props.onSortChange}
         />;
@@ -185,12 +185,12 @@ class Result extends Component {
             <td><input maxlength="5" size="5" id="1"/></td>
             <td><center><input id="2"/></center></td>
             <td><input maxlength="7" size="7" id="3"/></td>
-            <td><input maxlength="2" size="2" id="4"/></td>
+            <td><center><input maxlength="2" size="2" id="4"/></center></td>
             <td><center><input maxlength="3" size="5" id="5"/></center></td>
             <td><center><input maxlength="3" size="6" id="6"/></center></td>
-            <td><input maxlength="3" size="3" id="7"/></td>
+            <td><center><input maxlength="3" size="3" id="7"/></center></td>
             <td></td>
-            <td><input maxlength="3" size="3" id="9"/></td>
+            <td><center><input maxlength="3" size="3" id="9"/></center></td>
             <td><input maxlength="2" size="2" id="10"/></td>
             </tr>
               {this.props.courseList.length !== 0 ? (
@@ -205,6 +205,8 @@ class Result extends Component {
                     <td className="text-center">{item.examination}</td>
                     <td className="text-center">{item.factor}</td>
                     <td className="text-center">
+                      {(!this.props.minimize)?
+                      <span>
                       <button
                         className="btn btn-primary mr-2"
                         onClick={() => this.props.editThisCourse(item)}
@@ -217,6 +219,7 @@ class Result extends Component {
                       >
                         Delete
                       </button>
+                      </span>:<></>}
                     </td>
                     <td className="text-center">
                       {item.process * (1 - item.factor) +
